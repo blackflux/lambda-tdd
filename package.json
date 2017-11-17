@@ -1,7 +1,7 @@
 {
   "name": "lambda-tdd",
   "version": "0.0.0-development",
-  "description": "Test Framework for Lambda",
+  "description": "Test Framework for AWS Lambda",
   "main": "index.js",
   "scripts": {
     "test": "grunt gardener",
