@@ -4,18 +4,11 @@
     "SCOPE": "local"
   },
   "success": true,
-  "timeout": 10000,
   "response": [
     {
       "to": {
         "match": "^.*?\"SCOPE\":\"local\".*?$"
       }
     }
-  ],
-  "logs": [
-    {
-      "to.deep.equal": []
-    }
-  ],
-  "event": {}
+  ]
 }

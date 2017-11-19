@@ -1,18 +1,11 @@
 {
   "handler": "returnEnv",
   "success": true,
-  "timeout": 10000,
   "response": [
     {
       "to": {
         "match": "^.*?\"SCOPE\":\"global\".*?$"
       }
     }
-  ],
-  "logs": [
-    {
-      "to.deep.equal": []
-    }
-  ],
-  "event": {}
+  ]
 }
