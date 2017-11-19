@@ -30,8 +30,8 @@
   },
   "homepage": "https://github.com/simlu/lambda-tdd#readme",
   "dependencies": {
+    "aws-sdk": "2.153.0",
     "chai": "4.1.2",
-    "js-gardener": "1.5.2",
     "js-yaml": "3.10.0",
     "lambda-wrapper": "0.2.1",
     "lodash.get": "4.4.2",
@@ -45,7 +45,10 @@
     }
   ],
   "devDependencies": {
+    "glob": "7.1.2",
     "coveralls": "3.0.0",
+    "js-gardener": "1.5.2",
+    "mocha": "4.0.1",
     "semantic-release": "8.2.0"
   },
   "engines": {

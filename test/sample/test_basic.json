@@ -1,0 +1,20 @@
+{
+  "handler": "handler",
+  "success": true,
+  "timeout": 10000,
+  "response": [
+    {
+      "to": {
+        "match": "^\\{.*?\"statusCode\":200(?!\\d).*?\\}$"
+      }
+    }
+  ],
+  "logs": [
+    {
+      "to.deep.equal": []
+    }
+  ],
+  "event": {
+    "statusCode": 200
+  }
+}
