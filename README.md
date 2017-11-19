@@ -43,6 +43,34 @@ describe("Testing Tester", () => {
 
 You can pass an array of test files to the `execute()` function. By default tests are auto detected.
 
+### Test File Example
+
+```json
+{
+  "handler": "geoIp",
+  "env": {
+    "CUSTOM_USER_AGENT": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0"
+  },
+  "timestamp": 1511072994,
+  "success": true,
+  "lambdaTimeout": 5000,
+  "timeout: 5000,
+  "body": [{
+    "to.match": "^.*?\"United States\".*?$"
+  }],
+  "nock": [{
+    "to": {
+      "match": "^.*?\"http://ip-api.com:80\".*?$"
+    }
+  }],
+  "event": {
+    "ip": "173.244.44.10"
+  }
+}
+```
+
+More examples can be found [here](https://github.com/simlu/lambda-tdd/tree/master/test/sample).
+
 ## Test Runner Options
 
 ### cwd
@@ -205,6 +233,3 @@ as the following json
 ```
 Note that targets are either arrays or strings, but never objects (design limitation).
 
-## Test File Examples
-
-You can find some examples of JSON test files [here](https://github.com/simlu/lambda-tdd/tree/master/test/sample).
