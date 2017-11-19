@@ -1,0 +1,11 @@
+{
+  "handler": "returnError",
+  "success": false,
+  "error": [
+    {
+      "to": {
+        "equal": "\"error\""
+      }
+    }
+  ]
+}
