@@ -51,21 +51,21 @@ You can pass an array of test files to the `execute()` function. By default test
   "env": {
     "GOOGLE_PROJECT_ID": "123456789"
   },
+  "event": {
+    "ip": "173.244.44.10"
+  },
+  "nock": [{
+    "to": {
+      "match": "^.*?\"http://ip-api[.](com|ca):80\".*?$"
+    }
+  }],
+  "body": [{
+    "to.contain": "\"United States\""
+  }],
   "timestamp": 1511072994,
   "success": true,
   "lambdaTimeout": 5000,
-  "timeout: 5000,
-  "body": [{
-    "to.match": "^.*?\"United States\".*?$"
-  }],
-  "nock": [{
-    "to": {
-      "match": "^.*?\"http://ip-api.com:80\".*?$"
-    }
-  }],
-  "event": {
-    "ip": "173.244.44.10"
-  }
+  "timeout: 5000
 }
 ```
 
