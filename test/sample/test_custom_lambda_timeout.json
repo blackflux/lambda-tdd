@@ -1,11 +1,11 @@
 {
   "handler": "returnTimeout",
   "success": true,
-  "lambdaTimeout": 229999,
+  "lambdaTimeout": 230000,
   "response": [
     {
       "to": {
-        "match": "^\\{.*?\"timeout\":229\\d{3}(?!\\d).*?\\}$"
+        "match": "^\\{.*?\"timeout\":(229|300)\\d{3}(?!\\d).*?\\}$"
       }
     }
   ]
