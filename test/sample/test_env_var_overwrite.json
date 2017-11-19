@@ -1,11 +1,14 @@
 {
-  "handler": "returnEvent",
+  "handler": "returnEnv",
+  "env": {
+    "SCOPE": "local"
+  },
   "success": true,
   "timeout": 10000,
   "response": [
     {
       "to": {
-        "match": "^\\{.*?\"statusCode\":200(?!\\d).*?\\}$"
+        "match": "^.*?\"SCOPE\":\"local\".*?$"
       }
     }
   ],
@@ -14,7 +17,5 @@
       "to.deep.equal": []
     }
   ],
-  "event": {
-    "statusCode": 200
-  }
+  "event": {}
 }

@@ -1,11 +1,11 @@
 {
-  "handler": "returnEvent",
+  "handler": "returnEnv",
   "success": true,
   "timeout": 10000,
   "response": [
     {
       "to": {
-        "match": "^\\{.*?\"statusCode\":200(?!\\d).*?\\}$"
+        "match": "^.*?\"SCOPE\":\"global\".*?$"
       }
     }
   ],
@@ -14,7 +14,5 @@
       "to.deep.equal": []
     }
   ],
-  "event": {
-    "statusCode": 200
-  }
+  "event": {}
 }
