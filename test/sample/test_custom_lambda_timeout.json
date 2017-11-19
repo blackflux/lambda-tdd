@@ -1,7 +1,7 @@
 {
   "handler": "returnTimeout",
   "success": true,
-  "lambdaTimeout": 230000,
+  "lambdaTimeout": 229999,
   "response": [
     {
       "to": {
