@@ -1,0 +1,13 @@
+{
+  "handler": "returnEvent",
+  "success": true,
+  "response": [
+    {
+      "to.match": "^\\{.*?\"statusCode\":200(?!\\d).*?\\}$",
+      "to.contain": "\"statusCode\":200"
+    }
+  ],
+  "event": {
+    "statusCode": 200
+  }
+}
