@@ -4,14 +4,14 @@
   "response": [
     {
       "to": {
-        "match": "^.*?\"United States\".*?$"
+        "contain": "\"United States\""
       }
     }
   ],
   "nock": [
     {
       "to": {
-        "match": "^.*?\"http://ip-api.com:80\".*?$"
+        "match": "^.*?\"http://ip-api\\.com:80\".*?$"
       }
     }
   ]
