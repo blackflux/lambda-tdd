@@ -1,0 +1,11 @@
+{
+  "handler": "returnTimeout",
+  "success": true,
+  "response": [
+    {
+      "to": {
+        "match": "^\\{.*?\"timeout\":299\\d{3}.*?\\}$"
+      }
+    }
+  ]
+}

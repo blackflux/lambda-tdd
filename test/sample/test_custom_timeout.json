@@ -1,0 +1,12 @@
+{
+  "handler": "returnTimeout",
+  "success": true,
+  "lambdaTimeout": 230000,
+  "response": [
+    {
+      "to": {
+        "match": "^\\{.*?\"timeout\":229\\d{3}.*?\\}$"
+      }
+    }
+  ]
+}
