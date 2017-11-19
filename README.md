@@ -10,19 +10,19 @@
 [![Gardener](https://github.com/simlu/js-gardener/blob/master/assets/badge.svg)](https://github.com/simlu/js-gardener)
 [![Gitter](https://github.com/simlu/js-gardener/blob/master/assets/icons/gitter.svg)](https://gitter.im/simlu/lambda-tdd)
 
-Testing Framework for AWS Lambda. Very useful for integration testing as you can examine how your lambda function executes for certain input and specific environment variables. Tries to model the remote server as closely as possible.
+Testing Framework for AWS Lambda. Very useful for integration testing as you can examine how your lambda function executes for certain input and specific environment variables. Tries to model the cloud execution as closely as possible.
 
 ## What it does
 
 - Tests are defined as JSON files
 - Test are dynamically evaluated using [Chai](https://github.com/chaijs/chai)
 - Lambda functions are executed using [Lambda-Wrapper](https://github.com/SC5/lambda-wrapper)
-- Supports external request recording using [Nock](https://github.com/node-nock/nock)
-- Allows setting of environment variables for all and individual tests
-- Set exact timestamp for test run using [Timekeeper](https://github.com/vesln/timekeeper)
-- Set timeout in test and then access with `context.getRemainingTimeInMillis()`
-- Set custom test timeout
-- Specify event for test
+- Supports external request mocking using [Nock](https://github.com/node-nock/nock)
+- Allows setting of environment variables on a per test granularity
+- Freeze execution to specific timestamp with [Timekeeper](https://github.com/vesln/timekeeper)
+- Set lambda timeout (`context.getRemainingTimeInMillis()`)
+- Set test timeout
+- Specify event input
 - Test success and error responses
 
 ## Getting Started
@@ -41,6 +41,8 @@ describe("Testing Tester", () => {
 });
 ```
 
+You can pass an array of test files to the `execute()` function. By default tests are auto detected.
+
 ## Test Runner Options
 
 ### cwd
@@ -48,28 +50,28 @@ describe("Testing Tester", () => {
 Type: `string`<br>
 Default: `process.cwd()`
 
-Specifies the directory which all the defaults are relative to.
+Directory which other defaults are relative to.
 
 ### name
 
 Type `string`<br>
 Default: `lambda-test`
 
-Name of this handler for debug purposes.
+Name of this test runner for debug purposes.
 
 ### verbose
 
 Type `boolean`<br>
 Default: `false`
 
-Display extended logging information. Can be useful to find exceptions.
+Display console output while running tests. Useful for debugging.
 
 ### handlerFile
 
 Type: `string`<br>
 Default: `handler.js`
 
-Specify the handler file. 
+Handler file containing the handler functions (specified in test).
 
 ### cassetteFolder
 
@@ -83,7 +85,7 @@ Folder containing nock recordings.
 Type: `string`<br>
 Default: `env.yml`
 
-Specify yaml file containing environment variables. Note that no existing environment variables can be overwritten.
+Specify yaml file containing environment variables. No existing environment variables can be overwritten.
 
 ### testFolder
 
@@ -110,79 +112,79 @@ we would set this to `returnEvent`.
 Type `object`<br>
 Default: `{}`
 
-Contains environment variables that should be set for this test. Existing environment variables can be overwritten.
+Contains environment variables that are set for this test. Existing environment variables can be overwritten.
 
 ### timestamp
 
 Type `unix`<br>
 Default: Unfrozen
 
-Set the current timestamp that any code executing will see. Time does not progress if this option is set.
+Set unix timestamp that test executing will see. Time does not progress if this option is set.
 
 ### timeout
 
 Type `integer`<br>
 Default: Mocha Default Timeout
 
-Set custom timeout in ms for lambda execution. Handy when a lambda function takes longer (e.g. when recording nock requests).
+Set custom timeout in ms for lambda execution. Handy e.g. when recording nock requests.
 
 ### event
 
 Type `object`<br>
 Default: undefined
 
-Set lambda event object for test.
+Event object that is passed to lambda handler.
 
 ### lambdaTimeout
 
 Type `integer`<br>
 Default: 300000
 
-Set start lambda timeout in ms. Exposed in lambda function through `context.getRemainingTimeInMillis()`.
-The timeout is not actually enforced and progresses as expected unless time is frozen.
+Set initial lambda timeout in ms. Exposed in lambda function through `context.getRemainingTimeInMillis()`.
+The timeout is not enforced, but progresses as expected unless `timestamp` option is used.
 
 ### success
 
 Type `boolean`<br>
 *Required*
 
-True iff you expect the execution to succeed.
+True iff execution is expected to succeed, i.e. no error is passed into callback.
 
 ### response
 
 Type `array`<br>
 Default: `[]`
 
-Contains dynamic expect logic executed against the response string. More details below.
+Dynamic expect logic executed against the response string. More details below.
 
 ### error
 
 Type `array`<br>
 Default: `[]`
 
-Contains dynamic expect logic executed against the error string. More details below.
+Dynamic expect logic executed against the error string. More details below.
 
 ### body
 
 Type `array`<br>
 Default: `[]`
 
-Contains dynamic expect logic executed against the response.body string. More details below.
+Dynamic expect logic executed against the response.body string. More details below.
 
 ### logs
 
 Type `array`<br>
 Default: `[]`
 
-Contains dynamic expect logic executed against the `console.log` output array. More details below.
+Dynamic expect logic executed against the `console.log` output array. More details below.
 
 ### nock
 
 Type `array`<br>
 Default: `[]`
 
-Contains dynamic expect logic executed against the nock recording.
-Note that the nock recording must exists for this check to evaluate correctly. More details below.
+Dynamic expect logic executed against the nock recording. More details below.
+Note that the nock recording must already exists for this check to evaluate correctly.
 
 ## Dynamic Expect Logic
 
