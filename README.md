@@ -49,7 +49,7 @@ You can pass an array of test files to the `execute()` function. By default test
 {
   "handler": "geoIp",
   "env": {
-    "CUSTOM_USER_AGENT": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0"
+    "GOOGLE_PROJECT_ID": "123456789"
   },
   "timestamp": 1511072994,
   "success": true,
