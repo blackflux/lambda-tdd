@@ -201,6 +201,7 @@ as the following json
   }
 }]
 ```
+Note that targets are either arrays or strings, but never objects (design limitation).
 
 ## Test File Examples
 
