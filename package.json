@@ -21,7 +21,8 @@
     "sls",
     "istanbul",
     "mocha",
-    "tdd"
+    "tdd",
+    "microservice"
   ],
   "author": "Lukas Siemon",
   "license": "MIT",
