@@ -56,7 +56,7 @@ You can pass an array of test files to the `execute()` function. By default test
   },
   "nock": [{
     "to": {
-      "match": "^.*?\"http://ip-api[.](com|ca):80\".*?$"
+      "match": "^.*?\"http://ip-api\\.(com|ca):80\".*?$"
     }
   }],
   "body": [{
