@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/simlu/lambda-tdd#readme",
   "dependencies": {
+    "lodash.defaults": "4.2.0",
     "aws-sdk": "2.153.0",
     "chai": "4.1.2",
     "js-yaml": "3.10.0",
