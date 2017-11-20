@@ -27,7 +27,7 @@ Testing Framework for AWS Lambda. Very useful for integration testing as you can
 
 ## Getting Started
 
-To install run 
+To install run
 
     $ npm install --save-dev lambda-tdd
 
@@ -212,7 +212,7 @@ Type `array`<br>
 Default: `[]`
 
 Dynamic expect logic executed against the nock recording. More details below.
-Note that the nock recording must already exists for this check to evaluate correctly.
+Note that the nock recording must already exist for this check to evaluate correctly.
 
 ## Dynamic Expect Logic
 
