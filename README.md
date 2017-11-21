@@ -32,7 +32,7 @@ To install run
     $ npm install --save-dev lambda-tdd
 
 ### Initialize Test Runner and Execute
-
+<!-- eslint-disable import/no-extraneous-dependencies, import/no-unresolved -->
 ```javascript
 const lambdaTester = require("lambda-tdd")({ cwd: __dirname });
 
@@ -218,8 +218,8 @@ Note that the nock recording must already exist for this check to evaluate corre
 
 Uses [Chai Assertion Library](http://chaijs.com/api/bdd/) syntax written as json. Lets assume we have an output array `[1, 2]` we want to validate. We can write
 ```javascript
-expect([1,2]).to.contain(1);
-expect([1,2]).to.contain(2);
+expect([1, 2]).to.contain(1);
+expect([1, 2]).to.contain(2);
 ```
 as the following json
 ```json
