@@ -37,7 +37,7 @@
     "js-yaml": "3.10.0",
     "lambda-wrapper": "0.2.2",
     "lodash.get": "4.4.2",
-    "nock": "9.1.1",
+    "nock": "9.1.2",
     "timekeeper": "2.0.0"
   },
   "licenses": [
