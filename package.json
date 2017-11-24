@@ -33,7 +33,6 @@
   "dependencies": {
     "glob": "7.1.2",
     "lodash.defaults": "4.2.0",
-    "aws-sdk": "2.156.0",
     "chai": "4.1.2",
     "js-yaml": "3.10.0",
     "lambda-wrapper": "0.2.2",
