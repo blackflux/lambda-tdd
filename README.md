@@ -217,6 +217,8 @@ Default: `[]`
 Dynamic expect logic executed against the nock recording. More details below.
 Note that the nock recording must already exist for this check to evaluate correctly.
 
+_Important:_ If you are running into issues with replaying a cassette file you recorded previously, try editing the cassette and stripping information that might change. Also make sure cassette files **never expose secret tokens or passwords**!
+
 ## Dynamic Expect Logic
 
 Uses [Chai Assertion Library](http://chaijs.com/api/bdd/) syntax written as json. Lets assume we have an output array `[1, 2]` we want to validate. We can write
