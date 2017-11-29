@@ -1,4 +1,4 @@
-# Test Framework for AWS Lambda
+# Offline Test Framework for AWS Lambda
 
 [![Build Status](https://img.shields.io/travis/simlu/lambda-tdd/master.svg)](https://travis-ci.org/simlu/lambda-tdd)
 [![Test Coverage](https://img.shields.io/coveralls/simlu/lambda-tdd/master.svg)](https://coveralls.io/github/simlu/lambda-tdd?branch=master)
