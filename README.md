@@ -238,3 +238,6 @@ as the following json
 ```
 Note that targets are either arrays or strings, but never objects (design limitation).
 
+## Limitations
+
+- Does currently not play nicely with native modules. This is because native modules [can not be invalidated](https://github.com/nodejs/node/issues/5016).
