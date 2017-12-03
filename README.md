@@ -40,11 +40,16 @@ const lambdaTester = require("lambda-tdd")({
 });
 
 describe("Testing Tester", () => {
-  lambdaTester.execute();
+  lambdaTester.execute((process.argv.slice(2)
+    .find(e => e.startsWith("--filter=")) || "")
+    .substring(9));
 });
 ```
 
-You can pass an array of test files to the `execute()` function. By default tests are auto detected.
+You can pass an array of test files to the `execute()` function or a regular expression pattern. By default tests are auto detected. If a pattern is passed in only matching tests are executed.
+
+The example above allows for use of a `--filter=REGEX` parameter to only execute specific tests.
+
 
 ### Test File Example
 
