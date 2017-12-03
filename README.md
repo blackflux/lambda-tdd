@@ -246,3 +246,7 @@ Note that targets are either arrays or strings, but never objects (design limita
 ## Limitations
 
 - Does currently not play nicely with native modules. This is because native modules [can not be invalidated](https://github.com/nodejs/node/issues/5016).
+
+## Contribution / What's next
+
+- **Sample Project** - Need to build a simple sample project based on `test/sample` and using the Serverless Framework or SAM definition to make it easier to get started. The information all exists, but putting it into a separate project will hopefully help with adoption.
