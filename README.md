@@ -27,7 +27,7 @@ Testing Framework for AWS Lambda. Very useful for integration testing as you can
 
 ## Example Project
 
-Example project using [js-gardener](https://github.com/simlu/js-gardener) and [lambda-tdd](https://github.com/simlu/lambda-tdd) can be found [here](https://github.com/simlu/lambda-tdd-example).
+Example project using [js-gardener](https://github.com/simlu/js-gardener) and [lambda-tdd](https://github.com/simlu/lambda-tdd) can be found [here](https://github.com/simlu/lambda-example).
 
 ## Getting Started
 
