@@ -4,7 +4,7 @@
   "error": [
     {
       "to": {
-        "equal": "\"error\""
+        "equal": "error"
       }
     }
   ]
