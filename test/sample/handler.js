@@ -7,3 +7,8 @@ module.exports.returnUnix = (event, context, cb) => cb(null, { unix: Math.floor(
 module.exports.returnTimeout = (event, context, cb) => cb(null, { timeout: context.getRemainingTimeInMillis() });
 module.exports.returnExternal = (event, context, cb) => request
   .get("http://ip-api.com/json", { json: true }, (err, res, body) => cb(err, body));
+module.exports.logger = (event, context, cb) => {
+  // eslint-disable-next-line no-console
+  console.log("Some Log Message");
+  cb(null);
+};
