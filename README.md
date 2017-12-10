@@ -25,7 +25,7 @@ Testing Framework for AWS Lambda. Very useful for integration testing as you can
 - Specify event input
 - Test success and error responses
 
-## Example Project
+## Example Projects
 
 Example project using [js-gardener](https://github.com/simlu/js-gardener) and [lambda-tdd](https://github.com/simlu/lambda-tdd) can be found [here](https://github.com/simlu/lambda-example).
 
@@ -253,4 +253,4 @@ Note that targets are either arrays or strings, but never objects (design limita
 
 ## Contribution / What's next
 
-- **Sample Project** - Need to build a simple sample project based on `test/sample` and using the Serverless Framework or SAM definition to make it easier to get started. The information all exists, but putting it into a separate project will hopefully help with adoption.
+*Currently nothing planned*
