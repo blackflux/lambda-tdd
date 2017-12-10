@@ -195,35 +195,49 @@ True iff execution is expected to succeed, i.e. no error is passed into callback
 Type `array`<br>
 Default: `[]`
 
-Dynamic expect logic executed against the response string. More details below.
+Dynamic expect logic executed against the response string. More details on dynamic expect handling below.
 
 ### error
 
 Type `array`<br>
 Default: `[]`
 
-Dynamic expect logic executed against the error string. More details below.
+Dynamic expect logic executed against the error string. More details on dynamic expect handling below.
 
 ### body
 
 Type `array`<br>
 Default: `[]`
 
-Dynamic expect logic executed against the response.body string. More details below.
+Dynamic expect logic executed against the response.body string. More details on dynamic expect handling below.
 
 ### logs
 
 Type `array`<br>
 Default: `[]`
 
-Dynamic expect logic executed against the `console.log` output array. More details below.
+Dynamic expect logic executed against the `console.log` and `console.error` output array. You can use `errorLogs` and `defaultLogs` to access them independently. More details on dynamic expect handling below.
+
+### defaultLogs
+
+Type `array`<br>
+Default: `[]`
+
+See `logs`.
+
+### errorLogs
+
+Type `array`<br>
+Default: `[]`
+
+See `logs`.
 
 ### nock
 
 Type `array`<br>
 Default: `[]`
 
-Dynamic expect logic executed against the nock recording. More details below.
+Dynamic expect logic executed against the nock recording. More details on dynamic expect handling below.
 Note that the nock recording must already exist for this check to evaluate correctly.
 
 _Important:_ If you are running into issues with replaying a cassette file you recorded previously, try editing the cassette and stripping information that might change. Also make sure cassette files **never expose secret tokens or passwords**!
