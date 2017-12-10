@@ -216,7 +216,7 @@ Dynamic expect logic executed against the response.body string. More details on 
 Type `array`<br>
 Default: `[]`
 
-Dynamic expect logic executed against the `console.log` and `console.error` output array. You can use `errorLogs` and `defaultLogs` to access them independently. More details on dynamic expect handling below.
+Dynamic expect logic executed against the `console.log/info` and `console.error/warn` output array. You can use `errorLogs` and `defaultLogs` to access them independently. More details on dynamic expect handling below.
 
 ### defaultLogs
 
