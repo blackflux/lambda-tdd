@@ -38,7 +38,7 @@
     "lambda-wrapper": "0.2.2",
     "lodash.get": "4.4.2",
     "lodash.pick": "4.4.0",
-    "nock": "9.1.4",
+    "nock": "9.1.5",
     "timekeeper": "2.0.0"
   },
   "licenses": [
