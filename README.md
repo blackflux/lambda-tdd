@@ -77,7 +77,7 @@ The example above allows for use of a `--filter=REGEX` parameter to only execute
   "timestamp": 1511072994,
   "success": true,
   "lambdaTimeout": 5000,
-  "timeout: 5000
+  "timeout": 5000
 }
 ```
 
