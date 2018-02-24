@@ -39,7 +39,7 @@
     "lodash.defaults": "4.2.0",
     "lodash.get": "4.4.2",
     "lodash.pick": "4.4.0",
-    "nock": "9.2.0",
+    "nock": "9.2.1",
     "timekeeper": "2.0.0"
   },
   "licenses": [
