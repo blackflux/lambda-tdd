@@ -39,7 +39,7 @@
     "lodash.defaults": "4.2.0",
     "lodash.get": "4.4.2",
     "lodash.pick": "4.4.0",
-    "nock": "9.1.6",
+    "nock": "9.1.10",
     "timekeeper": "2.0.0"
   },
   "licenses": [
@@ -50,8 +50,8 @@
   ],
   "devDependencies": {
     "coveralls": "3.0.0",
-    "js-gardener": "1.10.20",
-    "mocha": "5.0.0",
+    "js-gardener": "1.11.9",
+    "mocha": "5.0.1",
     "request": "2.83.0",
     "semantic-release": "12.4.1"
   },
