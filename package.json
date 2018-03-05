@@ -34,7 +34,7 @@
     "app-root-path": "2.0.1",
     "chai": "4.1.2",
     "glob": "7.1.2",
-    "js-yaml": "3.10.0",
+    "js-yaml": "3.11.0",
     "lambda-wrapper": "0.2.2",
     "lodash.defaults": "4.2.0",
     "lodash.get": "4.4.2",
