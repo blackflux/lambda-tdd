@@ -4,7 +4,7 @@
   "description": "Test Framework for AWS Lambda",
   "main": "lib/tester.js",
   "scripts": {
-    "test": "grunt gardener",
+    "test": "node gardener",
     "coveralls": "node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info",
     "semantic-release": "semantic-release"
   },
@@ -50,7 +50,7 @@
   ],
   "devDependencies": {
     "coveralls": "3.0.0",
-    "js-gardener": "1.11.23",
+    "js-gardener": "1.14.0",
     "mocha": "5.0.5",
     "request": "2.85.0",
     "semantic-release": "15.1.5"
