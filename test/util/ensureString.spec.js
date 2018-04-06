@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const ensureString = require('../../lib/util/ensureString');
+const ensureString = require('../../src/util/ensureString');
 
 
 describe("Testing ensureString", () => {

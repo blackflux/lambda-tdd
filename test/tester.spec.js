@@ -1,6 +1,6 @@
 const path = require("path");
 const expect = require("chai").expect;
-const lambdaTester = require("./../lib/tester")({
+const lambdaTester = require("./../src/tester")({
   cwd: path.join(__dirname, "example")
 });
 
