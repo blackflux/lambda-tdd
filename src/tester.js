@@ -25,7 +25,7 @@ module.exports = (options) => {
 
   describe("Testing Cassettes", () => {
     it(`Searching for rogue Cassettes`, () => {
-      const invalidCassettes = globSync('**/test_*.json_recording.json', {
+      const invalidCassettes = globSync('**/*.spec.json_recording.json', {
         cwd: options.cassetteFolder,
         nodir: true
       }).filter(e => !fs.existsSync(path.join(options.testFolder, e.substring(0, e.length - 15))));
@@ -42,10 +42,10 @@ module.exports = (options) => {
   return {
     execute: (modifier = "") => {
       const isPattern = typeof modifier === 'string' || modifier instanceof String;
-      const testFiles = isPattern ? globSync("**/test_*.json", {
+      const testFiles = isPattern ? globSync("**/*.spec.json", {
         cwd: options.testFolder,
         nodir: true,
-        ignore: ['**/test_*.json_recording.json']
+        ignore: ['**/*.spec.json_recording.json']
       }).filter(e => new RegExp(modifier, '').test(e)) : modifier;
 
       describe(`Testing Lambda Functions: ${options.name}`, () => {

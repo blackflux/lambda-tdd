@@ -11,12 +11,12 @@ describe("Testing Tester", () => {
   });
 
   describe("Explicit Test File", () => {
-    const testFiles = lambdaTester.execute(["test_echo_event.json"]);
-    expect(testFiles).to.deep.equal(["test_echo_event.json"]);
+    const testFiles = lambdaTester.execute(["echo_event.spec.json"]);
+    expect(testFiles).to.deep.equal(["echo_event.spec.json"]);
   });
 
   describe("Test File Regex", () => {
-    const testFiles = lambdaTester.execute("test_echo_event\\.json");
-    expect(testFiles).to.deep.equal(["test_echo_event.json"]);
+    const testFiles = lambdaTester.execute("echo_event\\.spec\\.json");
+    expect(testFiles).to.deep.equal(["echo_event.spec.json"]);
   });
 });
