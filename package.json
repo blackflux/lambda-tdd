@@ -44,7 +44,6 @@
     "lodash.defaults": "4.2.0",
     "lodash.get": "4.4.2",
     "lodash.pick": "4.4.0",
-    "nock": "9.2.6",
     "timekeeper": "2.1.2"
   },
   "licenses": [
@@ -60,7 +59,8 @@
     "request": "2.86.0",
     "semantic-release": "15.1.8",
     "nyc": "11.7.1",
-    "babel-cli": "7.0.0-beta.3"
+    "babel-cli": "7.0.0-beta.3",
+    "nock": "9.2.6"
   },
   "engines": {
     "node": ">= 6.10.3"
@@ -68,7 +68,9 @@
   "files": [
     "lib"
   ],
-  "peerDependencies": {},
+  "peerDependencies": {
+    "nock": "9.2.6"
+  },
   "nyc": {
     "tempDirectory": "./coverage/.nyc_output",
     "report-dir": "./coverage",
