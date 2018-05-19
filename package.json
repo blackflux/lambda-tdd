@@ -55,7 +55,7 @@
   "devDependencies": {
     "coveralls": "3.0.1",
     "js-gardener": "1.22.11",
-    "mocha": "5.1.1",
+    "mocha": "5.2.0",
     "request": "2.86.0",
     "semantic-release": "15.1.8",
     "nyc": "11.7.1",
