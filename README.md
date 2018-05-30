@@ -242,6 +242,18 @@ Note that the nock recording must already exist for this check to evaluate corre
 
 _Important:_ If you are running into issues with replaying a cassette file you recorded previously, try editing the cassette and stripping information that might change. Also make sure cassette files **never expose secret tokens or passwords**!
 
+### flush
+
+Type `array`<br>
+Default: `[]`
+
+List of node modules that are required to be flushed before test run. Useful if you need to re-initialize a module
+that automatically picks up environment variables on initialization (e.g. aws-sdk).
+
+The package itself is always flushed between test runs.
+
+This can not be used for natively compiled modules.
+
 ## Dynamic Expect Logic
 
 Uses [Chai Assertion Library](http://chaijs.com/api/bdd/) syntax written as json. Lets assume we have an output array `[1, 2]` we want to validate. We can write
