@@ -13,4 +13,6 @@ npm-debug.log
 # Test Specific
 coverage/
 .coveralls.yml
-lib/
+lib
+/yarn-error.log
+release.tar.gz
