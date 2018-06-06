@@ -58,7 +58,7 @@
     "js-gardener": "1.23.4",
     "mocha": "5.2.0",
     "request": "2.87.0",
-    "semantic-release": "15.5.0",
+    "semantic-release": "15.5.1",
     "nyc": "11.8.0",
     "babel-cli": "7.0.0-beta.3",
     "nock": "9.3.0",
