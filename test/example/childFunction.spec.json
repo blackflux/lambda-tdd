@@ -1,0 +1,14 @@
+{
+  "handler": "parent.child",
+  "success": true,
+  "response": [
+    {
+      "to": {
+        "match": "^\\{.*?\"statusCode\":200(?!\\d).*?\\}$"
+      }
+    }
+  ],
+  "event": {
+    "statusCode": 200
+  }
+}
