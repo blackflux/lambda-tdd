@@ -12,6 +12,3 @@ module.exports.logger = (event, context, cb) => {
   console.log("Some Log Message");
   cb(null);
 };
-module.exports.parent = {
-  child: (event, context, cb) => cb(null, event)
-};
