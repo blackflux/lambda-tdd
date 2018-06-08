@@ -1,5 +1,4 @@
 const wrapper = require('lambda-wrapper');
-const get = require("lodash.get");
 const nockBack = require('nock').back;
 const ConsoleRecorder = require("./consoleRecorder");
 
@@ -8,7 +7,7 @@ nockBack.setMode('record');
 
 module.exports = (options) => {
   // eslint-disable-next-line global-require, import/no-dynamic-require
-  const runner = wrapper.wrap({ handler: get(require(options.handlerFile), options.handlerFunction) });
+  const runner = wrapper.wrap({ handler: require(options.handlerFile)[options.handlerFunction] });
   const records = [];
   const consoleRecorder = ConsoleRecorder({ verbose: options.verbose });
 
