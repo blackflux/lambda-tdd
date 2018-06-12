@@ -54,6 +54,10 @@ You can pass an array of test files to the `execute()` function or a regular exp
 
 The example above allows for use of a `--filter=REGEX` parameter to only execute specific tests.
 
+*Note:* If you are running e.g. `npm t` to run your tests you need to specify the filter option with [quadruple dashes](https://github.com/npm/npm/pull/5518). Example:
+
+    $ npm t -- --filter=REGEX
+
 
 ### Test File Example
 
@@ -126,6 +130,8 @@ Type: `string`<br>
 Default: `env.yml`
 
 Specify yaml file containing environment variables. No existing environment variables can be overwritten.
+
+Environment variables set by default are `AWS_REGION`, `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` since these always get set by the AWS Lambda environment.
 
 ### testFolder
 

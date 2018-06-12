@@ -35,7 +35,11 @@ module.exports = (options) => {
 
   const timeKeeper = TimeKeeper();
   const suiteEnvVarsWrapper = EnvVarWrapper({
-    envVars: yaml.safeLoad(fs.readFileSync(options.envVarYml, 'utf8')),
+    envVars: Object.assign({
+      AWS_REGION: "us-west-2",
+      AWS_ACCESS_KEY_ID: "XXXXXXXXXXXXXXXXXXXX",
+      AWS_SECRET_ACCESS_KEY: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    }, yaml.safeLoad(fs.readFileSync(options.envVarYml, 'utf8'))),
     allowOverwrite: false
   });
   const expectService = ExpectService();
@@ -102,7 +106,7 @@ module.exports = (options) => {
               timeKeeper.unfreeze();
               testEnvVarsWrapper.unapply();
               done();
-            });
+            }).catch(done.fail);
           });
         });
       });
