@@ -36,7 +36,7 @@ module.exports = (options) => {
   const timeKeeper = TimeKeeper();
   const suiteEnvVarsWrapper = EnvVarWrapper({
     envVars: Object.assign({
-      AWS_REGION: "us-west-2",
+      AWS_REGION: "us-east-1",
       AWS_ACCESS_KEY_ID: "XXXXXXXXXXXXXXXXXXXX",
       AWS_SECRET_ACCESS_KEY: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
     }, yaml.safeLoad(fs.readFileSync(options.envVarYml, 'utf8'))),
