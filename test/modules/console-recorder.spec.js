@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const ConsoleRecorder = require('../../src/modules/consoleRecorder');
+const ConsoleRecorder = require('../../src/modules/console-recorder');
 const expect = require("chai").expect;
 
 const testConsole = (verbose) => {

@@ -6,11 +6,11 @@ const expect = require("chai").expect;
 const defaults = require("lodash.defaults");
 const globSync = require("glob").sync;
 const appRoot = require('app-root-path');
-const TimeKeeper = require("./modules/timeKeeper");
-const EnvVarWrapper = require("./modules/envVarWrapper");
-const ExpectService = require("./modules/expectService");
-const HandlerExecutor = require("./modules/handlerExecutor");
-const ensureString = require("./util/ensureString");
+const TimeKeeper = require("./modules/time-keeper");
+const EnvVarWrapper = require("./modules/env-var-wrapper");
+const ExpectService = require("./modules/expect-service");
+const HandlerExecutor = require("./modules/handler-executor");
+const ensureString = require("./util/ensure-string");
 
 module.exports = (options) => {
   defaults(options, { cwd: process.cwd() });
