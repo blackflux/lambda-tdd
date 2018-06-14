@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const ensureString = require("./../util/ensureString");
+const ensureString = require("./../util/ensure-string");
 
 module.exports = () => {
   const handleDynamicExpect = (target, check) => {

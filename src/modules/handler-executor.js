@@ -1,6 +1,6 @@
 const wrapper = require('lambda-wrapper');
 const nockBack = require('nock').back;
-const ConsoleRecorder = require("./consoleRecorder");
+const ConsoleRecorder = require("./console-recorder");
 
 // configure
 nockBack.setMode('record');
