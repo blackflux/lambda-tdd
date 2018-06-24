@@ -7,6 +7,19 @@
       "to.contain": "\"statusCode\":200"
     }
   ],
+  "expect": [
+    {
+      "to.deep.equal()": {
+        "statusCode": 200
+      }
+    }
+  ],
+  "expect(statusCode)": [
+    {
+      "to.deep.equal()":  200,
+      "to.deep.equal":  200
+    }
+  ],
   "event": {
     "statusCode": 200
   }

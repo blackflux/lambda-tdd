@@ -96,9 +96,20 @@ module.exports = (options) => {
               } else {
                 expect(output.err, `Response: ${ensureString(output.response)}`).to.not.equal(null);
               }
+              Object.keys(test).filter(k => k.match(/^expect(?:\(.*?\)$)?/)).forEach((k) => {
+                const targetPath = k.indexOf("(") !== -1 ? k.split("(", 2)[1].slice(0, -1) : "";
+                const input = test.success ? output.response : output.err;
+                expectService.evaluate(test.expect[k], get(input, targetPath));
+              });
+
+              if (test.error !== undefined || test.response !== undefined || test.body !== undefined) {
+                // eslint-disable-next-line no-console
+                console.warn(`Warning: "error", "response" and "body" are deprecated. Use "expect" instead!`);
+              }
               expectService.evaluate(test.error, ensureString(output.err));
               expectService.evaluate(test.response, ensureString(output.response));
               expectService.evaluate(test.body, get(output.response, 'body'));
+
               expectService.evaluate(test.logs, output.logs.logs);
               expectService.evaluate(test.errorLogs, output.logs.errorLogs);
               expectService.evaluate(test.defaultLogs, output.logs.defaultLogs);
