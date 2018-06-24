@@ -7,5 +7,10 @@
         "equal": "error"
       }
     }
+  ],
+  "expect": [
+    {
+      "to.equal()": "error"
+    }
   ]
 }

@@ -9,9 +9,9 @@ module.exports = () => {
       const keys = key.split(".");
       const lastKey = keys.pop();
       const targetBefore = keys.reduce((o, e) => o[e], target);
-      if (typeof value !== 'object' || value instanceof Array) {
+      if (typeof value !== 'object' || value instanceof Array || lastKey.endsWith("()")) {
         const isRegex = typeof value === 'string' && value.indexOf("^") === 0;
-        targetBefore[lastKey](isRegex ? new RegExp(value, "i") : value, ensureString(target));
+        targetBefore[lastKey.replace("()", "")](isRegex ? new RegExp(value, "i") : value, ensureString(target));
         result += 1;
       } else {
         result += handleDynamicExpect(targetBefore[lastKey], value);
