@@ -97,9 +97,9 @@ module.exports = (options) => {
                 expect(output.err, `Response: ${ensureString(output.response)}`).to.not.equal(null);
               }
               Object.keys(test).filter(k => k.match(/^expect(?:\(.*?\)$)?/)).forEach((k) => {
-                const targetPath = k.indexOf("(") !== -1 ? k.split("(", 2)[1].slice(0, -1) : "";
                 const input = test.success ? output.response : output.err;
-                expectService.evaluate(test.expect[k], get(input, targetPath));
+                const target = k.indexOf("(") !== -1 ? get(input, k.split("(", 2)[1].slice(0, -1)) : input;
+                expectService.evaluate(test[k], target);
               });
 
               if (test.error !== undefined || test.response !== undefined || test.body !== undefined) {
