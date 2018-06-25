@@ -40,7 +40,7 @@ To install run
 ```javascript
 const lambdaTester = require("lambda-tdd")({
   cwd: __dirname,
-  verbose: process.argv.slice(2).indexOf("--debug") !== -1
+  verbose: process.argv.slice(2).indexOf("--verbose") !== -1
 });
 
 describe("Testing Tester", () => {
