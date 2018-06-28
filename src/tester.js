@@ -107,7 +107,7 @@ module.exports = (options) => {
                 "body",
                 "defaultLogs",
                 "errorLogs"
-              ].indexOf(e) === -1))).to.equal("[]");
+              ].indexOf(e) === -1 && !e.match(/^expect\(.+\)$/g)))).to.equal("[]");
               // test lambda success
               if (test.success) {
                 expect(output.err, `Error: ${output.err}`).to.equal(null);
