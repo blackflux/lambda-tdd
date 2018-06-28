@@ -36,7 +36,7 @@ module.exports = (options) => {
   const timeKeeper = TimeKeeper();
   const suiteEnvVarsWrapper = EnvVarWrapper({
     envVars: Object.assign({
-      AWS_REGION: "us-west-2",
+      AWS_REGION: "us-east-1",
       AWS_ACCESS_KEY_ID: "XXXXXXXXXXXXXXXXXXXX",
       AWS_SECRET_ACCESS_KEY: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
     }, yaml.safeLoad(fs.readFileSync(options.envVarYml, 'utf8'))),
@@ -114,9 +114,20 @@ module.exports = (options) => {
               } else {
                 expect(output.err, `Response: ${ensureString(output.response)}`).to.not.equal(null);
               }
+              Object.keys(test).filter(k => k.match(/^expect(?:\(.*?\)$)?/)).forEach((k) => {
+                const input = test.success ? output.response : output.err;
+                const target = k.indexOf("(") !== -1 ? get(input, k.split("(", 2)[1].slice(0, -1)) : input;
+                expectService.evaluate(test[k], target);
+              });
+
+              if (test.error !== undefined || test.response !== undefined || test.body !== undefined) {
+                // eslint-disable-next-line no-console
+                console.warn(`Warning: "error", "response" and "body" are deprecated. Use "expect" instead!`);
+              }
               expectService.evaluate(test.error, ensureString(output.err));
               expectService.evaluate(test.response, ensureString(output.response));
               expectService.evaluate(test.body, get(output.response, 'body'));
+
               expectService.evaluate(test.logs, output.logs.logs);
               expectService.evaluate(test.errorLogs, output.logs.errorLogs);
               expectService.evaluate(test.defaultLogs, output.logs.defaultLogs);

@@ -40,7 +40,7 @@ To install run
 ```javascript
 const lambdaTester = require("lambda-tdd")({
   cwd: __dirname,
-  verbose: process.argv.slice(2).indexOf("--debug") !== -1
+  verbose: process.argv.slice(2).indexOf("--verbose") !== -1
 });
 
 describe("Testing Tester", () => {
@@ -196,25 +196,36 @@ Type `boolean`<br>
 
 True iff execution is expected to succeed, i.e. no error is passed into callback.
 
-### response
+### expect, expect(...)
+
+Type `array`
+Default: `[]`
+
+Handle evaluation of response or error (uses success flag). Can define target path, e.g. `expect(some.path)`.
+More details on dynamic expect handling below.
+
+### response (DEPRECATED)
 
 Type `array`<br>
 Default: `[]`
 
+Deprecated. Use "expect" instead.
 Dynamic expect logic executed against the response string. More details on dynamic expect handling below.
 
-### error
+### error (DEPRECATED)
 
 Type `array`<br>
 Default: `[]`
 
+Deprecated. Use "expect" instead.
 Dynamic expect logic executed against the error string. More details on dynamic expect handling below.
 
-### body
+### body (DEPRECATED)
 
 Type `array`<br>
 Default: `[]`
 
+Deprecated. Use "expect" instead.
 Dynamic expect logic executed against the response.body string. More details on dynamic expect handling below.
 
 ### logs
@@ -270,14 +281,15 @@ expect([1, 2]).to.contain(2);
 as the following json
 ```json
 [{
-  "to.contain": 1
+  "to.contain()": 1
 }, {
   "to": {
-    "contain": 2
+    "contain()": 2
   }
 }]
 ```
-Note that targets are either arrays or strings, but never objects (design limitation).
+
+Regular expression are supported if the target is a string matching a regular expression.
 
 ## Limitations
 
