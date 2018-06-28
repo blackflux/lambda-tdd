@@ -90,6 +90,24 @@ module.exports = (options) => {
               cassetteFile: `${testFile}_recording.json`,
               lambdaTimeout: test.lambdaTimeout
             }).execute().then((output) => {
+              expect(JSON.stringify(Object.keys(test).filter(e => [
+                "expect",
+                "handler",
+                "success",
+                "lambdaTimeout",
+                "response",
+                "timeout",
+                "flush",
+                "event",
+                "env",
+                "logs",
+                "error",
+                "nock",
+                "timestamp",
+                "body",
+                "defaultLogs",
+                "errorLogs"
+              ].indexOf(e) === -1))).to.equal("[]");
               // test lambda success
               if (test.success) {
                 expect(output.err, `Error: ${output.err}`).to.equal(null);
