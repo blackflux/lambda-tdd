@@ -10,7 +10,8 @@
   "expect": [
     {
       "to.deep.equal()": {
-        "statusCode": 200
+        "statusCode": 200,
+        "body": "{\"test\":123}"
       }
     }
   ],
@@ -20,7 +21,15 @@
       "to.deep.equal":  200
     }
   ],
+  "expect(body|JSON.parse)": [
+    {
+      "to.deep.equal()": {
+        "test": 123
+      }
+    }
+  ],
   "event": {
-    "statusCode": 200
+    "statusCode": 200,
+    "body": "{\"test\":123}"
   }
 }

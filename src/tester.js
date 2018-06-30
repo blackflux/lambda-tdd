@@ -116,7 +116,14 @@ module.exports = (options) => {
               }
               Object.keys(test).filter(k => k.match(/^expect(?:\(.*?\)$)?/)).forEach((k) => {
                 const input = test.success ? output.response : output.err;
-                const target = k.indexOf("(") !== -1 ? get(input, k.split("(", 2)[1].slice(0, -1)) : input;
+                let target = input;
+                if (k.indexOf("(") !== -1) {
+                  const apply = k.split("(", 2)[1].slice(0, -1).split("|");
+                  target = get(input, apply[0]);
+                  if (apply.length === 2) {
+                    target = apply[1].split(".").reduce((p, c) => p[c], global)(target);
+                  }
+                }
                 expectService.evaluate(test[k], target);
               });
 
