@@ -201,7 +201,7 @@ True iff execution is expected to succeed, i.e. no error is passed into callback
 Type `array`
 Default: `[]`
 
-Handle evaluation of response or error (uses success flag). Can define target path, e.g. `expect(some.path)`. Can also apply function with e.g. `expect(body!JSON.parse)`.
+Handle evaluation of response or error (uses success flag). Can define target path, e.g. `expect(some.path)`. Can also apply function with e.g. `expect(body|JSON.parse)`.
 More details on dynamic expect handling below.
 
 ### response (DEPRECATED)

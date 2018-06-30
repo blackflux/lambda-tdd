@@ -21,7 +21,7 @@
       "to.deep.equal":  200
     }
   ],
-  "expect(body!JSON.parse)": [
+  "expect(body|JSON.parse)": [
     {
       "to.deep.equal()": {
         "test": 123
