@@ -11,6 +11,7 @@ const EnvVarWrapper = require("./modules/env-var-wrapper");
 const ExpectService = require("./modules/expect-service");
 const HandlerExecutor = require("./modules/handler-executor");
 const ensureString = require("./util/ensure-string");
+const rewriteObject = require("./util/rewrite-object");
 
 module.exports = (options) => {
   defaults(options, { cwd: process.cwd() });
@@ -86,7 +87,7 @@ module.exports = (options) => {
               cassetteFolder: options.cassetteFolder,
               verbose: options.verbose,
               handlerFunction: test.handler,
-              event: test.event,
+              event: rewriteObject(test.event),
               cassetteFile: `${testFile}_recording.json`,
               lambdaTimeout: test.lambdaTimeout
             }).execute().then((output) => {

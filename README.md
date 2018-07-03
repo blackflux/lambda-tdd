@@ -181,6 +181,8 @@ Default: undefined
 
 Event object that is passed to lambda handler.
 
+Custom actions can be applied by using the pipe character, e.g. `{ "body|JSON.stringify": {...} }` could be used to make input more readable. For more examples see tests.
+
 ### lambdaTimeout
 
 Type `integer`<br>
