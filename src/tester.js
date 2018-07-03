@@ -12,6 +12,7 @@ const ExpectService = require("./modules/expect-service");
 const HandlerExecutor = require("./modules/handler-executor");
 const ensureString = require("./util/ensure-string");
 const rewriteObject = require("./util/rewrite-object");
+const dynamicApply = require("./util/dynamic-apply");
 
 module.exports = (options) => {
   defaults(options, { cwd: process.cwd() });
@@ -121,8 +122,8 @@ module.exports = (options) => {
                 if (k.indexOf("(") !== -1) {
                   const apply = k.split("(", 2)[1].slice(0, -1).split("|");
                   target = get(input, apply[0]);
-                  if (apply.length === 2) {
-                    target = apply[1].split(".").reduce((p, c) => p[c], global)(target);
+                  if (apply.length > 1) {
+                    target = apply.slice(1).reduce((p, c) => dynamicApply(c.split("."), p), target);
                   }
                 }
                 expectService.evaluate(test[k], target);

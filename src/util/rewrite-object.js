@@ -1,15 +1,17 @@
+const dynamicApply = require("./dynamic-apply");
+
 const rewrite = (input) => {
   if (typeof input === "object") {
     return Array.isArray(input)
       ? input.map(e => rewrite(e))
       : Object.keys(input)
         .reduce((prev, cur) => {
+          const apply = cur.split("|");
           let target = rewrite(input[cur]);
-          const meta = cur.split("|");
-          if (meta.length === 2) {
-            target = meta[1].split(".").reduce((p, c) => p[c], global)(target);
+          if (apply.length > 1) {
+            target = apply.slice(1).reduce((p, c) => dynamicApply(c.split("."), p), target);
           }
-          return Object.assign(prev, { [meta[0]]: target });
+          return Object.assign(prev, { [apply[0]]: target });
         }, {});
   }
   return input;
