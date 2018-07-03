@@ -1,0 +1,25 @@
+{
+  "handler": "returnEvent",
+  "success": true,
+  "expect": [
+    {
+      "to.deep.equal()": {
+        "data": "{\"list\":[{\"sub\":\"{\\\"key\\\":\\\"value\\\"}\"}],\"key\":\"value\"}",
+        "gzip": "{\"type\":\"Buffer\",\"data\":[31,139,8,0,0,0,0,0,0,3,75,202,201,79,2,0,204,165,127,176,4,0,0,0]}"
+      }
+    }
+  ],
+  "event": {
+    "data|JSON.stringify": {
+      "list": [
+        {
+          "sub|JSON.stringify": {
+            "key": "value"
+          }
+        }
+      ],
+      "key": "value"
+    },
+    "gzip|zlib.gzipSync|JSON.stringify": "blob"
+  }
+}
