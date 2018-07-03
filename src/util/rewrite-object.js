@@ -6,11 +6,10 @@ const rewrite = (input) => {
         .reduce((prev, cur) => {
           let target = rewrite(input[cur]);
           const meta = cur.split("|");
-          const key = meta[0];
           if (meta.length === 2) {
             target = meta[1].split(".").reduce((p, c) => p[c], global)(target);
           }
-          return Object.assign(prev, { [key]: target });
+          return Object.assign(prev, { [meta[0]]: target });
         }, {});
   }
   return input;
