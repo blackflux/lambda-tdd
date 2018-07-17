@@ -1,7 +1,6 @@
 {
   "handler": "returnEvent",
   "success": true,
-  "flush": ["some-module"],
   "response": [
     {
       "to": {

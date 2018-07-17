@@ -140,6 +140,18 @@ Default: ``
 
 Folder containing test files.
 
+### flush
+Type: `array`<br>
+Default: `["aws-sdk"]`
+
+List of dependencies that are required to be flushed before test run. 
+Useful if you need to re-initialize a module that automatically picks up 
+environment variables on initialization (e.g. aws-sdk).
+
+The current project files are always flushed between test runs.
+
+This can not be used for natively compiled modules.
+
 ## Test File Format
 
 ### handler
@@ -260,18 +272,6 @@ Dynamic expect logic executed against the nock recording. More details on dynami
 Note that the nock recording must already exist for this check to evaluate correctly.
 
 _Important:_ If you are running into issues with replaying a cassette file you recorded previously, try editing the cassette and stripping information that might change. Also make sure cassette files **never expose secret tokens or passwords**!
-
-### flush
-
-Type `array`<br>
-Default: `[]`
-
-List of node modules that are required to be flushed before test run. Useful if you need to re-initialize a module
-that automatically picks up environment variables on initialization (e.g. aws-sdk).
-
-The package itself is always flushed between test runs.
-
-This can not be used for natively compiled modules.
 
 ## Dynamic Expect Logic
 
