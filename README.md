@@ -70,14 +70,14 @@ The example above allows for use of a `--filter=REGEX` parameter to only execute
   "event": {
     "ip": "173.244.44.10"
   },
-  "nock": [{
+  "nock": {
     "to": {
       "match": "^.*?\"http://ip-api\\.(com|ca):80\".*?$"
     }
-  }],
-  "body": [{
+  },
+  "expect(body)": {
     "to.contain": "\"United States\""
-  }],
+  },
   "timestamp": 1511072994,
   "success": true,
   "lambdaTimeout": 5000,
