@@ -1,14 +1,11 @@
 {
   "handler": "returnEvent",
   "success": true,
-  "flush": ["some-module"],
-  "response": [
-    {
-      "to": {
-        "match": "^\\{.*?\"statusCode\":200(?!\\d).*?\\}$"
-      }
+  "response": {
+    "to": {
+      "match": "^\\{.*?\"statusCode\":200(?!\\d).*?\\}$"
     }
-  ],
+  },
   "event": {
     "statusCode": 200
   }

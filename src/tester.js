@@ -22,7 +22,8 @@ module.exports = (options) => {
     handlerFile: path.join(options.cwd, "handler.js"),
     cassetteFolder: path.join(options.cwd, "__cassettes"),
     envVarYml: path.join(options.cwd, "env.yml"),
-    testFolder: options.cwd
+    testFolder: options.cwd,
+    flush: ["aws-sdk"]
   });
 
   describe("Testing Cassettes", () => {
@@ -76,7 +77,7 @@ module.exports = (options) => {
 
             // re-init function code here to ensures env vars are accessible outside lambda handler
             const nodeModulesDir = path.resolve(path.join(appRoot.path, 'node_modules')) + path.sep;
-            const flush = (test.flush || []).map(e => path.resolve(path.join(nodeModulesDir, e)) + path.sep);
+            const flush = options.flush.map(e => path.resolve(path.join(nodeModulesDir, e)) + path.sep);
             Object.keys(require.cache).forEach((key) => {
               if (!key.startsWith(nodeModulesDir) || flush.some(f => key.startsWith(f))) {
                 delete require.cache[key];
@@ -99,7 +100,6 @@ module.exports = (options) => {
                 "lambdaTimeout",
                 "response",
                 "timeout",
-                "flush",
                 "event",
                 "env",
                 "logs",

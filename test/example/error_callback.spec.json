@@ -1,16 +1,12 @@
 {
   "handler": "returnError",
   "success": false,
-  "error": [
-    {
-      "to": {
-        "equal": "error"
-      }
+  "error": {
+    "to": {
+      "equal": "error"
     }
-  ],
-  "expect": [
-    {
-      "to.equal()": "error"
-    }
-  ]
+  },
+  "expect": {
+    "to.equal()": "error"
+  }
 }

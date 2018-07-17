@@ -1,18 +1,14 @@
 {
   "handler": "returnExternal",
   "success": true,
-  "response": [
-    {
-      "to": {
-        "contain": "\"United States\""
-      }
+  "response": {
+    "to": {
+      "contain": "\"United States\""
     }
-  ],
-  "nock": [
-    {
-      "to": {
-        "match": "^.*?\"http://ip-api\\.com:80\".*?$"
-      }
+  },
+  "nock": {
+    "to": {
+      "match": "^.*?\"http://ip-api\\.com:80\".*?$"
     }
-  ]
+  }
 }

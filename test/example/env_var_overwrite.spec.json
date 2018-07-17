@@ -4,11 +4,9 @@
     "SCOPE": "local"
   },
   "success": true,
-  "response": [
-    {
-      "to": {
-        "match": "^.*?\"SCOPE\":\"local\".*?$"
-      }
+  "response": {
+    "to": {
+      "match": "^.*?\"SCOPE\":\"local\".*?$"
     }
-  ]
+  }
 }

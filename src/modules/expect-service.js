@@ -21,8 +21,13 @@ module.exports = () => {
   };
 
   return {
-    evaluate: (tests, value) => {
-      if (tests !== undefined) {
+    evaluate: (testsInput, value) => {
+      if (testsInput !== undefined) {
+        expect(
+          Array.isArray(testsInput) && testsInput.length === 1,
+          "Define single test as object, not as list."
+        ).to.equal(false);
+        const tests = Array.isArray(testsInput) ? testsInput : [testsInput];
         let count = 0;
         tests.forEach((check) => {
           // eslint-disable-next-line jasmine/expect-matcher
