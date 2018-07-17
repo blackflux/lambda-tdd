@@ -1,11 +1,9 @@
 {
   "handler": "returnUnix",
   "success": true,
-  "response": [
-    {
-      "to": {
-        "match": "^.*?\"unix\":\\d{10}(?!\\d).*?$"
-      }
+  "response": {
+    "to": {
+      "match": "^.*?\"unix\":\\d{10}(?!\\d).*?$"
     }
-  ]
+  }
 }

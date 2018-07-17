@@ -1,11 +1,9 @@
 {
   "handler": "returnTimeout",
   "success": true,
-  "response": [
-    {
-      "to": {
-        "match": "^\\{.*?\"timeout\":(299|300)\\d{3}(?!\\d).*?\\}$"
-      }
+  "response": {
+    "to": {
+      "match": "^\\{.*?\"timeout\":(299|300)\\d{3}(?!\\d).*?\\}$"
     }
-  ]
+  }
 }

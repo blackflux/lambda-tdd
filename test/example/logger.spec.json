@@ -1,11 +1,9 @@
 {
   "handler": "logger",
   "success": true,
-  "logs": [
-    {
-      "to.deep.equal": [
-        "Some Log Message"
-      ]
-    }
-  ]
+  "logs": {
+    "to.deep.equal": [
+      "Some Log Message"
+    ]
+  }
 }

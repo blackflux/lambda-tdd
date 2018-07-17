@@ -1,11 +1,9 @@
 {
   "handler": "returnEnv",
   "success": true,
-  "response": [
-    {
-      "to": {
-        "match": "^.*?\"SCOPE\":\"global\".*?$"
-      }
+  "response": {
+    "to": {
+      "match": "^.*?\"SCOPE\":\"global\".*?$"
     }
-  ]
+  }
 }

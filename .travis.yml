@@ -6,17 +6,13 @@ notifications:
   email: false
 node_js:
   - '9'
-  - 6.10.3
   - '8'
-  - '6'
+  - '8.10'
 script:
   - npm test
 after_success:
   - npm run coveralls
   - npm run semantic-release
-branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
 before_install:
   - npm install -g npm
   - npm install -g greenkeeper-lockfile@1

@@ -2,11 +2,9 @@
   "handler": "returnUnix",
   "success": true,
   "timestamp": 123456789,
-  "response": [
-    {
-      "to": {
-        "match": "^.*?\"unix\":123456789(?!\\d).*?$"
-      }
+  "response": {
+    "to": {
+      "match": "^.*?\"unix\":123456789(?!\\d).*?$"
     }
-  ]
+  }
 }
