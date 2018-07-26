@@ -9,7 +9,7 @@ const rewrite = (input) => {
           const apply = cur.split("|");
           let target = rewrite(input[cur]);
           if (apply.length > 1) {
-            target = apply.slice(1).reduce((p, c) => dynamicApply(c.split("."), p), target);
+            target = apply.slice(1).reduce((p, c) => dynamicApply(c, p), target);
           }
           return Object.assign(prev, { [apply[0]]: target });
         }, {});
