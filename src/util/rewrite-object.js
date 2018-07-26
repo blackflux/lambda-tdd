@@ -1,7 +1,7 @@
 const dynamicApply = require("./dynamic-apply");
 
 const rewrite = (input) => {
-  if (typeof input === "object") {
+  if (input !== null && typeof input === "object") {
     return Array.isArray(input)
       ? input.map(e => rewrite(e))
       : Object.keys(input)
