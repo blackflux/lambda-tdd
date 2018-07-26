@@ -1,0 +1,15 @@
+{
+  "handler": "returnEvent",
+  "success": true,
+  "expect(body|JSON.parse|[field[0]])": {
+    "to.deep.equal()": "value1"
+  },
+  "event": {
+    "body|JSON.stringify": {
+      "field": [
+        "value1",
+        "value2"
+      ]
+    }
+  }
+}

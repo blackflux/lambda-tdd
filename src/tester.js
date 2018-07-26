@@ -123,7 +123,7 @@ module.exports = (options) => {
                   const apply = k.split("(", 2)[1].slice(0, -1).split("|");
                   target = get(input, apply[0]);
                   if (apply.length > 1) {
-                    target = apply.slice(1).reduce((p, c) => dynamicApply(c.split("."), p), target);
+                    target = apply.slice(1).reduce((p, c) => dynamicApply(c, p), target);
                   }
                 }
                 expectService.evaluate(test[k], target);
