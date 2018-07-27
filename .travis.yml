@@ -4,6 +4,11 @@ cache:
     - ~/.npm
 notifications:
   email: false
+before_install:
+  - npm install -g npm gally
+  - ga promote $TRAVIS_BRANCH
+install:
+  - npm install
 node_js:
   - '9'
   - '8'
@@ -13,7 +18,3 @@ script:
 after_success:
   - npm run coveralls
   - npm run semantic-release
-before_install:
-  - npm install -g npm
-install:
-  - npm install
