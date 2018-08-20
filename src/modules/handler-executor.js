@@ -2,9 +2,6 @@ const wrapper = require('lambda-wrapper');
 const nockBack = require('nock').back;
 const ConsoleRecorder = require("./console-recorder");
 
-// configure
-nockBack.setMode('record');
-
 module.exports = (options) => {
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const runner = wrapper.wrap({ handler: require(options.handlerFile)[options.handlerFunction] });
@@ -14,6 +11,7 @@ module.exports = (options) => {
   return {
     execute: () => new Promise((resolve) => {
       consoleRecorder.start();
+      nockBack.setMode('record');
       nockBack.fixtures = options.cassetteFolder;
       nockBack(options.cassetteFile, {
         before: (r) => {
