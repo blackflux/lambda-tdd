@@ -128,7 +128,7 @@ Folder containing nock recordings.
 Type: `string`<br>
 Default: `env.yml`
 
-Specify yaml file containing environment variables. No existing environment variables can be overwritten.
+Specify yaml file containing environment variables. To allow overwriting of existing environment variables prefix with `^`. Otherwise an exception is thrown.
 
 Environment variables set by default are `AWS_REGION`, `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` since these always get set by the AWS Lambda environment.
 

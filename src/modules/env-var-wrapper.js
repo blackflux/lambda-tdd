@@ -15,17 +15,19 @@ module.exports = (options) => {
   return {
     apply: () => {
       envVarsOverwritten.length = 0;
-      Object.keys(options.envVars).forEach((envVar) => {
-        if (options.allowOverwrite !== true) {
-          expect(process.env).to.not.have.property(envVar);
-        } else {
+      Object.keys(options.envVars).forEach((envVarRaw) => {
+        const envVar = envVarRaw.replace(/^\^/, "");
+        if (options.allowOverwrite === true || envVarRaw.startsWith("^")) {
           envVarsOverwritten[envVar] = process.env[envVar];
+        } else {
+          expect(process.env).to.not.have.property(envVar);
         }
-        setEnvVar(envVar, options.envVars[envVar]);
+        setEnvVar(envVar, options.envVars[envVarRaw]);
       });
     },
     unapply: () => {
-      Object.keys(options.envVars).forEach((envVar) => {
+      Object.keys(options.envVars).forEach((envVarRaw) => {
+        const envVar = envVarRaw.replace(/^\^/, "");
         expect(process.env).to.have.property(envVar);
         setEnvVar(envVar, envVarsOverwritten[envVar]);
       });
