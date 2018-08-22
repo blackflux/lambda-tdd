@@ -2,6 +2,7 @@
 
 [![Build Status](https://img.shields.io/travis/simlu/lambda-tdd/master.svg)](https://travis-ci.org/simlu/lambda-tdd)
 [![Test Coverage](https://img.shields.io/coveralls/simlu/lambda-tdd/master.svg)](https://coveralls.io/github/simlu/lambda-tdd?branch=master)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=simlu/lambda-tdd)](https://dependabot.com)
 [![Dependencies](https://david-dm.org/simlu/lambda-tdd/status.svg)](https://david-dm.org/simlu/lambda-tdd)
 [![NPM](https://img.shields.io/npm/v/lambda-tdd.svg)](https://www.npmjs.com/package/lambda-tdd)
 [![Downloads](https://img.shields.io/npm/dt/lambda-tdd.svg)](https://www.npmjs.com/package/lambda-tdd)
@@ -128,7 +129,7 @@ Folder containing nock recordings.
 Type: `string`<br>
 Default: `env.yml`
 
-Specify yaml file containing environment variables. No existing environment variables can be overwritten.
+Specify yaml file containing environment variables. To allow overwriting of existing environment variables prefix with `^`. Otherwise an exception is thrown.
 
 Environment variables set by default are `AWS_REGION`, `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` since these always get set by the AWS Lambda environment.
 
