@@ -59,7 +59,7 @@
     "mocha": "5.2.0",
     "request": "2.88.0",
     "semantic-release": "15.9.9",
-    "nyc": "12.0.2",
+    "nyc": "13.0.1",
     "babel-cli": "7.0.0-beta.3",
     "nock": "9.6.1",
     "babel-register": "7.0.0-beta.3",
