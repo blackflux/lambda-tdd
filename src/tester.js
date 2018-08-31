@@ -91,7 +91,8 @@ module.exports = (options) => {
               handlerFunction: test.handler,
               event: rewriteObject(test.event),
               cassetteFile: `${testFile}_recording.json`,
-              lambdaTimeout: test.lambdaTimeout
+              lambdaTimeout: test.lambdaTimeout,
+              stripHeaders: get(test, "stripHeaders", options.stripHeaders)
             }).execute().then((output) => {
               expect(JSON.stringify(Object.keys(test).filter(e => [
                 "expect",
@@ -108,7 +109,8 @@ module.exports = (options) => {
                 "timestamp",
                 "body",
                 "defaultLogs",
-                "errorLogs"
+                "errorLogs",
+                "stripHeaders"
               ].indexOf(e) === -1 && !e.match(/^expect\(.+\)$/g)))).to.equal("[]");
               // test lambda success
               if (test.success) {
