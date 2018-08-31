@@ -152,6 +152,12 @@ The current project files are always flushed between test runs.
 
 This can not be used for natively compiled modules.
 
+### stripHeaders
+Type: `boolean`<br>
+Default: `false`
+
+Remove rawHeaders from recordings automatically when recording.
+
 ## Test File Format
 
 ### handler
@@ -272,6 +278,12 @@ Dynamic expect logic executed against the nock recording. More details on dynami
 Note that the nock recording must already exist for this check to evaluate correctly.
 
 _Important:_ If you are running into issues with replaying a cassette file you recorded previously, try editing the cassette and stripping information that might change. Also make sure cassette files **never expose secret tokens or passwords**!
+
+### stripHeaders
+Type: `boolean`<br>
+Default: `?`
+
+Remove rawHeaders from recordings automatically when recording. Defaults depends on value set in runner options. 
 
 ## Dynamic Expect Logic
 

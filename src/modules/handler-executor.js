@@ -17,6 +17,13 @@ module.exports = (options) => {
         before: (r) => {
           records.push(r);
           return r;
+        },
+        afterRecord: (recordings) => {
+          if (options.stripHeaders === true) {
+            // eslint-disable-next-line no-param-reassign
+            recordings.forEach(r => delete r.rawHeaders);
+          }
+          return recordings;
         }
       }, (nockDone) => {
         const startTimestamp = process.hrtime();
