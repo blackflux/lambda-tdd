@@ -1,0 +1,11 @@
+{
+  "handler": "returnRandom",
+  "success": true,
+  "seed": "some-seed",
+  "expect": {
+    "to.deep.equal()": {
+      "random1": "c7fb5bc9-953d-410c-94a3-b654129c5049",
+      "random2": "e44b680d-8c93-4ec2-93fa-7d409f39b398"
+    }
+  }
+}
