@@ -2,6 +2,7 @@ const request = require("request");
 const path = require("path");
 const expect = require("chai").expect;
 const lambdaTester = require("./../src/tester")({
+  verbose: process.argv.slice(2).indexOf("--verbose") !== -1,
   cwd: path.join(__dirname, "example")
 });
 
