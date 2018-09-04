@@ -1,17 +1,17 @@
 const expect = require("chai").expect;
 const crypto = require("crypto");
 const uuid4 = require("uuid/v4");
-const RandomKeeper = require('../../src/modules/random-keeper');
+const RandomSeeder = require('../../src/modules/random-seeder');
 
 describe("Testing RandomKeeper", () => {
-  let keeper;
+  let seeder;
   beforeEach(() => {
-    keeper = RandomKeeper();
-    keeper.freeze("test");
+    seeder = RandomSeeder();
+    seeder.forceSeed("test");
   });
 
   afterEach(() => {
-    keeper.unfreeze();
+    seeder.reset();
   });
 
   describe("Testing Random Consistent", () => {

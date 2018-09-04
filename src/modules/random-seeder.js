@@ -5,7 +5,7 @@ module.exports = () => {
   let original = null;
 
   return {
-    freeze: (seed) => {
+    forceSeed: (seed) => {
       assert(typeof seed === "string");
       assert(original === null);
 
@@ -24,7 +24,7 @@ module.exports = () => {
         return cb ? cb(null, result) : result;
       };
     },
-    unfreeze: () => {
+    reset: () => {
       if (original !== null) {
         crypto.randomBytes = original;
         original = null;

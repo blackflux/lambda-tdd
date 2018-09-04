@@ -7,7 +7,7 @@ const defaults = require("lodash.defaults");
 const globSync = require("glob").sync;
 const appRoot = require('app-root-path');
 const TimeKeeper = require("./modules/time-keeper");
-const RandomKeeper = require("./modules/random-keeper");
+const RandomSeeder = require("./modules/random-seeder");
 const EnvVarWrapper = require("./modules/env-var-wrapper");
 const ExpectService = require("./modules/expect-service");
 const HandlerExecutor = require("./modules/handler-executor");
@@ -38,7 +38,7 @@ module.exports = (options) => {
   });
 
   const timeKeeper = TimeKeeper();
-  const randomKeeper = RandomKeeper();
+  const randomSeeder = RandomSeeder();
   const suiteEnvVarsWrapper = EnvVarWrapper({
     envVars: Object.assign({
       AWS_REGION: "us-east-1",
@@ -74,7 +74,7 @@ module.exports = (options) => {
               timeKeeper.freeze(test.timestamp);
             }
             if (test.seed !== undefined) {
-              randomKeeper.freeze(test.seed);
+              randomSeeder.forceSeed(test.seed);
             }
             if (test.timeout !== undefined) {
               this.timeout(test.timeout);
@@ -149,7 +149,7 @@ module.exports = (options) => {
               expectService.evaluate(test.errorLogs, output.logs.errorLogs);
               expectService.evaluate(test.defaultLogs, output.logs.defaultLogs);
               expectService.evaluate(test.nock, ensureString(output.records));
-              randomKeeper.unfreeze();
+              randomSeeder.reset();
               timeKeeper.unfreeze();
               testEnvVarsWrapper.unapply();
               done();
