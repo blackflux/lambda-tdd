@@ -1,13 +1,13 @@
+const assert = require("assert");
 const crypto = require('crypto');
-const expect = require("chai").expect;
 
 module.exports = () => {
   let original = null;
 
   return {
     freeze: (seed) => {
-      expect(typeof seed).to.equal("string");
-      expect(original).to.equal(null);
+      assert(typeof seed === "string");
+      assert(original === null);
 
       original = crypto.randomBytes;
       let executionCount = 0;
