@@ -3,7 +3,7 @@ const crypto = require("crypto");
 const uuid4 = require("uuid/v4");
 const RandomSeeder = require('../../src/modules/random-seeder');
 
-describe("Testing RandomKeeper", () => {
+describe("Testing RandomSeeder", () => {
   let seeder;
   beforeEach(() => {
     seeder = RandomSeeder();
