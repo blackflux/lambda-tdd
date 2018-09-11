@@ -60,7 +60,7 @@
     "babel-preset-flow": "7.0.0-beta.3",
     "babel-register": "7.0.0-beta.3",
     "coveralls": "3.0.2",
-    "js-gardener": "1.31.3",
+    "js-gardener": "1.31.5",
     "mocha": "5.2.0",
     "nock": "9.6.1",
     "nyc": "13.0.1",
