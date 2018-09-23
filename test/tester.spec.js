@@ -49,7 +49,7 @@ describe("Testing Tester", () => {
       fs.writeFileSync(path.join(tmpDir.name, "env.yml"), "TYPE: cassette");
     });
 
-    it("Testing no env.recording.yml", () => {
+    it("Testing without env.recording.yml", () => {
       fs.writeFileSync(path.join(tmpDir.name, "test.spec.json"), JSON.stringify({
         handler: "type",
         success: true,
@@ -64,13 +64,31 @@ describe("Testing Tester", () => {
       expect(testFiles).to.deep.equal(['test.spec.json']);
     });
 
-    it("Testing env.recording.yml", () => {
+    it("Testing env.recording.yml without recording", () => {
       fs.writeFileSync(path.join(tmpDir.name, "env.recording.yml"), "TYPE: recording");
       fs.writeFileSync(path.join(tmpDir.name, "test.spec.json"), JSON.stringify({
         handler: "type",
         success: true,
         expect: {
           "to.equal()": "recording"
+        }
+      }, null, 2));
+      const testFiles = LambdaTester({
+        verbose: process.argv.slice(2).indexOf("--verbose") !== -1,
+        cwd: tmpDir.name
+      }).execute();
+      expect(testFiles).to.deep.equal(['test.spec.json']);
+    });
+
+    it("Testing env.recording.yml with recording", () => {
+      fs.writeFileSync(path.join(tmpDir.name, "env.recording.yml"), "TYPE: recording");
+      fs.mkdirSync(path.join(tmpDir.name, "__cassettes"));
+      fs.writeFileSync(path.join(tmpDir.name, "__cassettes", "test.spec.json_recording.json"), "[]");
+      fs.writeFileSync(path.join(tmpDir.name, "test.spec.json"), JSON.stringify({
+        handler: "type",
+        success: true,
+        expect: {
+          "to.equal()": "cassette"
         }
       }, null, 2));
       const testFiles = LambdaTester({
