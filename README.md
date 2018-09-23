@@ -134,6 +134,15 @@ Specify yaml file containing environment variables. To allow overwriting of exis
 
 Environment variables set by default are `AWS_REGION`, `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` since these always get set by the AWS Lambda environment.
 
+### envVarYmlRecording
+
+Type: `string`<br>
+Default: `env.recording.yml`
+
+Similar to envVarYml. Environment variables declared get applied on top of envVarYml iff this is a new test recording.
+
+Great when secrets are needed to record tests, but they should not be committed (recommendation is to git ignore this file).
+
 ### testFolder
 
 Type: `string`<br>
