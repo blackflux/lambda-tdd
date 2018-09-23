@@ -40,6 +40,7 @@ describe("Testing Tester", () => {
 
   describe("Testing env.recording.yml", () => {
     let tmpDir;
+    let testerArgs;
     before(() => {
       tmp.setGracefulCleanup();
     });
@@ -47,6 +48,10 @@ describe("Testing Tester", () => {
       tmpDir = tmp.dirSync({ unsafeCleanup: true });
       fs.writeFileSync(path.join(tmpDir.name, "handler.js"), `module.exports.type = async () => process.env.TYPE;`);
       fs.writeFileSync(path.join(tmpDir.name, "env.yml"), "TYPE: cassette");
+      testerArgs = {
+        verbose: process.argv.slice(2).indexOf("--verbose") !== -1,
+        cwd: tmpDir.name
+      };
     });
 
     it("Testing without env.recording.yml", () => {
@@ -57,11 +62,7 @@ describe("Testing Tester", () => {
           "to.equal()": "cassette"
         }
       }, null, 2));
-      const testFiles = LambdaTester({
-        verbose: process.argv.slice(2).indexOf("--verbose") !== -1,
-        cwd: tmpDir.name
-      }).execute();
-      expect(testFiles).to.deep.equal(['test.spec.json']);
+      expect(LambdaTester(testerArgs).execute()).to.deep.equal(['test.spec.json']);
     });
 
     it("Testing env.recording.yml without recording", () => {
@@ -73,11 +74,7 @@ describe("Testing Tester", () => {
           "to.equal()": "recording"
         }
       }, null, 2));
-      const testFiles = LambdaTester({
-        verbose: process.argv.slice(2).indexOf("--verbose") !== -1,
-        cwd: tmpDir.name
-      }).execute();
-      expect(testFiles).to.deep.equal(['test.spec.json']);
+      expect(LambdaTester(testerArgs).execute()).to.deep.equal(['test.spec.json']);
     });
 
     it("Testing env.recording.yml with recording", () => {
@@ -91,11 +88,7 @@ describe("Testing Tester", () => {
           "to.equal()": "cassette"
         }
       }, null, 2));
-      const testFiles = LambdaTester({
-        verbose: process.argv.slice(2).indexOf("--verbose") !== -1,
-        cwd: tmpDir.name
-      }).execute();
-      expect(testFiles).to.deep.equal(['test.spec.json']);
+      expect(LambdaTester(testerArgs).execute()).to.deep.equal(['test.spec.json']);
     });
   });
 });
