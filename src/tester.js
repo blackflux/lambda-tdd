@@ -71,17 +71,9 @@ module.exports = (options) => {
           // eslint-disable-next-line func-names
           it(`Test ${testFile}`, function (done) {
             const test = JSON.parse(fs.readFileSync(path.join(options.testFolder, testFile), 'utf8'));
-            const executor = HandlerExecutor({
-              handlerFile: options.handlerFile,
-              cassetteFolder: options.cassetteFolder,
-              verbose: options.verbose,
-              handlerFunction: test.handler,
-              event: rewriteObject(test.event, options.modifiers),
-              cassetteFile: `${testFile}_recording.json`,
-              lambdaTimeout: test.lambdaTimeout,
-              stripHeaders: get(test, "stripHeaders", options.stripHeaders)
-            });
-            if (suiteEnvVarsWrapperRecording !== null && executor.isNewRecording) {
+            const cassetteFile = `${testFile}_recording.json`;
+            const isNewRecording = !fs.existsSync(path.join(options.cassetteFolder, cassetteFile));
+            if (suiteEnvVarsWrapperRecording !== null && isNewRecording) {
               suiteEnvVarsWrapperRecording.apply();
             }
             const testEnvVarsWrapper = EnvVarWrapper({
@@ -109,7 +101,16 @@ module.exports = (options) => {
               }
             });
 
-            executor.execute().then((output) => {
+            HandlerExecutor({
+              handlerFile: options.handlerFile,
+              cassetteFolder: options.cassetteFolder,
+              verbose: options.verbose,
+              handlerFunction: test.handler,
+              event: rewriteObject(test.event, options.modifiers),
+              cassetteFile,
+              lambdaTimeout: test.lambdaTimeout,
+              stripHeaders: get(test, "stripHeaders", options.stripHeaders)
+            }).execute().then((output) => {
               expect(JSON.stringify(Object.keys(test).filter(e => [
                 "expect",
                 "handler",
@@ -163,7 +164,7 @@ module.exports = (options) => {
               randomSeeder.reset();
               timeKeeper.unfreeze();
               testEnvVarsWrapper.unapply();
-              if (suiteEnvVarsWrapperRecording !== null && executor.isNewRecording) {
+              if (suiteEnvVarsWrapperRecording !== null && isNewRecording) {
                 suiteEnvVarsWrapperRecording.unapply();
               }
               done();
