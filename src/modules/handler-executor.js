@@ -1,3 +1,4 @@
+const path = require('path');
 const wrapper = require('lambda-wrapper');
 const nockBack = require('nock').back;
 const ConsoleRecorder = require("./console-recorder");
@@ -9,6 +10,7 @@ module.exports = (options) => {
   const consoleRecorder = ConsoleRecorder({ verbose: options.verbose });
 
   return {
+    recordingFile: path.join(options.cassetteFolder, options.cassetteFile),
     execute: () => new Promise((resolve) => {
       consoleRecorder.start();
       nockBack.setMode('record');
