@@ -1,14 +1,14 @@
 # Test Framework for AWS Lambda
 
-[![Build Status](https://img.shields.io/travis/simlu/lambda-tdd/master.svg)](https://travis-ci.org/simlu/lambda-tdd)
-[![Test Coverage](https://img.shields.io/coveralls/simlu/lambda-tdd/master.svg)](https://coveralls.io/github/simlu/lambda-tdd?branch=master)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=simlu/lambda-tdd)](https://dependabot.com)
-[![Dependencies](https://david-dm.org/simlu/lambda-tdd/status.svg)](https://david-dm.org/simlu/lambda-tdd)
+[![Build Status](https://circleci.com/gh/blackflux/lambda-tdd.png?style=shield)](https://circleci.com/gh/blackflux/lambda-tdd)
+[![Test Coverage](https://img.shields.io/coveralls/blackflux/lambda-tdd/master.svg)](https://coveralls.io/github/blackflux/lambda-tdd?branch=master)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=blackflux/lambda-tdd)](https://dependabot.com)
+[![Dependencies](https://david-dm.org/blackflux/lambda-tdd/status.svg)](https://david-dm.org/blackflux/lambda-tdd)
 [![NPM](https://img.shields.io/npm/v/lambda-tdd.svg)](https://www.npmjs.com/package/lambda-tdd)
 [![Downloads](https://img.shields.io/npm/dt/lambda-tdd.svg)](https://www.npmjs.com/package/lambda-tdd)
 [![Semantic-Release](https://github.com/blackflux/js-gardener/blob/master/assets/icons/semver.svg)](https://github.com/semantic-release/semantic-release)
 [![Gardener](https://github.com/blackflux/js-gardener/blob/master/assets/badge.svg)](https://github.com/blackflux/js-gardener)
-[![Gitter](https://github.com/simlu/js-gardener/blob/master/assets/icons/gitter.svg)](https://gitter.im/simlu/lambda-tdd)
+[![Gitter](https://github.com/blackflux/js-gardener/blob/master/assets/icons/gitter.svg)](https://gitter.im/blackflux/lambda-tdd)
 
 Testing Framework for AWS Lambda. Very useful for integration testing as you can examine how your lambda function executes for certain input and specific environment variables. Tries to model the cloud execution as closely as possible.
 
@@ -28,7 +28,7 @@ Testing Framework for AWS Lambda. Very useful for integration testing as you can
 
 ## Example Projects
 
-Example project using [js-gardener](https://github.com/simlu/js-gardener) and [lambda-tdd](https://github.com/simlu/lambda-tdd) can be found [here](https://github.com/simlu/lambda-example).
+Example project using [js-gardener](https://github.com/blackflux/js-gardener) and [lambda-tdd](https://github.com/blackflux/lambda-tdd) can be found [here](https://github.com/blackflux/lambda-example).
 
 ## Getting Started
 
@@ -86,7 +86,7 @@ The example above allows for use of a `--filter=REGEX` parameter to only execute
 }
 ```
 
-More examples can be found [here](https://github.com/simlu/lambda-tdd/tree/master/test/sample).
+More examples can be found [here](https://github.com/blackflux/lambda-tdd/tree/master/test/sample).
 
 ## Test Runner Options
 
