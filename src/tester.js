@@ -23,8 +23,10 @@ module.exports = (options) => {
     handlerFile: path.join(options.cwd, "handler.js"),
     cassetteFolder: path.join(options.cwd, "__cassettes"),
     envVarYml: path.join(options.cwd, "env.yml"),
+    envVarYmlRecording: path.join(options.cwd, "env.recording.yml"),
     testFolder: options.cwd,
-    flush: ["aws-sdk"]
+    flush: ["aws-sdk"],
+    modifiers: {}
   });
 
   describe("Testing Cassettes", () => {
@@ -47,6 +49,10 @@ module.exports = (options) => {
     }, yaml.safeLoad(fs.readFileSync(options.envVarYml, 'utf8'))),
     allowOverwrite: false
   });
+  const suiteEnvVarsWrapperRecording = fs.existsSync(options.envVarYmlRecording) ? EnvVarWrapper({
+    envVars: yaml.safeLoad(fs.readFileSync(options.envVarYmlRecording, 'utf8')),
+    allowOverwrite: true
+  }) : null;
   const expectService = ExpectService();
   return {
     execute: (modifier = "") => {
@@ -65,6 +71,19 @@ module.exports = (options) => {
           // eslint-disable-next-line func-names
           it(`Test ${testFile}`, function (done) {
             const test = JSON.parse(fs.readFileSync(path.join(options.testFolder, testFile), 'utf8'));
+            const executor = HandlerExecutor({
+              handlerFile: options.handlerFile,
+              cassetteFolder: options.cassetteFolder,
+              verbose: options.verbose,
+              handlerFunction: test.handler,
+              event: rewriteObject(test.event, options.modifiers),
+              cassetteFile: `${testFile}_recording.json`,
+              lambdaTimeout: test.lambdaTimeout,
+              stripHeaders: get(test, "stripHeaders", options.stripHeaders)
+            });
+            if (suiteEnvVarsWrapperRecording !== null && executor.isNewRecording) {
+              suiteEnvVarsWrapperRecording.apply();
+            }
             const testEnvVarsWrapper = EnvVarWrapper({
               envVars: test.env || {},
               allowOverwrite: true
@@ -90,16 +109,7 @@ module.exports = (options) => {
               }
             });
 
-            HandlerExecutor({
-              handlerFile: options.handlerFile,
-              cassetteFolder: options.cassetteFolder,
-              verbose: options.verbose,
-              handlerFunction: test.handler,
-              event: rewriteObject(test.event),
-              cassetteFile: `${testFile}_recording.json`,
-              lambdaTimeout: test.lambdaTimeout,
-              stripHeaders: get(test, "stripHeaders", options.stripHeaders)
-            }).execute().then((output) => {
+            executor.execute().then((output) => {
               expect(JSON.stringify(Object.keys(test).filter(e => [
                 "expect",
                 "handler",
@@ -132,7 +142,7 @@ module.exports = (options) => {
                   const apply = k.split("(", 2)[1].slice(0, -1).split("|");
                   target = get(input, apply[0]);
                   if (apply.length > 1) {
-                    target = apply.slice(1).reduce((p, c) => dynamicApply(c, p), target);
+                    target = apply.slice(1).reduce((p, c) => dynamicApply(c, p, options.modifiers), target);
                   }
                 }
                 expectService.evaluate(test[k], target);
@@ -153,6 +163,9 @@ module.exports = (options) => {
               randomSeeder.reset();
               timeKeeper.unfreeze();
               testEnvVarsWrapper.unapply();
+              if (suiteEnvVarsWrapperRecording !== null && executor.isNewRecording) {
+                suiteEnvVarsWrapperRecording.unapply();
+              }
               done();
             }).catch(done.fail);
           });

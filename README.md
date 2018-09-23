@@ -6,8 +6,8 @@
 [![Dependencies](https://david-dm.org/simlu/lambda-tdd/status.svg)](https://david-dm.org/simlu/lambda-tdd)
 [![NPM](https://img.shields.io/npm/v/lambda-tdd.svg)](https://www.npmjs.com/package/lambda-tdd)
 [![Downloads](https://img.shields.io/npm/dt/lambda-tdd.svg)](https://www.npmjs.com/package/lambda-tdd)
-[![Semantic-Release](https://github.com/simlu/js-gardener/blob/master/assets/icons/semver.svg)](https://github.com/semantic-release/semantic-release)
-[![Gardener](https://github.com/simlu/js-gardener/blob/master/assets/badge.svg)](https://github.com/simlu/js-gardener)
+[![Semantic-Release](https://github.com/blackflux/js-gardener/blob/master/assets/icons/semver.svg)](https://github.com/semantic-release/semantic-release)
+[![Gardener](https://github.com/blackflux/js-gardener/blob/master/assets/badge.svg)](https://github.com/blackflux/js-gardener)
 [![Gitter](https://github.com/simlu/js-gardener/blob/master/assets/icons/gitter.svg)](https://gitter.im/simlu/lambda-tdd)
 
 Testing Framework for AWS Lambda. Very useful for integration testing as you can examine how your lambda function executes for certain input and specific environment variables. Tries to model the cloud execution as closely as possible.
@@ -134,6 +134,15 @@ Specify yaml file containing environment variables. To allow overwriting of exis
 
 Environment variables set by default are `AWS_REGION`, `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` since these always get set by the AWS Lambda environment.
 
+### envVarYmlRecording
+
+Type: `string`<br>
+Default: `env.recording.yml`
+
+Similar to envVarYml. Environment variables declared get applied on top of envVarYml iff this is a new test recording.
+
+Great when secrets are needed to record tests, but they should not be committed (recommendation is to git ignore this file).
+
 ### testFolder
 
 Type: `string`<br>
@@ -158,6 +167,12 @@ Type: `boolean`<br>
 Default: `false`
 
 Remove rawHeaders from recordings automatically when recording.
+
+### modifiers
+Type: `object`<br>
+Default: `{}`
+
+Allows definition of custom test file modifiers for `expect` and `event` (pipe operator).
 
 ## Test File Format
 
