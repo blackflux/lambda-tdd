@@ -11,7 +11,6 @@ module.exports = (options) => {
   const consoleRecorder = ConsoleRecorder({ verbose: options.verbose });
 
   return {
-    isNewRecording: !fs.existsSync(path.join(options.cassetteFolder, options.cassetteFile)),
     execute: () => new Promise((resolve) => {
       consoleRecorder.start();
       nockBack.setMode('record');
