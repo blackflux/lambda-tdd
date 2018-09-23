@@ -1,6 +1,6 @@
 # Test Framework for AWS Lambda
 
-[![Build Status](https://img.shields.io/travis/blackflux/lambda-tdd/master.svg)](https://travis-ci.org/blackflux/lambda-tdd)
+[![Build Status](https://circleci.com/gh/blackflux/lambda-tdd.png?style=shield)](https://circleci.com/gh/blackflux/lambda-tdd)
 [![Test Coverage](https://img.shields.io/coveralls/blackflux/lambda-tdd/master.svg)](https://coveralls.io/github/blackflux/lambda-tdd?branch=master)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=blackflux/lambda-tdd)](https://dependabot.com)
 [![Dependencies](https://david-dm.org/blackflux/lambda-tdd/status.svg)](https://david-dm.org/blackflux/lambda-tdd)
