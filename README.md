@@ -159,6 +159,12 @@ Default: `false`
 
 Remove rawHeaders from recordings automatically when recording.
 
+### modifiers
+Type: `object`<br>
+Default: `{}`
+
+Allows definition of custom test file modifiers for `expect` and `event` (pipe operator).
+
 ## Test File Format
 
 ### handler
