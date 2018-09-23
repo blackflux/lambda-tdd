@@ -1,5 +1,3 @@
-const fs = require('fs');
-const path = require('path');
 const wrapper = require('lambda-wrapper');
 const nockBack = require('nock').back;
 const ConsoleRecorder = require("./console-recorder");
