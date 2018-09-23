@@ -24,7 +24,8 @@ module.exports = (options) => {
     cassetteFolder: path.join(options.cwd, "__cassettes"),
     envVarYml: path.join(options.cwd, "env.yml"),
     testFolder: options.cwd,
-    flush: ["aws-sdk"]
+    flush: ["aws-sdk"],
+    modifiers: {}
   });
 
   describe("Testing Cassettes", () => {
@@ -95,7 +96,7 @@ module.exports = (options) => {
               cassetteFolder: options.cassetteFolder,
               verbose: options.verbose,
               handlerFunction: test.handler,
-              event: rewriteObject(test.event),
+              event: rewriteObject(test.event, options.modifiers),
               cassetteFile: `${testFile}_recording.json`,
               lambdaTimeout: test.lambdaTimeout,
               stripHeaders: get(test, "stripHeaders", options.stripHeaders)
@@ -132,7 +133,7 @@ module.exports = (options) => {
                   const apply = k.split("(", 2)[1].slice(0, -1).split("|");
                   target = get(input, apply[0]);
                   if (apply.length > 1) {
-                    target = apply.slice(1).reduce((p, c) => dynamicApply(c, p), target);
+                    target = apply.slice(1).reduce((p, c) => dynamicApply(c, p, options.modifiers), target);
                   }
                 }
                 expectService.evaluate(test[k], target);
