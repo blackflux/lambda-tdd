@@ -1,4 +1,4 @@
-const assert = require("assert");
+const assert = require('assert');
 const crypto = require('crypto');
 
 module.exports = () => {
@@ -6,7 +6,7 @@ module.exports = () => {
 
   return {
     forceSeed: (seed) => {
-      assert(typeof seed === "string");
+      assert(typeof seed === 'string');
       assert(original === null);
 
       original = crypto.randomBytes;

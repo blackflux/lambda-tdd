@@ -2,35 +2,35 @@ const fs = require('fs');
 const path = require('path');
 const get = require('lodash.get');
 const yaml = require('js-yaml');
-const expect = require("chai").expect;
-const defaults = require("lodash.defaults");
-const globSync = require("glob").sync;
+const expect = require('chai').expect;
+const defaults = require('lodash.defaults');
+const globSync = require('glob').sync;
 const appRoot = require('app-root-path');
-const TimeKeeper = require("./modules/time-keeper");
-const RandomSeeder = require("./modules/random-seeder");
-const EnvVarWrapper = require("./modules/env-var-wrapper");
-const ExpectService = require("./modules/expect-service");
-const HandlerExecutor = require("./modules/handler-executor");
-const ensureString = require("./util/ensure-string");
-const rewriteObject = require("./util/rewrite-object");
-const dynamicApply = require("./util/dynamic-apply");
+const TimeKeeper = require('./modules/time-keeper');
+const RandomSeeder = require('./modules/random-seeder');
+const EnvVarWrapper = require('./modules/env-var-wrapper');
+const ExpectService = require('./modules/expect-service');
+const HandlerExecutor = require('./modules/handler-executor');
+const ensureString = require('./util/ensure-string');
+const rewriteObject = require('./util/rewrite-object');
+const dynamicApply = require('./util/dynamic-apply');
 
 module.exports = (options) => {
   defaults(options, { cwd: process.cwd() });
   defaults(options, {
-    name: "lambda-test",
+    name: 'lambda-test',
     verbose: false,
-    handlerFile: path.join(options.cwd, "handler.js"),
-    cassetteFolder: path.join(options.cwd, "__cassettes"),
-    envVarYml: path.join(options.cwd, "env.yml"),
-    envVarYmlRecording: path.join(options.cwd, "env.recording.yml"),
+    handlerFile: path.join(options.cwd, 'handler.js'),
+    cassetteFolder: path.join(options.cwd, '__cassettes'),
+    envVarYml: path.join(options.cwd, 'env.yml'),
+    envVarYmlRecording: path.join(options.cwd, 'env.recording.yml'),
     testFolder: options.cwd,
-    flush: ["aws-sdk"],
+    flush: ['aws-sdk'],
     modifiers: {}
   });
 
-  describe("Testing Cassettes", () => {
-    it(`Searching for rogue Cassettes`, () => {
+  describe('Testing Cassettes', () => {
+    it('Searching for rogue Cassettes', () => {
       const invalidCassettes = globSync('**/*.spec.json_recording.json', {
         cwd: options.cassetteFolder,
         nodir: true
@@ -43,9 +43,9 @@ module.exports = (options) => {
   const randomSeeder = RandomSeeder();
   const suiteEnvVarsWrapper = EnvVarWrapper({
     envVars: Object.assign({
-      AWS_REGION: "us-east-1",
-      AWS_ACCESS_KEY_ID: "XXXXXXXXXXXXXXXXXXXX",
-      AWS_SECRET_ACCESS_KEY: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+      AWS_REGION: 'us-east-1',
+      AWS_ACCESS_KEY_ID: 'XXXXXXXXXXXXXXXXXXXX',
+      AWS_SECRET_ACCESS_KEY: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
     }, yaml.safeLoad(fs.readFileSync(options.envVarYml, 'utf8'))),
     allowOverwrite: false
   });
@@ -55,9 +55,9 @@ module.exports = (options) => {
   }) : null;
   const expectService = ExpectService();
   return {
-    execute: (modifier = "") => {
+    execute: (modifier = '') => {
       const isPattern = typeof modifier === 'string' || modifier instanceof String;
-      const testFiles = isPattern ? globSync("**/*.spec.json", {
+      const testFiles = isPattern ? globSync('**/*.spec.json', {
         cwd: options.testFolder,
         nodir: true,
         ignore: ['**/*.spec.json_recording.json']
@@ -109,27 +109,27 @@ module.exports = (options) => {
               event: rewriteObject(test.event, options.modifiers),
               cassetteFile,
               lambdaTimeout: test.lambdaTimeout,
-              stripHeaders: get(test, "stripHeaders", options.stripHeaders)
+              stripHeaders: get(test, 'stripHeaders', options.stripHeaders)
             }).execute().then((output) => {
               expect(JSON.stringify(Object.keys(test).filter(e => [
-                "expect",
-                "handler",
-                "success",
-                "lambdaTimeout",
-                "response",
-                "timeout",
-                "event",
-                "env",
-                "logs",
-                "error",
-                "nock",
-                "timestamp",
-                "seed",
-                "body",
-                "defaultLogs",
-                "errorLogs",
-                "stripHeaders"
-              ].indexOf(e) === -1 && !e.match(/^expect\(.+\)$/g)))).to.equal("[]");
+                'expect',
+                'handler',
+                'success',
+                'lambdaTimeout',
+                'response',
+                'timeout',
+                'event',
+                'env',
+                'logs',
+                'error',
+                'nock',
+                'timestamp',
+                'seed',
+                'body',
+                'defaultLogs',
+                'errorLogs',
+                'stripHeaders'
+              ].indexOf(e) === -1 && !e.match(/^expect\(.+\)$/g)))).to.equal('[]');
               // test lambda success
               if (test.success) {
                 expect(output.err, `Error: ${output.err}`).to.equal(null);
@@ -139,8 +139,8 @@ module.exports = (options) => {
               Object.keys(test).filter(k => k.match(/^expect(?:\(.*?\)$)?/)).forEach((k) => {
                 const input = test.success ? output.response : output.err;
                 let target = input;
-                if (k.indexOf("(") !== -1) {
-                  const apply = k.split("(", 2)[1].slice(0, -1).split("|");
+                if (k.indexOf('(') !== -1) {
+                  const apply = k.split('(', 2)[1].slice(0, -1).split('|');
                   target = get(input, apply[0]);
                   if (apply.length > 1) {
                     target = apply.slice(1).reduce((p, c) => dynamicApply(c, p, options.modifiers), target);
@@ -151,7 +151,7 @@ module.exports = (options) => {
 
               if (test.error !== undefined || test.response !== undefined || test.body !== undefined) {
                 // eslint-disable-next-line no-console
-                console.warn(`Warning: "error", "response" and "body" are deprecated. Use "expect" instead!`);
+                console.warn('Warning: "error", "response" and "body" are deprecated. Use "expect" instead!');
               }
               expectService.evaluate(test.error, ensureString(output.err));
               expectService.evaluate(test.response, ensureString(output.response));
