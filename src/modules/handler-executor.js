@@ -1,6 +1,6 @@
 const wrapper = require('lambda-wrapper');
 const nockBack = require('nock').back;
-const ConsoleRecorder = require("./console-recorder");
+const ConsoleRecorder = require('./console-recorder');
 
 module.exports = (options) => {
   // eslint-disable-next-line global-require, import/no-dynamic-require

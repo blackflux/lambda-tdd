@@ -39,14 +39,14 @@ To install run
 ### Initialize Test Runner and Execute
 <!-- eslint-disable import/no-extraneous-dependencies, import/no-unresolved -->
 ```javascript
-const lambdaTester = require("lambda-tdd")({
+const lambdaTester = require('lambda-tdd')({
   cwd: __dirname,
-  verbose: process.argv.slice(2).indexOf("--verbose") !== -1
+  verbose: process.argv.slice(2).indexOf('--verbose') !== -1
 });
 
-describe("Testing Tester", () => {
+describe('Testing Tester', () => {
   lambdaTester.execute((process.argv.slice(2)
-    .find(e => e.startsWith("--filter=")) || "")
+    .find(e => e.startsWith('--filter=')) || '')
     .substring(9));
 });
 ```
