@@ -4,8 +4,8 @@
   "seed": "some-seed",
   "expect": {
     "to.deep.equal()": {
-      "random1": "c7fb5bc9-953d-410c-94a3-b654129c5049",
-      "random2": "e44b680d-8c93-4ec2-93fa-7d409f39b398"
+      "random1": "4b01441b-0f13-4729-9942-eed23f894d83",
+      "random2": "761a585e-b3ba-4f0b-8f22-fe4f6d60dda2"
     }
   }
 }

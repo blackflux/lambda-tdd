@@ -1,5 +1,5 @@
-const defaults = require("lodash.defaults");
-const expect = require("chai").expect;
+const defaults = require('lodash.defaults');
+const expect = require('chai').expect;
 
 module.exports = (options) => {
   defaults(options, { envVars: {} });
@@ -16,8 +16,8 @@ module.exports = (options) => {
     apply: () => {
       envVarsOverwritten.length = 0;
       Object.keys(options.envVars).forEach((envVarRaw) => {
-        const envVar = envVarRaw.replace(/^\^/, "");
-        if (options.allowOverwrite === true || envVarRaw.startsWith("^")) {
+        const envVar = envVarRaw.replace(/^\^/, '');
+        if (options.allowOverwrite === true || envVarRaw.startsWith('^')) {
           envVarsOverwritten[envVar] = process.env[envVar];
         } else {
           expect(process.env).to.not.have.property(envVar);
@@ -27,7 +27,7 @@ module.exports = (options) => {
     },
     unapply: () => {
       Object.keys(options.envVars).forEach((envVarRaw) => {
-        const envVar = envVarRaw.replace(/^\^/, "");
+        const envVar = envVarRaw.replace(/^\^/, '');
         expect(process.env).to.have.property(envVar);
         setEnvVar(envVar, envVarsOverwritten[envVar]);
       });
