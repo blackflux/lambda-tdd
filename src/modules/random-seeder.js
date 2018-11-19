@@ -10,12 +10,17 @@ module.exports = () => {
       assert(original === null);
 
       original = crypto.randomBytes;
-      let executionCount = 0;
+      const executionCounts = {};
 
       crypto.randomBytes = (size, cb) => {
-        executionCount += 1;
+        executionCounts[size] = (executionCounts[size] || 0) + 1;
 
-        let result = crypto.createHash('sha256').update(seed).update(String(executionCount)).digest();
+        let result = crypto
+          .createHash('sha256')
+          .update(seed)
+          .update(String(size))
+          .update(String(executionCounts[size]))
+          .digest();
         while (result.length < size) {
           result = Buffer.concat([result, crypto.createHash('sha256').update(result).digest()]);
         }
