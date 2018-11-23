@@ -26,13 +26,13 @@ module.exports = (options) => {
       }, (nockDone) => {
         const startTimestamp = process.hrtime();
         const startTime = (startTimestamp[0] * 1000) + (startTimestamp[1] / 1000000);
-        runner.run(options.event, {
+        runner.run(options.event, Object.assign({}, options.context, {
           getRemainingTimeInMillis: () => {
             const curTimeStamp = process.hrtime();
             const curTime = (curTimeStamp[0] * 1000) + (curTimeStamp[1] / 1000000);
             return (options.lambdaTimeout || 300000) - (curTime - startTime);
           }
-        }, (err, response) => {
+        }), (err, response) => {
           nockDone();
           resolve({
             records,
