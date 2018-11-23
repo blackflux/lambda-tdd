@@ -1,0 +1,15 @@
+{
+  "handler": "returnContext",
+  "success": true,
+  "expect(identity.sourceIp)": {
+    "to.equal()": "114.58.145.199"
+  },
+  "context": {
+    "identity": {
+      "sourceIp": "114.58.145.199"
+    }
+  },
+  "event": {
+    "statusCode": 200
+  }
+}

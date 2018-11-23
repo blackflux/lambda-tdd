@@ -107,6 +107,7 @@ module.exports = (options) => {
               verbose: options.verbose,
               handlerFunction: test.handler,
               event: rewriteObject(test.event, options.modifiers),
+              context: test.context || {},
               cassetteFile,
               lambdaTimeout: test.lambdaTimeout,
               stripHeaders: get(test, 'stripHeaders', options.stripHeaders)
@@ -119,6 +120,7 @@ module.exports = (options) => {
                 'response',
                 'timeout',
                 'event',
+                'context',
                 'env',
                 'logs',
                 'error',
