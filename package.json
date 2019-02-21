@@ -56,7 +56,7 @@
   "devDependencies": {
     "babel-eslint": "10.0.1",
     "coveralls": "3.0.2",
-    "js-gardener": "1.37.2",
+    "js-gardener": "1.37.3",
     "mocha": "6.0.1",
     "nock": "10.0.6",
     "nyc": "13.3.0",
