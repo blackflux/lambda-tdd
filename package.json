@@ -57,7 +57,7 @@
     "babel-eslint": "10.0.1",
     "coveralls": "3.0.3",
     "js-gardener": "1.37.3",
-    "mocha": "6.0.1",
+    "mocha": "6.0.2",
     "nock": "10.0.6",
     "nyc": "13.3.0",
     "request": "2.88.0",
@@ -65,10 +65,10 @@
     "tmp": "0.0.33",
     "uuid": "3.3.2",
     "@babel/register": "7.0.0",
-    "@babel/core": "7.3.3",
+    "@babel/core": "7.3.4",
     "@babel/cli": "7.2.3",
     "@babel/plugin-transform-flow-comments": "7.2.0",
-    "@babel/plugin-proposal-object-rest-spread": "7.3.2",
+    "@babel/plugin-proposal-object-rest-spread": "7.3.4",
     "@babel/preset-flow": "7.0.0"
   },
   "engines": {
