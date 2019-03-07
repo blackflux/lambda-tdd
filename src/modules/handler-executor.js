@@ -37,8 +37,7 @@ module.exports = (options) => {
           }
         }), (err, response) => {
           assert(
-            options.allowUnmatchedRecordings === true
-            || nock.pendingMocks().length === 0,
+            nock.pendingMocks().every(r => options.allowedUnmatchedRecordings.includes(r)),
             `Unmatched Recording(s): ${JSON.stringify(nock.pendingMocks())}`
           );
           nockDone();
