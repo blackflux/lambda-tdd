@@ -131,7 +131,7 @@ module.exports = (options) => {
                 'defaultLogs',
                 'errorLogs',
                 'stripHeaders'
-              ].indexOf(e) === -1 && !e.match(/^(?:expect|logs)\(.+\)$/g)))).to.equal('[]');
+              ].indexOf(e) === -1 && !e.match(/^(?:expect|logs|errorLogs|defaultLogs)\(.+\)$/g)))).to.equal('[]');
               // test lambda success
               if (test.success) {
                 expect(output.err, `Error: ${output.err}`).to.equal(null);
