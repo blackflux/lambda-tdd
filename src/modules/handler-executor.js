@@ -36,7 +36,11 @@ module.exports = (options) => {
             return (options.lambdaTimeout || 300000) - (curTime - startTime);
           }
         }), (err, response) => {
-          assert(nock.pendingMocks().length === 0, `Unmatched Recording(s): ${JSON.stringify(nock.pendingMocks())}`);
+          assert(
+            options.allowUnmatchedRecordings === true
+            || nock.pendingMocks().length === 0,
+            `Unmatched Recording(s): ${JSON.stringify(nock.pendingMocks())}`
+          );
           nockDone();
           resolve({
             records,

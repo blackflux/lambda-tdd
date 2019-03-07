@@ -110,7 +110,8 @@ module.exports = (options) => {
               context: test.context || {},
               cassetteFile,
               lambdaTimeout: test.lambdaTimeout,
-              stripHeaders: get(test, 'stripHeaders', options.stripHeaders)
+              stripHeaders: get(test, 'stripHeaders', options.stripHeaders),
+              allowUnmatchedRecordings: get(test, 'allowUnmatchedRecordings', false)
             }).execute().then((output) => {
               expect(JSON.stringify(Object.keys(test).filter(e => [
                 'expect',
@@ -130,7 +131,8 @@ module.exports = (options) => {
                 'body',
                 'defaultLogs',
                 'errorLogs',
-                'stripHeaders'
+                'stripHeaders',
+                'allowUnmatchedRecordings'
               ].indexOf(e) === -1 && !e.match(/^(?:expect|logs|errorLogs|defaultLogs)\(.+\)$/g)))).to.equal('[]');
               // test lambda success
               if (test.success) {

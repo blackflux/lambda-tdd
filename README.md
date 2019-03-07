@@ -307,6 +307,14 @@ Default: `?`
 
 Remove rawHeaders from recordings automatically when recording. Defaults depends on value set in runner options. 
 
+### allowUnmatchedRecordings
+Type: `boolean`<br>
+Default: `false`
+
+When set to true the recordings file is allowed to contain unmatched recordings.
+
+Useful when requests are made asynchronously, e.g. my rollbar logging.
+
 ## Dynamic Expect Logic
 
 Uses [Chai Assertion Library](http://chaijs.com/api/bdd/) syntax written as json. Lets assume we have an output array `[1, 2]` we want to validate. We can write
