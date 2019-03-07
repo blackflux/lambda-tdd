@@ -1,6 +1,9 @@
+const assert = require('assert');
 const wrapper = require('lambda-wrapper');
-const nockBack = require('nock').back;
+const nock = require('nock');
 const ConsoleRecorder = require('./console-recorder');
+
+const nockBack = nock.back;
 
 module.exports = (options) => {
   // eslint-disable-next-line global-require, import/no-dynamic-require
@@ -33,6 +36,7 @@ module.exports = (options) => {
             return (options.lambdaTimeout || 300000) - (curTime - startTime);
           }
         }), (err, response) => {
+          assert(nock.pendingMocks().length === 0, `Unmatched Recording(s): ${JSON.stringify(nock.pendingMocks())}`);
           nockDone();
           resolve({
             records,
