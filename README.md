@@ -270,21 +270,21 @@ Default: `[]`
 Deprecated. Use "expect" instead.
 Dynamic expect logic executed against the response.body string. More details on dynamic expect handling below.
 
-### logs
+### logs, logs(...)
 
 Type `array`<br>
 Default: `[]`
 
 Dynamic expect logic executed against the `console.log/info` and `console.error/warn` output array. You can use `errorLogs` and `defaultLogs` to access them independently. More details on dynamic expect handling below.
 
-### defaultLogs
+### defaultLogs, defaultLogs(...)
 
 Type `array`<br>
 Default: `[]`
 
 See `logs`.
 
-### errorLogs
+### errorLogs, errorLogs(...)
 
 Type `array`<br>
 Default: `[]`

@@ -131,25 +131,32 @@ module.exports = (options) => {
                 'defaultLogs',
                 'errorLogs',
                 'stripHeaders'
-              ].indexOf(e) === -1 && !e.match(/^expect\(.+\)$/g)))).to.equal('[]');
+              ].indexOf(e) === -1 && !e.match(/^(?:expect|logs)\(.+\)$/g)))).to.equal('[]');
               // test lambda success
               if (test.success) {
                 expect(output.err, `Error: ${output.err}`).to.equal(null);
               } else {
                 expect(output.err, `Response: ${ensureString(output.response)}`).to.not.equal(null);
               }
-              Object.keys(test).filter(k => k.match(/^expect(?:\(.*?\)$)?/)).forEach((k) => {
-                const input = test.success ? output.response : output.err;
-                let target = input;
-                if (k.indexOf('(') !== -1) {
-                  const apply = k.split('(', 2)[1].slice(0, -1).split('|');
-                  target = get(input, apply[0]);
-                  if (apply.length > 1) {
-                    target = apply.slice(1).reduce((p, c) => dynamicApply(c, p, options.modifiers), target);
+              Object
+                .keys(test)
+                .filter(k => k.match(/^(?:expect|logs|errorLogs|defaultLogs)(?:\(.*?\)$)?/))
+                .forEach((k) => {
+                  let target = null;
+                  if (k.startsWith('expect')) {
+                    target = test.success ? output.response : output.err;
+                  } else {
+                    target = output.logs[k.split('(')[0]];
                   }
-                }
-                expectService.evaluate(test[k], target);
-              });
+                  if (k.indexOf('(') !== -1) {
+                    const apply = k.split('(', 2)[1].slice(0, -1).split('|');
+                    target = get(target, apply[0]);
+                    if (apply.length > 1) {
+                      target = apply.slice(1).reduce((p, c) => dynamicApply(c, p, options.modifiers), target);
+                    }
+                  }
+                  expectService.evaluate(test[k], target);
+                });
 
               if (test.error !== undefined || test.response !== undefined || test.body !== undefined) {
                 // eslint-disable-next-line no-console
@@ -159,9 +166,6 @@ module.exports = (options) => {
               expectService.evaluate(test.response, ensureString(output.response));
               expectService.evaluate(test.body, get(output.response, 'body'));
 
-              expectService.evaluate(test.logs, output.logs.logs);
-              expectService.evaluate(test.errorLogs, output.logs.errorLogs);
-              expectService.evaluate(test.defaultLogs, output.logs.defaultLogs);
               expectService.evaluate(test.nock, ensureString(output.records));
               randomSeeder.reset();
               timeKeeper.unfreeze();

@@ -2,8 +2,14 @@
   "handler": "logger",
   "success": true,
   "logs": {
-    "to.deep.equal": [
+    "to.deep.equal()": [
       "Some Log Message"
     ]
+  },
+  "logs([0])": {
+    "to.equal()": "Some Log Message"
+  },
+  "logs([length])": {
+    "to.equal()": 1
   }
 }
