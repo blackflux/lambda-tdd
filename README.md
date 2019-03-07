@@ -307,13 +307,11 @@ Default: `?`
 
 Remove rawHeaders from recordings automatically when recording. Defaults depends on value set in runner options. 
 
-### allowUnmatchedRecordings
-Type: `boolean`<br>
-Default: `false`
+### allowedUnmatchedRecordings
+Type: `array`<br>
+Default: `[]`
 
-When set to true the recordings file is allowed to contain unmatched recordings.
-
-Useful when requests are made asynchronously, e.g. my rollbar logging.
+Can define the recordings that are allowed to be unmatched.
 
 ## Dynamic Expect Logic
 
