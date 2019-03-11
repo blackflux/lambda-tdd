@@ -110,9 +110,9 @@ module.exports = (options) => {
               context: test.context || {},
               cassetteFile,
               lambdaTimeout: test.lambdaTimeout,
-              stripHeaders: get(test, 'stripHeaders', options.stripHeaders),
-              allowedUnmatchedRecordings: get(test, 'allowedUnmatchedRecordings', [])
+              stripHeaders: get(test, 'stripHeaders', options.stripHeaders)
             }).execute().then((output) => {
+              // evaluate test configuration
               expect(JSON.stringify(Object.keys(test).filter(e => [
                 'expect',
                 'handler',
@@ -134,7 +134,8 @@ module.exports = (options) => {
                 'stripHeaders',
                 'allowedUnmatchedRecordings'
               ].indexOf(e) === -1 && !e.match(/^(?:expect|logs|errorLogs|defaultLogs)\(.+\)$/g)))).to.equal('[]');
-              // test lambda success
+
+              // test output
               if (test.success) {
                 expect(output.err, `Error: ${output.err}`).to.equal(null);
               } else {
@@ -167,8 +168,13 @@ module.exports = (options) => {
               expectService.evaluate(test.error, ensureString(output.err));
               expectService.evaluate(test.response, ensureString(output.response));
               expectService.evaluate(test.body, get(output.response, 'body'));
-
               expectService.evaluate(test.nock, ensureString(output.records));
+              expect(
+                output.pendingMocks.every(r => get(test, 'allowedUnmatchedRecordings', []).includes(r)),
+                `Unmatched Recording(s): ${JSON.stringify(output.pendingMocks)}`
+              ).to.equal(true);
+
+              // "close" test run
               randomSeeder.reset();
               timeKeeper.unfreeze();
               testEnvVarsWrapper.unapply();
