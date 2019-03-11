@@ -1,7 +1,7 @@
 {
   "handler": "returnExternal",
   "success": true,
-  "allowedUnmatchedRecordings": "GET http://ip-api.com:80/json",
+  "allowedUnmatchedRecordings": ["GET http://ip-api.com:80/json"],
   "response": {
     "to": {
       "contain": "\"United States\""

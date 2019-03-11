@@ -69,7 +69,7 @@ module.exports = (options) => {
 
         testFiles.forEach((testFile) => {
           // eslint-disable-next-line func-names
-          it(`Test ${testFile}`, function (done) {
+          it(`Test ${testFile}`, async function () {
             const test = JSON.parse(fs.readFileSync(path.join(options.testFolder, testFile), 'utf8'));
             const cassetteFile = `${testFile}_recording.json`;
             const isNewRecording = !fs.existsSync(path.join(options.cassetteFolder, cassetteFile));
@@ -101,18 +101,20 @@ module.exports = (options) => {
               }
             });
 
-            HandlerExecutor({
-              handlerFile: options.handlerFile,
-              cassetteFolder: options.cassetteFolder,
-              verbose: options.verbose,
-              handlerFunction: test.handler,
-              event: rewriteObject(test.event, options.modifiers),
-              context: test.context || {},
-              cassetteFile,
-              lambdaTimeout: test.lambdaTimeout,
-              stripHeaders: get(test, 'stripHeaders', options.stripHeaders),
-              allowedUnmatchedRecordings: get(test, 'allowedUnmatchedRecordings', [])
-            }).execute().then((output) => {
+            try {
+              const output = await HandlerExecutor({
+                handlerFile: options.handlerFile,
+                cassetteFolder: options.cassetteFolder,
+                verbose: options.verbose,
+                handlerFunction: test.handler,
+                event: rewriteObject(test.event, options.modifiers),
+                context: test.context || {},
+                cassetteFile,
+                lambdaTimeout: test.lambdaTimeout,
+                stripHeaders: get(test, 'stripHeaders', options.stripHeaders)
+              }).execute();
+
+              // evaluate test configuration
               expect(JSON.stringify(Object.keys(test).filter(e => [
                 'expect',
                 'handler',
@@ -134,7 +136,8 @@ module.exports = (options) => {
                 'stripHeaders',
                 'allowedUnmatchedRecordings'
               ].indexOf(e) === -1 && !e.match(/^(?:expect|logs|errorLogs|defaultLogs)\(.+\)$/g)))).to.equal('[]');
-              // test lambda success
+
+              // test output
               if (test.success) {
                 expect(output.err, `Error: ${output.err}`).to.equal(null);
               } else {
@@ -167,16 +170,21 @@ module.exports = (options) => {
               expectService.evaluate(test.error, ensureString(output.err));
               expectService.evaluate(test.response, ensureString(output.response));
               expectService.evaluate(test.body, get(output.response, 'body'));
-
               expectService.evaluate(test.nock, ensureString(output.records));
+              expect(
+                output.pendingMocks.every(r => get(test, 'allowedUnmatchedRecordings', []).includes(r)),
+                `Unmatched Recording(s): ${JSON.stringify(output.pendingMocks)}`
+              ).to.equal(true);
+              return Promise.resolve();
+            } finally {
+              // "close" test run
               randomSeeder.reset();
               timeKeeper.unfreeze();
               testEnvVarsWrapper.unapply();
               if (suiteEnvVarsWrapperRecording !== null && isNewRecording) {
                 suiteEnvVarsWrapperRecording.unapply();
               }
-              done();
-            }).catch(done.fail);
+            }
           });
         });
       });

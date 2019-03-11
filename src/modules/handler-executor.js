@@ -1,4 +1,3 @@
-const assert = require('assert');
 const wrapper = require('lambda-wrapper');
 const nock = require('nock');
 const ConsoleRecorder = require('./console-recorder');
@@ -36,16 +35,14 @@ module.exports = (options) => {
             return (options.lambdaTimeout || 300000) - (curTime - startTime);
           }
         }), (err, response) => {
-          assert(
-            nock.pendingMocks().every(r => options.allowedUnmatchedRecordings.includes(r)),
-            `Unmatched Recording(s): ${JSON.stringify(nock.pendingMocks())}`
-          );
+          const pendingMocks = nock.pendingMocks();
           nockDone();
           resolve({
             records,
             err,
             response,
-            logs: consoleRecorder.finish()
+            logs: consoleRecorder.finish(),
+            pendingMocks
           });
         });
       });
