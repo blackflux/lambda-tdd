@@ -38,6 +38,11 @@ describe('Testing Tester', () => {
     });
   });
 
+  it('Testing enabled=false', () => {
+    const testFiles = LambdaTester({ cwd: path.join(__dirname, 'example'), enabled: false }).execute();
+    expect(testFiles).to.deep.equal([]);
+  });
+
   describe('Testing env.recording.yml', () => {
     let tmpDir;
     let testerArgs;

@@ -20,6 +20,7 @@ module.exports = (options) => {
   defaults(options, {
     name: 'lambda-test',
     verbose: false,
+    enabled: true,
     handlerFile: path.join(options.cwd, 'handler.js'),
     cassetteFolder: path.join(options.cwd, '__cassettes'),
     envVarYml: path.join(options.cwd, 'env.yml'),
@@ -56,6 +57,10 @@ module.exports = (options) => {
   const expectService = ExpectService();
   return {
     execute: (modifier = '') => {
+      if (options.enabled !== true) {
+        return [];
+      }
+
       const isPattern = typeof modifier === 'string' || modifier instanceof String;
       const testFiles = isPattern ? globSync('**/*.spec.json', {
         cwd: options.testFolder,
