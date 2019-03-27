@@ -18,6 +18,9 @@ module.exports = (options) => {
       nockBack(options.cassetteFile, {
         before: (r) => {
           records.push(r);
+          if (options.ignoreCassetteRequestBody === true) {
+            Object.assign(r, { body: '*' });
+          }
           return r;
         },
         afterRecord: recordings => (options.stripHeaders === true ? recordings.map((r) => {
