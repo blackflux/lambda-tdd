@@ -129,7 +129,7 @@ Folder containing nock recordings.
 Type: `boolean`<br>
 Default: `false`
 
-When set to true, request bodies are not required to match for tests cassettes.
+When set to true, request bodies are not required to match for test cassettes.
 
 ### envVarYml
 
