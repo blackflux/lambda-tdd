@@ -23,6 +23,7 @@ module.exports = (options) => {
     enabled: true,
     handlerFile: path.join(options.cwd, 'handler.js'),
     cassetteFolder: path.join(options.cwd, '__cassettes'),
+    ignoreCassetteRequestBody: false,
     envVarYml: path.join(options.cwd, 'env.yml'),
     envVarYmlRecording: path.join(options.cwd, 'env.recording.yml'),
     testFolder: options.cwd,
@@ -110,6 +111,7 @@ module.exports = (options) => {
               const output = await HandlerExecutor({
                 handlerFile: options.handlerFile,
                 cassetteFolder: options.cassetteFolder,
+                ignoreCassetteRequestBody: options.ignoreCassetteRequestBody,
                 verbose: options.verbose,
                 handlerFunction: test.handler,
                 event: rewriteObject(test.event, options.modifiers),
