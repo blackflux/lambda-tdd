@@ -124,6 +124,13 @@ Default: `__cassettes`
 
 Folder containing nock recordings.
 
+### ignoreCassetteRequestBody
+
+Type: `boolean`<br>
+Default: `false`
+
+When set to true, request bodies are not required to match for test cassettes.
+
 ### envVarYml
 
 Type: `string`<br>
