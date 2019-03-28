@@ -6,8 +6,9 @@ module.exports = () => {
   let original = null;
 
   return {
-    forceSeed: (seed) => {
+    forceSeed: (seed, reseed = false) => {
       assert(typeof seed === 'string');
+      assert(typeof reseed === 'boolean');
       assert(original === null);
 
       original = crypto.randomBytes;
@@ -21,7 +22,7 @@ module.exports = () => {
         const originFile = get(stackOrigin.match(/^.*?\([^)]+?\/node_modules\/([^)]+):\d+:\d+\)$/), [1], '');
         const key = `${originFile}@${size}`;
 
-        executionCounts[key] = (executionCounts[key] || 0) + 1;
+        executionCounts[key] = reseed === true ? null : (executionCounts[key] || 0) + 1;
         let result = crypto
           .createHash('sha256')
           .update(seed)

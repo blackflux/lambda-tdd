@@ -91,7 +91,7 @@ module.exports = (options) => {
               timeKeeper.freeze(test.timestamp);
             }
             if (test.seed !== undefined) {
-              randomSeeder.forceSeed(test.seed);
+              randomSeeder.forceSeed(test.seed, test.reseed || false);
             }
             if (test.timeout !== undefined) {
               this.timeout(test.timeout);
@@ -137,6 +137,7 @@ module.exports = (options) => {
                 'nock',
                 'timestamp',
                 'seed',
+                'reseed',
                 'body',
                 'defaultLogs',
                 'errorLogs',
