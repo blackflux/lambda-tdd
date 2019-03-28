@@ -53,3 +53,21 @@ describe('Testing RandomSeeder', () => {
     });
   });
 });
+
+
+describe('Testing RandomSeeder Reseeded', () => {
+  let seeder;
+  beforeEach(() => {
+    seeder = RandomSeeder();
+    seeder.forceSeed('test', true);
+  });
+
+  afterEach(() => {
+    seeder.reset();
+  });
+
+  it('Testing Random Consistent Reseeded', () => {
+    expect(uuid4()).to.deep.equal('198acafb-fddd-47c2-adda-6e4e735b529e');
+    expect(uuid4()).to.deep.equal('198acafb-fddd-47c2-adda-6e4e735b529e');
+  });
+});
