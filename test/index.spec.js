@@ -3,7 +3,7 @@ const path = require('path');
 const expect = require('chai').expect;
 const request = require('request');
 const tmp = require('tmp');
-const LambdaTester = require('./../src/tester');
+const LambdaTester = require('./../src/index');
 
 const lambdaTester = LambdaTester({
   verbose: process.argv.slice(2).indexOf('--verbose') !== -1,
