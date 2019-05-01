@@ -147,7 +147,7 @@ module.exports = (options) => {
 
               // test output
               if (test.success) {
-                expect(output.err, `Error: ${output.err}`).to.equal(null);
+                expect(output.err, `Error: ${get(output.err, 'stack', output.err)}`).to.equal(null);
               } else {
                 expect(output.err, `Response: ${ensureString(output.response)}`).to.not.equal(null);
               }
