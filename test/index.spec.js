@@ -5,13 +5,16 @@ const request = require('request');
 const tmp = require('tmp');
 const LambdaTester = require('./../src/index');
 
-const lambdaTester = LambdaTester({
+const lambdaTesterParams = {
   verbose: process.argv.slice(2).indexOf('--verbose') !== -1,
-  cwd: path.join(__dirname, 'example'),
+  cwd: path.join(__dirname, 'mock'),
+  testFolder: path.join(__dirname, 'mock', 'handler', 'api'),
+  cassetteFolder: path.join(__dirname, 'mock', 'handler', '__cassettes', 'api'),
   modifiers: {
     wrap: input => `{${input}}`
   }
-});
+};
+const lambdaTester = LambdaTester(lambdaTesterParams);
 
 describe('Testing Tester', () => {
   it('Empty Folder', () => {
@@ -39,12 +42,12 @@ describe('Testing Tester', () => {
   });
 
   it('Testing enabled=false', () => {
-    const testFiles = LambdaTester({ cwd: path.join(__dirname, 'example'), enabled: false }).execute();
+    const testFiles = LambdaTester(Object.assign({}, lambdaTesterParams, { enabled: false })).execute();
     expect(testFiles).to.deep.equal([]);
   });
 
   it('Testing ignoreCassetteRequestBody=true', () => {
-    const testFiles = LambdaTester({ cwd: path.join(__dirname, 'example'), ignoreCassetteRequestBody: true })
+    const testFiles = LambdaTester(Object.assign({}, lambdaTesterParams, { ignoreCassetteRequestBody: true }))
       .execute('external_request');
     expect(testFiles).to.not.deep.equal([]);
   });
