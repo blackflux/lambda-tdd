@@ -43,6 +43,7 @@
     "lodash.defaults": "4.2.0",
     "lodash.get": "4.4.2",
     "lodash.pick": "4.4.0",
+    "smart-fs": "1.8.0",
     "timekeeper": "2.2.0"
   },
   "licenses": [

@@ -6,6 +6,7 @@ const expect = require('chai').expect;
 const defaults = require('lodash.defaults');
 const globSync = require('glob').sync;
 const appRoot = require('app-root-path');
+const sfs = require('smart-fs');
 const TimeKeeper = require('./modules/time-keeper');
 const RandomSeeder = require('./modules/random-seeder');
 const EnvVarWrapper = require('./modules/env-var-wrapper');
@@ -38,6 +39,15 @@ module.exports = (options) => {
         nodir: true
       }).filter(e => !fs.existsSync(path.join(options.testFolder, e.substring(0, e.length - 15))));
       expect(invalidCassettes, `Rogue Cassette(s): ${invalidCassettes}`).to.deep.equal([]);
+    });
+  });
+
+  describe('Testing test directory structure', () => {
+    it('Ensuring all files are test files', () => {
+      sfs.walkDir(options.testFolder).filter(f => !f.startsWith('__cassettes'))
+        .forEach((filePath) => {
+          expect(filePath.endsWith('.spec.json'), `Unexpected File: ${filePath}`).to.equal(true);
+        });
     });
   });
 
