@@ -105,5 +105,15 @@ describe('Testing Tester', () => {
       });
       expect(LambdaTester(testerArgs).execute()).to.deep.equal(['api/test.spec.json']);
     });
+
+    it('Testing rogue cassette', () => {
+      sfs.smartWrite(path.join(tmpDir.name, 'handler', '__cassettes', 'api', 'test.spec.json_recording.json'), []);
+      expect(() => LambdaTester(testerArgs).execute()).to.throw('Rogue Cassette(s): api/test.spec.json_recording.json');
+    });
+
+    it('Testing for invalid test file', () => {
+      sfs.smartWrite(path.join(tmpDir.name, 'handler', 'test.js'), []);
+      expect(() => LambdaTester(testerArgs).execute()).to.throw(`Unexpected File: ${tmpDir.name}/handler/test.js`);
+    });
   });
 });

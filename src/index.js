@@ -32,24 +32,25 @@ module.exports = (options) => {
     modifiers: {}
   });
 
-  describe('Testing Cassettes', () => {
-    it('Searching for rogue Cassettes', () => {
-      const invalidCassettes = globSync('**/*.spec.json_recording.json', {
-        cwd: options.cassetteFolder,
-        nodir: true
-      }).filter(e => !fs.existsSync(path.join(options.testFolder, e.substring(0, e.length - 15))));
-      expect(invalidCassettes, `Rogue Cassette(s): ${invalidCassettes}`).to.deep.equal([]);
-    });
-  });
+  if (fs.existsSync(options.cassetteFolder)) {
+    const invalidCassettes = sfs.walkDir(options.cassetteFolder)
+      .filter(e => !fs.existsSync(path.join(options.testFolder, e.substring(0, e.length - 15))));
+    if (invalidCassettes.length !== 0) {
+      throw new Error(`Rogue Cassette(s): ${invalidCassettes.join(', ')}`);
+    }
+  }
 
-  describe('Testing test directory structure', () => {
-    it('Ensuring all files are test files', () => {
-      sfs.walkDir(options.testFolder).filter(f => !f.startsWith('__cassettes'))
-        .forEach((filePath) => {
-          expect(filePath.endsWith('.spec.json'), `Unexpected File: ${filePath}`).to.equal(true);
-        });
+  sfs.walkDir(options.testFolder)
+    .map(f => path.join(options.testFolder, f))
+    .filter((f) => {
+      const relative = path.relative(options.cassetteFolder, f);
+      return !relative || relative.startsWith('..') || path.isAbsolute(relative);
+    })
+    .forEach((filePath) => {
+      if (!filePath.endsWith('.spec.json')) {
+        throw new Error(`Unexpected File: ${filePath}`);
+      }
     });
-  });
 
   const timeKeeper = TimeKeeper();
   const randomSeeder = RandomSeeder();
