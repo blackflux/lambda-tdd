@@ -43,7 +43,7 @@
     "lodash.defaults": "4.2.0",
     "lodash.get": "4.4.2",
     "lodash.pick": "4.4.0",
-    "smart-fs": "1.8.0",
+    "smart-fs": "1.8.1",
     "timekeeper": "2.2.0"
   },
   "licenses": [
@@ -58,7 +58,7 @@
     "@babel/plugin-proposal-object-rest-spread": "7.5.1",
     "@babel/register": "7.4.4",
     "@blackflux/eslint-plugin-rules": "1.0.20",
-    "@blackflux/robo-config-plugin": "2.0.0",
+    "@blackflux/robo-config-plugin": "2.0.1",
     "babel-eslint": "10.0.2",
     "chai": "4.2.0",
     "coveralls": "3.0.4",
