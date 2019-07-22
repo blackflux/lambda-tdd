@@ -15,12 +15,13 @@ module.exports = (options) => {
   return {
     execute: () => new Promise((resolve) => {
       const cassetteFile = path.join(options.cassetteFolder, options.cassetteFile);
-      const unmatched = fs.existsSync(cassetteFile) ? nock.load(cassetteFile) : null;
-      const checkOrder = unmatched !== null && unmatched.length > 1;
+      const hasCassette = fs.existsSync(cassetteFile);
+      // eslint-disable-next-line no-underscore-dangle
+      const pendingMocks = hasCassette ? nock.load(cassetteFile).map(e => e.interceptors[0]._key) : [];
       const outOfOrderErrors = [];
 
       consoleRecorder.start();
-      nockBack.setMode(unmatched === null ? 'record' : 'lockdown');
+      nockBack.setMode(hasCassette ? 'lockdown' : 'record');
       nockBack.fixtures = options.cassetteFolder;
       nockBack(options.cassetteFile, {
         before: (r) => {
@@ -32,24 +33,22 @@ module.exports = (options) => {
         },
         after: (scope) => {
           scope.on('request', (req, interceptor) => {
-            if (checkOrder) {
-              // eslint-disable-next-line no-underscore-dangle
-              const matchedKey = interceptor.scope.interceptors[0]._key;
+            // eslint-disable-next-line no-underscore-dangle
+            const matchedKey = interceptor.scope.interceptors[0]._key;
 
-              let count = 0;
-              const check = () => {
-                // eslint-disable-next-line no-underscore-dangle
-                if (matchedKey === unmatched[0].interceptors[0]._key) {
-                  unmatched.splice(0, 1);
-                } else if (count < 100) {
-                  count += 1;
-                  process.nextTick(check);
-                } else {
-                  outOfOrderErrors.push(matchedKey);
-                }
-              };
-              check();
-            }
+            let count = 0;
+            const check = () => {
+              if (matchedKey === pendingMocks[0]) {
+                pendingMocks.splice(0, 1);
+              } else if (count < 100) {
+                count += 1;
+                process.nextTick(check);
+              } else {
+                pendingMocks.splice(pendingMocks.indexOf(matchedKey), 1);
+                outOfOrderErrors.push(matchedKey);
+              }
+            };
+            check();
           });
         },
         afterRecord: recordings => (options.stripHeaders === true ? recordings.map((r) => {
@@ -67,7 +66,6 @@ module.exports = (options) => {
             return (options.lambdaTimeout || 300000) - (curTime - startTime);
           }
         }), (err, response) => {
-          const pendingMocks = nock.pendingMocks();
           nockDone();
           resolve({
             records,
