@@ -36,13 +36,11 @@ module.exports = (options) => {
             // eslint-disable-next-line no-underscore-dangle
             const matchedKey = interceptor.scope.interceptors[0]._key;
 
-            let count = 0;
-            const check = () => {
+            const check = (count = 0) => {
               if (matchedKey === pendingMocks[0]) {
                 pendingMocks.splice(0, 1);
               } else if (count < 100) {
-                count += 1;
-                process.nextTick(check);
+                process.nextTick(check, count + 1);
               } else {
                 pendingMocks.splice(pendingMocks.indexOf(matchedKey), 1);
                 outOfOrderErrors.push(matchedKey);
