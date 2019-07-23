@@ -37,26 +37,6 @@
   {
     "scope": "http://ip-api.com:80",
     "method": "GET",
-    "path": "/csv",
-    "body": "",
-    "status": 200,
-    "response": "success,Canada,CA,BC,\"British Columbia\",Kelowna,V1Y,49.8956,-119.4897,America/Vancouver,\"TELUS Communications Inc.\",TELUS-HSIA-KLWNBC02,\"AS852 TELUS Communications Inc.\",50.92.81.105",
-    "rawHeaders": [
-      "Access-Control-Allow-Origin",
-      "*",
-      "Content-Type",
-      "text/plain; charset=utf-8",
-      "Date",
-      "Mon, 22 Jul 2019 21:53:13 GMT",
-      "Content-Length",
-      "182",
-      "Connection",
-      "close"
-    ]
-  },
-  {
-    "scope": "http://ip-api.com:80",
-    "method": "GET",
     "path": "/xml",
     "body": "",
     "status": 200,
@@ -70,6 +50,26 @@
       "Mon, 22 Jul 2019 21:53:13 GMT",
       "Content-Length",
       "632",
+      "Connection",
+      "close"
+    ]
+  },
+  {
+    "scope": "http://ip-api.com:80",
+    "method": "GET",
+    "path": "/csv",
+    "body": "",
+    "status": 200,
+    "response": "success,Canada,CA,BC,\"British Columbia\",Kelowna,V1Y,49.8956,-119.4897,America/Vancouver,\"TELUS Communications Inc.\",TELUS-HSIA-KLWNBC02,\"AS852 TELUS Communications Inc.\",50.92.81.105",
+    "rawHeaders": [
+      "Access-Control-Allow-Origin",
+      "*",
+      "Content-Type",
+      "text/plain; charset=utf-8",
+      "Date",
+      "Mon, 22 Jul 2019 21:53:13 GMT",
+      "Content-Length",
+      "182",
       "Connection",
       "close"
     ]
