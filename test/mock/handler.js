@@ -11,16 +11,12 @@ module.exports.returnTimeout = (event, context, cb) => cb(null, { timeout: conte
 module.exports.returnExternal = (event, context, cb) => request
   .get('http://ip-api.com/json', { json: true }).then(r => cb(null, r));
 module.exports.returnChainedExternal = async (event, context, cb) => {
-  const json = await request
-    .get('http://ip-api.com/json', { json: true });
+  const json = await request.get('http://ip-api.com/json', { json: true });
   const xmlCsv = await Promise.all([
-    request
-      .get('http://ip-api.com/xml', { json: true }),
-    request
-      .get('http://ip-api.com/csv', { json: true })
+    request.get('http://ip-api.com/xml', { json: true }),
+    request.get('http://ip-api.com/csv', { json: true })
   ]);
-  const php = await request
-    .get('http://ip-api.com/php', { json: true });
+  const php = await request.get('http://ip-api.com/php', { json: true });
   cb(null, [json, xmlCsv, php]);
 };
 module.exports.logger = (event, context, cb) => {
