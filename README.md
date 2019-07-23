@@ -329,6 +329,12 @@ Default: `[]`
 
 Can define the recordings that are allowed to be unmatched.
 
+### allowedOutOfOrderRecordings
+Type: `array`<br>
+Default: `[]`
+
+Can define the recordings that are allowed to be out of order.
+
 ## Dynamic Expect Logic
 
 Uses [Chai Assertion Library](http://chaijs.com/api/bdd/) syntax written as json. Lets assume we have an output array `[1, 2]` we want to validate. We can write
