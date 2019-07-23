@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const wrapper = require('lambda-wrapper');
 const nock = require('nock');
 const ConsoleRecorder = require('./console-recorder');
@@ -12,8 +14,14 @@ module.exports = (options) => {
 
   return {
     execute: () => new Promise((resolve) => {
+      const cassetteFile = path.join(options.cassetteFolder, options.cassetteFile);
+      const hasCassette = fs.existsSync(cassetteFile);
+      // eslint-disable-next-line no-underscore-dangle
+      const pendingMocks = hasCassette ? nock.load(cassetteFile).map(e => e.interceptors[0]._key) : [];
+      const outOfOrderErrors = [];
+
       consoleRecorder.start();
-      nockBack.setMode('record');
+      nockBack.setMode(hasCassette ? 'lockdown' : 'record');
       nockBack.fixtures = options.cassetteFolder;
       nockBack(options.cassetteFile, {
         before: (r) => {
@@ -22,6 +30,24 @@ module.exports = (options) => {
             Object.assign(r, { body: '*' });
           }
           return r;
+        },
+        after: (scope) => {
+          scope.on('request', (req, interceptor) => {
+            // eslint-disable-next-line no-underscore-dangle
+            const matchedKey = interceptor.scope.interceptors[0]._key;
+
+            const check = (count = 0) => {
+              if (matchedKey === pendingMocks[0]) {
+                pendingMocks.splice(0, 1);
+              } else if (count < 100) {
+                process.nextTick(check, count + 1);
+              } else {
+                pendingMocks.splice(pendingMocks.indexOf(matchedKey), 1);
+                outOfOrderErrors.push(matchedKey);
+              }
+            };
+            check();
+          });
         },
         afterRecord: recordings => (options.stripHeaders === true ? recordings.map((r) => {
           const res = Object.assign({}, r);
@@ -38,14 +64,14 @@ module.exports = (options) => {
             return (options.lambdaTimeout || 300000) - (curTime - startTime);
           }
         }), (err, response) => {
-          const pendingMocks = nock.pendingMocks();
           nockDone();
           resolve({
             records,
             err,
             response,
             logs: consoleRecorder.finish(),
-            pendingMocks
+            pendingMocks,
+            outOfOrderErrors
           });
         });
       });

@@ -153,7 +153,8 @@ module.exports = (options) => {
                 'defaultLogs',
                 'errorLogs',
                 'stripHeaders',
-                'allowedUnmatchedRecordings'
+                'allowedUnmatchedRecordings',
+                'allowedOutOfOrderRecordings'
               ].indexOf(e) === -1 && !e.match(/^(?:expect|logs|errorLogs|defaultLogs)\(.+\)$/g)))).to.equal('[]');
 
               // test output
@@ -193,6 +194,10 @@ module.exports = (options) => {
               expect(
                 output.pendingMocks.every(r => get(test, 'allowedUnmatchedRecordings', []).includes(r)),
                 `Unmatched Recording(s): ${JSON.stringify(output.pendingMocks)}`
+              ).to.equal(true);
+              expect(
+                output.outOfOrderErrors.every(r => get(test, 'allowedOutOfOrderRecordings', []).includes(r)),
+                `Out of Order Recording(s): ${JSON.stringify(output.outOfOrderErrors)}`
               ).to.equal(true);
               return Promise.resolve();
             } finally {
