@@ -35,18 +35,12 @@ module.exports = (options) => {
           scope.on('request', (req, interceptor) => {
             // eslint-disable-next-line no-underscore-dangle
             const matchedKey = interceptor.scope.interceptors[0]._key;
-
-            const check = (count = 0) => {
-              if (matchedKey === pendingMocks[0]) {
-                pendingMocks.splice(0, 1);
-              } else if (count < 100) {
-                process.nextTick(check, count + 1);
-              } else {
-                pendingMocks.splice(pendingMocks.indexOf(matchedKey), 1);
-                outOfOrderErrors.push(matchedKey);
-              }
-            };
-            check();
+            if (matchedKey === pendingMocks[0]) {
+              pendingMocks.splice(0, 1);
+            } else {
+              pendingMocks.splice(pendingMocks.indexOf(matchedKey), 1);
+              outOfOrderErrors.push(matchedKey);
+            }
           });
         },
         afterRecord: recordings => (options.stripHeaders === true ? recordings.map((r) => {
