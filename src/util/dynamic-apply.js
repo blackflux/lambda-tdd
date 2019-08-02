@@ -2,7 +2,7 @@ const assert = require('assert');
 const get = require('lodash.get');
 
 module.exports = (path, target, modifiers) => {
-  assert(typeof modifiers === 'object' && !Array.isArray(modifiers));
+  assert(modifiers instanceof Object && !Array.isArray(modifiers));
   if (path.startsWith('[') && path.endsWith(']')) {
     return get(target, path.slice(1, -1));
   }
