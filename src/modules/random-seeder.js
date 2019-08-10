@@ -17,8 +17,8 @@ module.exports = () => {
       crypto.randomBytes = (size, cb) => {
         // randomization is seeded "per key"
         const stack = new Error().stack.split('\n');
-        const subStack = stack.slice(stack.findIndex(e => e.indexOf('/node_modules/') !== -1));
-        const stackOrigin = get(subStack, [subStack.findIndex(e => e.indexOf('/node_modules/') === -1) - 1], '');
+        const subStack = stack.slice(stack.findIndex((e) => e.indexOf('/node_modules/') !== -1));
+        const stackOrigin = get(subStack, [subStack.findIndex((e) => e.indexOf('/node_modules/') === -1) - 1], '');
         const originFile = get(stackOrigin.match(/^.*?\([^)]+?\/node_modules\/([^)]+):\d+:\d+\)$/), [1], '');
         const key = `${originFile}@${size}`;
 

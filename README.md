@@ -45,7 +45,7 @@ const lambdaTester = require('lambda-tdd')({
 
 describe('Testing Tester', () => {
   lambdaTester.execute((process.argv.slice(2)
-    .find(e => e.startsWith('--filter=')) || '')
+    .find((e) => e.startsWith('--filter=')) || '')
     .substring(9));
 });
 ```

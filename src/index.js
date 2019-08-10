@@ -34,14 +34,14 @@ module.exports = (options) => {
 
   if (fs.existsSync(options.cassetteFolder)) {
     const invalidCassettes = sfs.walkDir(options.cassetteFolder)
-      .filter(e => !fs.existsSync(path.join(options.testFolder, e.substring(0, e.length - 15))));
+      .filter((e) => !fs.existsSync(path.join(options.testFolder, e.substring(0, e.length - 15))));
     if (invalidCassettes.length !== 0) {
       throw new Error(`Rogue Cassette(s): ${invalidCassettes.join(', ')}`);
     }
   }
 
   sfs.walkDir(options.testFolder)
-    .map(f => path.join(options.testFolder, f))
+    .map((f) => path.join(options.testFolder, f))
     .filter((f) => {
       const relative = path.relative(options.cassetteFolder, f);
       return !relative || relative.startsWith('..') || path.isAbsolute(relative);
@@ -55,11 +55,12 @@ module.exports = (options) => {
   const timeKeeper = TimeKeeper();
   const randomSeeder = RandomSeeder();
   const suiteEnvVarsWrapper = EnvVarWrapper({
-    envVars: Object.assign({
+    envVars: {
       AWS_REGION: 'us-east-1',
       AWS_ACCESS_KEY_ID: 'XXXXXXXXXXXXXXXXXXXX',
-      AWS_SECRET_ACCESS_KEY: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-    }, yaml.safeLoad(fs.readFileSync(options.envVarYml, 'utf8'))),
+      AWS_SECRET_ACCESS_KEY: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+      ...yaml.safeLoad(fs.readFileSync(options.envVarYml, 'utf8'))
+    },
     allowOverwrite: false
   });
   const suiteEnvVarsWrapperRecording = fs.existsSync(options.envVarYmlRecording) ? EnvVarWrapper({
@@ -78,7 +79,7 @@ module.exports = (options) => {
         cwd: options.testFolder,
         nodir: true,
         ignore: ['**/*.spec.json_recording.json']
-      }).filter(e => new RegExp(modifier, '').test(e)) : modifier;
+      }).filter((e) => new RegExp(modifier, '').test(e)) : modifier;
 
       describe(`Testing Lambda Functions: ${options.name}`, () => {
         before(() => suiteEnvVarsWrapper.apply());
@@ -110,10 +111,10 @@ module.exports = (options) => {
 
             // re-init function code here to ensures env vars are accessible outside lambda handler
             const nodeModulesDir = path.resolve(path.join(appRoot.path, 'node_modules')) + path.sep;
-            const flush = options.flush.map(e => `${path.sep}node_modules${path.sep}${e}${path.sep}`);
+            const flush = options.flush.map((e) => `${path.sep}node_modules${path.sep}${e}${path.sep}`);
             const nodeModulesPrefixLength = nodeModulesDir.length - 'node_modules'.length - 2;
             Object.keys(require.cache).forEach((key) => {
-              if (!key.startsWith(nodeModulesDir) || flush.some(f => key.indexOf(f) >= nodeModulesPrefixLength)) {
+              if (!key.startsWith(nodeModulesDir) || flush.some((f) => key.indexOf(f) >= nodeModulesPrefixLength)) {
                 delete require.cache[key];
               }
             });
@@ -133,7 +134,7 @@ module.exports = (options) => {
               }).execute();
 
               // evaluate test configuration
-              expect(JSON.stringify(Object.keys(test).filter(e => [
+              expect(JSON.stringify(Object.keys(test).filter((e) => [
                 'expect',
                 'handler',
                 'success',
@@ -165,7 +166,7 @@ module.exports = (options) => {
               }
               Object
                 .keys(test)
-                .filter(k => k.match(/^(?:expect|logs|errorLogs|defaultLogs)(?:\(.*?\)$)?/))
+                .filter((k) => k.match(/^(?:expect|logs|errorLogs|defaultLogs)(?:\(.*?\)$)?/))
                 .forEach((k) => {
                   let target = null;
                   if (k.startsWith('expect')) {
@@ -192,11 +193,11 @@ module.exports = (options) => {
               expectService.evaluate(test.body, get(output.response, 'body'));
               expectService.evaluate(test.nock, ensureString(output.records));
               expect(
-                output.pendingMocks.every(r => get(test, 'allowedUnmatchedRecordings', []).includes(r)),
+                output.pendingMocks.every((r) => get(test, 'allowedUnmatchedRecordings', []).includes(r)),
                 `Unmatched Recording(s): ${JSON.stringify(output.pendingMocks)}`
               ).to.equal(true);
               expect(
-                output.outOfOrderErrors.every(r => get(test, 'allowedOutOfOrderRecordings', []).includes(r)),
+                output.outOfOrderErrors.every((r) => get(test, 'allowedOutOfOrderRecordings', []).includes(r)),
                 `Out of Order Recording(s): ${JSON.stringify(output.outOfOrderErrors)}`
               ).to.equal(true);
               return Promise.resolve();

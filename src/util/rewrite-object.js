@@ -3,7 +3,7 @@ const dynamicApply = require('./dynamic-apply');
 const rewrite = (input, modifiers) => {
   if (input !== null && input instanceof Object) {
     return Array.isArray(input)
-      ? input.map(e => rewrite(e, modifiers))
+      ? input.map((e) => rewrite(e, modifiers))
       : Object.keys(input)
         .reduce((prev, cur) => {
           const apply = cur.split('|');
