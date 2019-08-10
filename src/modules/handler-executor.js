@@ -17,7 +17,7 @@ module.exports = (options) => {
       const cassetteFile = path.join(options.cassetteFolder, options.cassetteFile);
       const hasCassette = fs.existsSync(cassetteFile);
       // eslint-disable-next-line no-underscore-dangle
-      const pendingMocks = hasCassette ? nock.load(cassetteFile).map(e => e.interceptors[0]._key) : [];
+      const pendingMocks = hasCassette ? nock.load(cassetteFile).map((e) => e.interceptors[0]._key) : [];
       const outOfOrderErrors = [];
 
       consoleRecorder.start();
@@ -43,21 +43,22 @@ module.exports = (options) => {
             }
           });
         },
-        afterRecord: recordings => (options.stripHeaders === true ? recordings.map((r) => {
-          const res = Object.assign({}, r);
+        afterRecord: (recordings) => (options.stripHeaders === true ? recordings.map((r) => {
+          const res = { ...r };
           delete res.rawHeaders;
           return res;
         }) : recordings)
       }, (nockDone) => {
         const startTimestamp = process.hrtime();
         const startTime = (startTimestamp[0] * 1000) + (startTimestamp[1] / 1000000);
-        runner.run(options.event, Object.assign({}, options.context, {
+        runner.run(options.event, {
+          ...options.context,
           getRemainingTimeInMillis: () => {
             const curTimeStamp = process.hrtime();
             const curTime = (curTimeStamp[0] * 1000) + (curTimeStamp[1] / 1000000);
             return (options.lambdaTimeout || 300000) - (curTime - startTime);
           }
-        }), (err, response) => {
+        }, (err, response) => {
           nockDone();
           resolve({
             records,
