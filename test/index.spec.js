@@ -11,7 +11,7 @@ const lambdaTesterParams = {
   testFolder: path.join(__dirname, 'mock', 'handler', 'api'),
   cassetteFolder: path.join(__dirname, 'mock', 'handler', '__cassettes', 'api'),
   modifiers: {
-    wrap: input => `{${input}}`
+    wrap: (input) => `{${input}}`
   }
 };
 const lambdaTester = LambdaTester(lambdaTesterParams);
@@ -42,12 +42,12 @@ describe('Testing Tester', () => {
   });
 
   it('Testing enabled=false', () => {
-    const testFiles = LambdaTester(Object.assign({}, lambdaTesterParams, { enabled: false })).execute();
+    const testFiles = LambdaTester({ ...lambdaTesterParams, enabled: false }).execute();
     expect(testFiles).to.deep.equal([]);
   });
 
   it('Testing ignoreCassetteRequestBody=true', () => {
-    const testFiles = LambdaTester(Object.assign({}, lambdaTesterParams, { ignoreCassetteRequestBody: true }))
+    const testFiles = LambdaTester({ ...lambdaTesterParams, ignoreCassetteRequestBody: true })
       .execute('external_request');
     expect(testFiles).to.not.deep.equal([]);
   });

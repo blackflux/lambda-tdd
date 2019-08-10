@@ -10,7 +10,7 @@ module.exports.returnRandom = (event, context, cb) => cb(null, { random1: uuid4(
 module.exports.returnTimeout = (event, context, cb) => cb(null, { timeout: context.getRemainingTimeInMillis() });
 module.exports.returnExternal = (event, context, cb) => request
   .get('http://ip-api.com/json', { json: true })
-  .then(r => cb(null, r));
+  .then((r) => cb(null, r));
 module.exports.returnChainedExternal = async (event, context, cb) => {
   const json = await request.get('http://ip-api.com/json', { json: true });
   const xmlCsv = await Promise.all([
