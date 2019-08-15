@@ -54,19 +54,19 @@ module.exports = (options) => {
 
   const timeKeeper = TimeKeeper();
   const randomSeeder = RandomSeeder();
-  const suiteEnvVarsWrapper = EnvVarWrapper({
-    envVars: {
+  const suiteEnvVarsWrapper = EnvVarWrapper(
+    {
       AWS_REGION: 'us-east-1',
       AWS_ACCESS_KEY_ID: 'XXXXXXXXXXXXXXXXXXXX',
       AWS_SECRET_ACCESS_KEY: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
       ...yaml.safeLoad(fs.readFileSync(options.envVarYml, 'utf8'))
     },
-    allowOverwrite: false
-  });
-  const suiteEnvVarsWrapperRecording = fs.existsSync(options.envVarYmlRecording) ? EnvVarWrapper({
-    envVars: yaml.safeLoad(fs.readFileSync(options.envVarYmlRecording, 'utf8')),
-    allowOverwrite: true
-  }) : null;
+    false
+  );
+  const suiteEnvVarsWrapperRecording = fs.existsSync(options.envVarYmlRecording) ? EnvVarWrapper(
+    yaml.safeLoad(fs.readFileSync(options.envVarYmlRecording, 'utf8')),
+    true
+  ) : null;
   const expectService = ExpectService();
   return {
     execute: (modifier = '') => {
@@ -94,10 +94,7 @@ module.exports = (options) => {
             if (suiteEnvVarsWrapperRecording !== null && isNewRecording) {
               suiteEnvVarsWrapperRecording.apply();
             }
-            const testEnvVarsWrapper = EnvVarWrapper({
-              envVars: test.env || {},
-              allowOverwrite: true
-            });
+            const testEnvVarsWrapper = EnvVarWrapper(test.env || {}, true);
             testEnvVarsWrapper.apply();
             if (test.timestamp !== undefined) {
               timeKeeper.freeze(test.timestamp);
