@@ -7,7 +7,7 @@ const defaults = require('lodash.defaults');
 const globSync = require('glob').sync;
 const appRoot = require('app-root-path');
 const sfs = require('smart-fs');
-const { EnvManager, timeKeeper } = require('node-tdd');
+const { EnvManager, timeKeeper, ConsoleRecorder } = require('node-tdd');
 const RandomSeeder = require('./modules/random-seeder');
 const ExpectService = require('./modules/expect-service');
 const HandlerExecutor = require('./modules/handler-executor');
@@ -103,6 +103,8 @@ module.exports = (options) => {
             if (test.timeout !== undefined) {
               this.timeout(test.timeout);
             }
+            const consoleRecorder = ConsoleRecorder(options.verbose);
+            consoleRecorder.inject();
 
             // re-init function code here to ensures env vars are accessible outside lambda handler
             const nodeModulesDir = path.resolve(path.join(appRoot.path, 'node_modules')) + path.sep;
@@ -127,6 +129,7 @@ module.exports = (options) => {
                 lambdaTimeout: test.lambdaTimeout,
                 stripHeaders: get(test, 'stripHeaders', options.stripHeaders)
               }).execute();
+              const logs = consoleRecorder.get();
 
               // evaluate test configuration
               expect(JSON.stringify(Object.keys(test).filter((e) => [
@@ -167,7 +170,7 @@ module.exports = (options) => {
                   if (k.startsWith('expect')) {
                     target = test.success ? output.response : output.err;
                   } else {
-                    target = output.logs[k.split('(')[0]];
+                    target = logs[k.split('(')[0]];
                   }
                   if (k.indexOf('(') !== -1) {
                     const apply = k.split('(', 2)[1].slice(0, -1).split('|');
@@ -198,6 +201,7 @@ module.exports = (options) => {
               return Promise.resolve();
             } finally {
               // "close" test run
+              consoleRecorder.release();
               randomSeeder.reset();
               if (timeKeeper.isFrozen()) {
                 timeKeeper.unfreeze();
