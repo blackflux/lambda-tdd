@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const wrapper = require('lambda-wrapper');
 const nock = require('nock');
-const ConsoleRecorder = require('./console-recorder');
 
 const nockBack = nock.back;
 
@@ -10,7 +9,6 @@ module.exports = (options) => {
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const runner = wrapper.wrap({ handler: require(options.handlerFile)[options.handlerFunction] });
   const records = [];
-  const consoleRecorder = ConsoleRecorder({ verbose: options.verbose });
 
   return {
     execute: () => new Promise((resolve) => {
@@ -20,7 +18,6 @@ module.exports = (options) => {
       const pendingMocks = hasCassette ? nock.load(cassetteFile).map((e) => e.interceptors[0]._key) : [];
       const outOfOrderErrors = [];
 
-      consoleRecorder.start();
       nockBack.setMode(hasCassette ? 'lockdown' : 'record');
       nockBack.fixtures = options.cassetteFolder;
       nockBack(options.cassetteFile, {
@@ -64,7 +61,6 @@ module.exports = (options) => {
             records,
             err,
             response,
-            logs: consoleRecorder.finish(),
             pendingMocks,
             outOfOrderErrors
           });
