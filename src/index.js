@@ -7,8 +7,12 @@ const defaults = require('lodash.defaults');
 const globSync = require('glob').sync;
 const appRoot = require('app-root-path');
 const sfs = require('smart-fs');
-const { EnvManager, timeKeeper, ConsoleRecorder } = require('node-tdd');
-const RandomSeeder = require('./modules/random-seeder');
+const {
+  EnvManager,
+  TimeKeeper,
+  ConsoleRecorder,
+  RandomSeeder
+} = require('node-tdd');
 const ExpectService = require('./modules/expect-service');
 const HandlerExecutor = require('./modules/handler-executor');
 const ensureString = require('./util/ensure-string');
@@ -51,6 +55,7 @@ module.exports = (options) => {
       }
     });
 
+  const timeKeeper = TimeKeeper();
   const randomSeeder = RandomSeeder();
   const suiteEnvVarsWrapper = EnvManager(
     {
@@ -98,7 +103,7 @@ module.exports = (options) => {
               timeKeeper.freeze(test.timestamp);
             }
             if (test.seed !== undefined) {
-              randomSeeder.forceSeed(test.seed, test.reseed || false);
+              randomSeeder.seed(test.seed, test.reseed || false);
             }
             if (test.timeout !== undefined) {
               this.timeout(test.timeout);
@@ -202,7 +207,9 @@ module.exports = (options) => {
             } finally {
               // "close" test run
               consoleRecorder.release();
-              randomSeeder.reset();
+              if (randomSeeder.isApplied()) {
+                randomSeeder.release();
+              }
               if (timeKeeper.isFrozen()) {
                 timeKeeper.unfreeze();
               }
