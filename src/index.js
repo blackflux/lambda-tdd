@@ -134,7 +134,7 @@ module.exports = (options) => {
                 lambdaTimeout: test.lambdaTimeout,
                 stripHeaders: get(test, 'stripHeaders', options.stripHeaders)
               }).execute();
-              const logs = consoleRecorder.get();
+              const logs = { logs: consoleRecorder.get() };
 
               // evaluate test configuration
               expect(JSON.stringify(Object.keys(test).filter((e) => [
