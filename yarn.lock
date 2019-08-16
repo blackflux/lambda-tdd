@@ -1022,7 +1022,7 @@ callsite-record@^3.0.0:
     lodash "4.6.1 || ^4.16.1"
     pinkie-promise "^2.0.0"
 
-callsite@^1.0.0:
+callsite@1.0.0, callsite@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/callsite/-/callsite-1.0.0.tgz#280398e5d664bd74038b6f0905153e6e8af1bc20"
   integrity sha1-KAOY5dZkvXQDi28JBRU+borxvCA=
@@ -4680,6 +4680,19 @@ node-pre-gyp@^0.12.0:
     rimraf "^2.6.1"
     semver "^5.3.0"
     tar "^4"
+
+node-tdd@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-1.2.0.tgz#151320fb61b9b4672098fc8d442bb349d9b4f747"
+  integrity sha512-nOUnG+c43j2dIW4oK12ILxJedv6KDrtT+rvI/+qVY+X2Gv8XkjvCkGT4TLQUb3A0jVCCCPaBnR2df1nJmY2DZQ==
+  dependencies:
+    "@hapi/joi" "15.1.0"
+    callsite "1.0.0"
+    joi-strict "1.0.5"
+    lodash.get "4.4.2"
+    nock "10.0.6"
+    smart-fs "1.9.5"
+    tmp "0.1.0"
 
 "nopt@2 || 3":
   version "3.0.6"
