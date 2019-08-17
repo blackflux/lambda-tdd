@@ -22,11 +22,7 @@ module.exports = (options) => {
         }
       }, (...args) => resolve(args)));
       requestRecorder.release(false);
-      return {
-        err,
-        response,
-        ...requestRecorder.get()
-      };
+      return { ...requestRecorder.get(), err, response };
     }
   };
 };
