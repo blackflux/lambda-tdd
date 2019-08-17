@@ -46,12 +46,6 @@ describe('Testing Tester', () => {
     expect(testFiles).to.deep.equal([]);
   });
 
-  it('Testing ignoreCassetteRequestBody=true', () => {
-    const testFiles = LambdaTester({ ...lambdaTesterParams, ignoreCassetteRequestBody: true })
-      .execute('external_request');
-    expect(testFiles).to.not.deep.equal([]);
-  });
-
   describe('Testing env.recording.yml', () => {
     let tmpDir;
     let testerArgs;
