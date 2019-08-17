@@ -27,7 +27,6 @@ module.exports = (options) => {
     enabled: true,
     handlerFile: path.join(options.cwd, 'handler.js'),
     cassetteFolder: path.join(options.cwd, '__cassettes'),
-    ignoreCassetteRequestBody: false,
     envVarYml: path.join(options.cwd, 'env.yml'),
     envVarYmlRecording: path.join(options.cwd, 'env.recording.yml'),
     testFolder: options.cwd,
@@ -125,7 +124,6 @@ module.exports = (options) => {
               const output = await HandlerExecutor({
                 handlerFile: options.handlerFile,
                 cassetteFolder: options.cassetteFolder,
-                ignoreCassetteRequestBody: options.ignoreCassetteRequestBody,
                 verbose: options.verbose,
                 handlerFunction: test.handler,
                 event: rewriteObject(test.event, options.modifiers),
@@ -196,8 +194,8 @@ module.exports = (options) => {
               expectService.evaluate(test.body, get(output.response, 'body'));
               expectService.evaluate(test.nock, ensureString(output.records));
               expect(
-                output.pendingMocks.every((r) => get(test, 'allowedUnmatchedRecordings', []).includes(r)),
-                `Unmatched Recording(s): ${JSON.stringify(output.pendingMocks)}`
+                output.unmatchedRecordings.every((r) => get(test, 'allowedUnmatchedRecordings', []).includes(r)),
+                `Unmatched Recording(s): ${JSON.stringify(output.unmatchedRecordings)}`
               ).to.equal(true);
               expect(
                 output.outOfOrderErrors.every((r) => get(test, 'allowedOutOfOrderRecordings', []).includes(r)),
