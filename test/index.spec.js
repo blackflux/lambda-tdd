@@ -3,7 +3,7 @@ const expect = require('chai').expect;
 const request = require('request');
 const sfs = require('smart-fs');
 const tmp = require('tmp');
-const LambdaTester = require('./../src/index');
+const LambdaTester = require('../src/index');
 
 const lambdaTesterParams = {
   verbose: process.argv.slice(2).indexOf('--verbose') !== -1,
