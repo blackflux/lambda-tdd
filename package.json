@@ -82,7 +82,7 @@
     "request-promise": "4.2.4",
     "semantic-release": "15.13.21",
     "tmp": "0.1.0",
-    "uuid": "3.3.2"
+    "uuid": "3.3.3"
   },
   "engines": {
     "node": ">= 6.10.3"
