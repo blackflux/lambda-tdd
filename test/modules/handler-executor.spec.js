@@ -1,58 +1,47 @@
-const fs = require('fs');
+const fs = require('smart-fs');
 const path = require('path');
 const expect = require('chai').expect;
-const tmp = require('tmp');
+const { describe } = require('node-tdd');
 const HandlerExecutor = require('../../src/modules/handler-executor');
 
-describe('Testing HandlerExecutor', () => {
+describe('Testing HandlerExecutor', { useTmpDir: true }, () => {
   let tmpDir;
   let handlerFile;
-  before(() => {
-    tmp.setGracefulCleanup();
-  });
-  beforeEach(() => {
-    tmpDir = tmp.dirSync({ unsafeCleanup: true });
-    handlerFile = path.join(tmpDir.name, 'handler.js');
-    fs.writeFileSync(handlerFile, (
-      "const https = require('https');\n"
-      + 'module.exports.call = (event, context, cb) => https'
-      + '.get("http://google.com", (r) => { r.on(\'data\', () => {}); r.on(\'end\', cb); });'
-    ));
+  beforeEach(({ dir }) => {
+    tmpDir = dir;
+    handlerFile = path.join(tmpDir, 'handler.js');
+    fs.smartWrite(handlerFile, [
+      "const https = require('https');",
+      'module.exports.call = (event, context, cb) => https',
+      "  .get('https://google.com', (r) => { r.on('data', () => {}); r.on('end', cb); });"
+    ]);
   });
 
-  it('Testing header stripped', (done) => {
-    HandlerExecutor({
+  it('Testing header stripped', async () => {
+    await HandlerExecutor({
       handlerFile: handlerFile.slice(0, -3),
       handlerFunction: 'call',
-      cassetteFolder: tmpDir.name,
+      cassetteFolder: tmpDir,
       cassetteFile: 'recoding.json',
       stripHeaders: true,
       verbose: true
     })
-      .execute()
-      .then(() => {
-        const data = fs.readFileSync(path.join(tmpDir.name, 'recoding.json'), 'utf8');
-        expect(data).to.not.contain('rawHeaders');
-        done();
-      })
-      .catch(done.fail);
+      .execute();
+    const data = fs.smartRead(path.join(tmpDir, 'recoding.json'));
+    expect(data[0].rawHeaders).to.equal(undefined);
   });
 
-  it('Testing header not stripped', (done) => {
-    HandlerExecutor({
+  it('Testing header not stripped', async () => {
+    await HandlerExecutor({
       handlerFile: handlerFile.slice(0, -3),
       handlerFunction: 'call',
-      cassetteFolder: tmpDir.name,
+      cassetteFolder: tmpDir,
       cassetteFile: 'recoding.json',
       stripHeaders: false,
       verbose: true
     })
-      .execute()
-      .then(() => {
-        const data = fs.readFileSync(path.join(tmpDir.name, 'recoding.json'), 'utf8');
-        expect(data).to.contain('rawHeaders');
-        done();
-      })
-      .catch(done.fail);
+      .execute();
+    const data = fs.smartRead(path.join(tmpDir, 'recoding.json'));
+    expect(data[0].rawHeaders).to.not.equal(undefined);
   });
 });
