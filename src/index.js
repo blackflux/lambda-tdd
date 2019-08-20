@@ -54,21 +54,21 @@ module.exports = (options) => {
       }
     });
 
-  const timeKeeper = TimeKeeper();
-  const randomSeeder = RandomSeeder();
-  const suiteEnvVarsWrapper = EnvManager(
-    {
+  let timeKeeper = null;
+  let randomSeeder = null;
+  const suiteEnvVarsWrapper = EnvManager({
+    envVars: {
       AWS_REGION: 'us-east-1',
       AWS_ACCESS_KEY_ID: 'XXXXXXXXXXXXXXXXXXXX',
       AWS_SECRET_ACCESS_KEY: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
       ...yaml.safeLoad(fs.readFileSync(options.envVarYml, 'utf8'))
     },
-    false
-  );
-  const suiteEnvVarsWrapperRecording = fs.existsSync(options.envVarYmlRecording) ? EnvManager(
-    yaml.safeLoad(fs.readFileSync(options.envVarYmlRecording, 'utf8')),
-    true
-  ) : null;
+    allowOverwrite: false
+  });
+  const suiteEnvVarsWrapperRecording = fs.existsSync(options.envVarYmlRecording) ? EnvManager({
+    envVars: yaml.safeLoad(fs.readFileSync(options.envVarYmlRecording, 'utf8')),
+    allowOverwrite: true
+  }) : null;
   const expectService = ExpectService();
   return {
     execute: (modifier = '') => {
@@ -96,18 +96,20 @@ module.exports = (options) => {
             if (suiteEnvVarsWrapperRecording !== null && isNewRecording) {
               suiteEnvVarsWrapperRecording.apply();
             }
-            const testEnvVarsWrapper = EnvManager(test.env || {}, true);
+            const testEnvVarsWrapper = EnvManager({ envVars: test.env || {}, allowOverwrite: true });
             testEnvVarsWrapper.apply();
             if (test.timestamp !== undefined) {
-              timeKeeper.freeze(test.timestamp);
+              timeKeeper = TimeKeeper({ unix: test.timestamp });
+              timeKeeper.inject();
             }
             if (test.seed !== undefined) {
-              randomSeeder.seed(test.seed, test.reseed || false);
+              randomSeeder = RandomSeeder({ seed: test.seed, reseed: test.reseed || false });
+              randomSeeder.inject();
             }
             if (test.timeout !== undefined) {
               this.timeout(test.timeout);
             }
-            const consoleRecorder = ConsoleRecorder(options.verbose);
+            const consoleRecorder = ConsoleRecorder({ verbose: options.verbose });
             consoleRecorder.inject();
 
             // re-init function code here to ensures env vars are accessible outside lambda handler
@@ -205,11 +207,13 @@ module.exports = (options) => {
             } finally {
               // "close" test run
               consoleRecorder.release();
-              if (randomSeeder.isApplied()) {
+              if (randomSeeder !== null) {
                 randomSeeder.release();
+                randomSeeder = null;
               }
-              if (timeKeeper.isFrozen()) {
-                timeKeeper.unfreeze();
+              if (timeKeeper !== null) {
+                timeKeeper.release();
+                timeKeeper = null;
               }
               testEnvVarsWrapper.unapply();
               if (suiteEnvVarsWrapperRecording !== null && isNewRecording) {

@@ -8,7 +8,11 @@ module.exports = (options) => {
 
   return {
     execute: async () => {
-      const requestRecorder = RequestRecorder(options.cassetteFolder, options.stripHeaders);
+      const requestRecorder = RequestRecorder({
+        cassetteFolder: options.cassetteFolder,
+        stripHeaders: options.stripHeaders || false,
+        strict: false
+      });
       await requestRecorder.inject(options.cassetteFile);
 
       const startTimestamp = process.hrtime();
@@ -21,7 +25,7 @@ module.exports = (options) => {
           return (options.lambdaTimeout || 300000) - (curTime - startTime);
         }
       }, (...args) => resolve(args)));
-      requestRecorder.release(false);
+      requestRecorder.release();
       return { ...requestRecorder.get(), err, response };
     }
   };
