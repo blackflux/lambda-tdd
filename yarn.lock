@@ -5074,6 +5074,11 @@ object-align@1.0.4:
   resolved "https://registry.yarnpkg.com/object-align/-/object-align-1.0.4.tgz#f1279648a3e63fe03a6c2711b19792dee6f12c5a"
   integrity sha512-vzLP6l4ULQvPOvY3pRXkdFAmESljBl64bIIPKZQsNQRJlAAmnTDcjdD/40jm3paaNgnb5wCxy9suECn5QHda4A==
 
+object-align@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/object-align/-/object-align-1.0.5.tgz#4e605752832591863cf61e624ffbcd8b46de56b6"
+  integrity sha512-2Uo4fgXVqSE6Kezlg4KcNXBKFDF6mYF4u8HCe8RqoyaYg/YthIwtoCASUt7FTedUDGD64K+g09bgGZdHvl+jxw==
+
 object-assign@^4.0.1, object-assign@^4.1.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
@@ -6535,6 +6540,19 @@ smart-fs@1.9.7:
     xml-js "1.6.11"
     yaml-boost "1.9.12"
 
+smart-fs@1.9.8:
+  version "1.9.8"
+  resolved "https://registry.yarnpkg.com/smart-fs/-/smart-fs-1.9.8.tgz#8c04239479ff63015b5084990da56d86a60aaa1e"
+  integrity sha512-5ryglzm+Sx9T4VFdjhzJy4UmakMy7R/DTMiFl44vq5Hv7OHuMkBmTwuZCXImY1914RU/xrtprY3cYVRfP7EC7g==
+  dependencies:
+    fs-extra "8.1.0"
+    json-stringify-pretty-compact "2.0.0"
+    lodash.clonedeep "4.5.0"
+    lodash.isequal "4.5.0"
+    object-align "1.0.5"
+    xml-js "1.6.11"
+    yaml-boost "1.9.13"
+
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"
@@ -7655,6 +7673,16 @@ yaml-boost@1.9.12:
   version "1.9.12"
   resolved "https://registry.yarnpkg.com/yaml-boost/-/yaml-boost-1.9.12.tgz#ede5a2d389fd9bfebcc3c196ac9342e15a3bbb45"
   integrity sha512-0+TIMpLcJdkWyv+xuYx5pSxnFt3yQwhNOesdkeifQfp2vz0N2GGxVOZ14ljer7TQBOMLf1/KH9HOOew5APGOfA==
+  dependencies:
+    js-yaml "3.13.1"
+    lodash.get "4.4.2"
+    lodash.mergewith "4.6.2"
+    lodash.set "4.3.2"
+
+yaml-boost@1.9.13:
+  version "1.9.13"
+  resolved "https://registry.yarnpkg.com/yaml-boost/-/yaml-boost-1.9.13.tgz#176121bd5400a3173281148db15a47313be8e5c7"
+  integrity sha512-UM5ZXPDHHq8SgNI4SjeF6VEfTVs8f0iql+DFUzQWMOv5i733iVzXYgxBkh2aAtyuTiMgev8JpjseMwtxAhG6TA==
   dependencies:
     js-yaml "3.13.1"
     lodash.get "4.4.2"
