@@ -2,6 +2,8 @@
   "analyzeCommits": {
     "preset": "angular",
     "releaseRules": [
+      {"release": "major", "breaking": true},
+      {"release": "patch", "revert": true},
       {"type": "feat", "release": "minor"},
       {"type": "fix", "release": "patch"},
       {"type": "perf", "release": "patch"},
