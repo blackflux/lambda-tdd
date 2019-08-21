@@ -48,7 +48,7 @@
     "lambda-wrapper": "0.3.0",
     "lodash.defaults": "4.2.0",
     "lodash.get": "4.4.2",
-    "node-tdd": "2.0.3",
+    "node-tdd": "2.0.4",
     "smart-fs": "1.9.9"
   },
   "licenses": [
