@@ -1,3 +1,4 @@
+/* eslint-disable mocha/no-setup-in-describe */
 const fs = require('fs');
 const path = require('path');
 const get = require('lodash.get');
