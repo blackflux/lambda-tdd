@@ -134,7 +134,11 @@ module.exports = (options) => {
                 lambdaTimeout: test.lambdaTimeout,
                 stripHeaders: get(test, 'stripHeaders', options.stripHeaders)
               }).execute();
-              const logs = { logs: consoleRecorder.get() };
+              const recorder = consoleRecorder.recorder;
+              const logs = {
+                logs: ['warn', 'info', 'error', 'log']
+                  .reduce((p, level) => Object.assign(p, { [level]: recorder.get(level) }), recorder.get())
+              };
 
               // evaluate test configuration
               expect(JSON.stringify(Object.keys(test).filter((e) => [
