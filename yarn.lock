@@ -3705,7 +3705,7 @@ json5@^2.1.0:
   dependencies:
     minimist "^1.2.0"
 
-jsonc-parser@^2.1.0:
+jsonc-parser@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/jsonc-parser/-/jsonc-parser-2.1.1.tgz#83dc3d7a6e7186346b889b1280eefa04446c6d3e"
   integrity sha512-VC0CjnWJylKB1iov4u76/W/5Ef0ydDkjtYWxoZ9t3HdWlSnZQwZL5MgFikaB/EtQ4RmMEw3tmQzuYnZA2/Ja1g==
@@ -4725,10 +4725,10 @@ node-pre-gyp@^0.12.0:
     semver "^5.3.0"
     tar "^4"
 
-node-tdd@2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-2.2.1.tgz#28660ac04749835fbfcfcaaa523ab3d92e5ef816"
-  integrity sha512-hDLlZE0gkIeKmZWaIXkMwwppC5yJIcs1gxq1KaKD59rC8uPr3Nn5dI0njOWX83WBrHNNQvABZIkfn0FzZEtjdA==
+node-tdd@2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-2.2.3.tgz#f6dd6e39444dca65783c3022bb83ea11f1cc609b"
+  integrity sha512-JRDRvB2mECPeBmpuV2w9PD1S0PFfAl7eI4Rrgd1uVDUsniKI+BUOBzvTIABcX5vz3bbk7Czzm0Xr5lE+jo8LXw==
   dependencies:
     "@hapi/joi" "15.1.1"
     callsites "3.1.0"
@@ -7511,11 +7511,11 @@ vfile@^2.0.0:
     vfile-message "^1.0.0"
 
 vscode-json-languageservice@^3.2.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/vscode-json-languageservice/-/vscode-json-languageservice-3.3.1.tgz#4ad2c82db849a7bbe54fcbf5c9b3a2ed26dc8fee"
-  integrity sha512-Qyvlrftexu1acvwbMt+CDehVrDZtFV1GAJrKdOCHQL9bWNhzI06KEiSd4iXR0NUOuAdroG/uU4wBkH6e5CcTXg==
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/vscode-json-languageservice/-/vscode-json-languageservice-3.3.2.tgz#2b241b73ead75b001bf90ee5107b1b0a4e47737c"
+  integrity sha512-+TXVA8KsIzPOZIBV4lI8S/460XihqL26N9hyH7wMOCbEA06W/zfmlZhHSmSJ/Nun9Q/CGLJYZKw4xn+vcuI62A==
   dependencies:
-    jsonc-parser "^2.1.0"
+    jsonc-parser "^2.1.1"
     vscode-languageserver-types "^3.15.0-next.2"
     vscode-nls "^4.1.1"
     vscode-uri "^2.0.3"

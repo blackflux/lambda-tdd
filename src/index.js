@@ -11,7 +11,7 @@ const sfs = require('smart-fs');
 const {
   EnvManager,
   TimeKeeper,
-  ConsoleRecorder,
+  LogRecorder,
   RandomSeeder
 } = require('node-tdd');
 const ExpectService = require('./modules/expect-service');
@@ -110,8 +110,8 @@ module.exports = (options) => {
             if (test.timeout !== undefined) {
               this.timeout(test.timeout);
             }
-            const consoleRecorder = ConsoleRecorder({ verbose: options.verbose });
-            consoleRecorder.inject();
+            const logRecorder = LogRecorder({ verbose: options.verbose, logger: console });
+            logRecorder.inject();
 
             // re-init function code here to ensures env vars are accessible outside lambda handler
             const nodeModulesDir = path.resolve(path.join(appRoot.path, 'node_modules')) + path.sep;
@@ -135,10 +135,9 @@ module.exports = (options) => {
                 lambdaTimeout: test.lambdaTimeout,
                 stripHeaders: get(test, 'stripHeaders', options.stripHeaders)
               }).execute();
-              const recorder = consoleRecorder.recorder;
               const logs = {
-                logs: ['warn', 'info', 'error', 'log']
-                  .reduce((p, level) => Object.assign(p, { [level]: recorder.get(level) }), recorder.get())
+                logs: logRecorder.levels()
+                  .reduce((p, level) => Object.assign(p, { [level]: logRecorder.get(level) }), logRecorder.get())
               };
 
               // evaluate test configuration
@@ -211,7 +210,7 @@ module.exports = (options) => {
               return Promise.resolve();
             } finally {
               // "close" test run
-              consoleRecorder.release();
+              logRecorder.release();
               if (randomSeeder !== null) {
                 randomSeeder.release();
                 randomSeeder = null;
