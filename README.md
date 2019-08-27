@@ -36,18 +36,14 @@ To install run
     $ npm install --save-dev lambda-tdd
 
 ### Initialize Test Runner and Execute
-<!-- eslint-disable import/no-extraneous-dependencies, import/no-unresolved -->
-```javascript
-const lambdaTester = require('lambda-tdd')({
+<!-- eslint-disable import/no-extraneous-dependencies, import/no-unresolved, mocha/no-setup-in-describe -->
+```js
+const LambdaTdd = require('lambda-tdd');
+
+LambdaTdd({
   cwd: __dirname,
   verbose: process.argv.slice(2).indexOf('--verbose') !== -1
-});
-
-describe('Testing Tester', () => {
-  lambdaTester.execute((process.argv.slice(2)
-    .find((e) => e.startsWith('--filter=')) || '')
-    .substring(9));
-});
+}).execute();
 ```
 
 You can pass an array of test files to the `execute()` function or a regular expression pattern. By default tests are auto detected. If a pattern is passed in only matching tests are executed.
@@ -317,7 +313,9 @@ Can define the recordings that are allowed to be out of order.
 ## Dynamic Expect Logic
 
 Uses [Chai Assertion Library](http://chaijs.com/api/bdd/) syntax written as json. Lets assume we have an output array `[1, 2]` we want to validate. We can write
-```javascript
+```js
+const { expect } = require('chai');
+
 expect([1, 2]).to.contain(1);
 expect([1, 2]).to.contain(2);
 ```

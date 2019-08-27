@@ -30,7 +30,6 @@ module.exports = () => {
         const tests = Array.isArray(testsInput) ? testsInput : [testsInput];
         let count = 0;
         tests.forEach((check) => {
-          // eslint-disable-next-line jasmine/expect-matcher
           count += handleDynamicExpect(expect(value), check);
         });
         expect(count).to.be.at.least(tests.length);
