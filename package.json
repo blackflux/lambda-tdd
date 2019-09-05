@@ -49,7 +49,7 @@
     "lodash.defaults": "4.2.0",
     "lodash.get": "4.4.2",
     "node-tdd": "2.5.0",
-    "smart-fs": "1.9.10"
+    "smart-fs": "1.9.11"
   },
   "licenses": [
     {
