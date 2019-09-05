@@ -169,6 +169,8 @@ Default: `{}`
 
 Allows definition of custom test file modifiers for `expect` and `event` (pipe operator).
 
+Default custom modifiers are: `toBase64`, `toGzip`
+
 ## Test File Format
 
 ### handler

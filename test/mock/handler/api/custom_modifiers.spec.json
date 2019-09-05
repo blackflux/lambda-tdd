@@ -1,0 +1,16 @@
+{
+  "handler": "returnEvent",
+  "success": true,
+  "timestamp": 123456789,
+  "seed": "d952ff49-e070-4b4f-813f-2ade0b53cb21",
+  "expect": {
+    "to.deep.equal()": {
+      "data": "H4sIAAAAAAACA6tWyk6tVLJSKkvMKU1VqgUAv5wYPw8AAAA="
+    }
+  },
+  "event": {
+    "data|JSON.stringify|toGzip|toBase64": {
+      "key": "value"
+    }
+  }
+}
