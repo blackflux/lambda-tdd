@@ -4,7 +4,7 @@ const path = require('path');
 const get = require('lodash.get');
 const yaml = require('js-yaml');
 const expect = require('chai').expect;
-const defaults = require('lodash.defaults');
+const Joi = require('joi-strict');
 const globSync = require('glob').sync;
 const appRoot = require('app-root-path');
 const sfs = require('smart-fs');
@@ -21,32 +21,46 @@ const rewriteObject = require('./util/rewrite-object');
 const dynamicApply = require('./util/dynamic-apply');
 
 module.exports = (options) => {
-  defaults(options, { cwd: process.cwd() });
-  defaults(options, {
-    name: 'lambda-test',
-    verbose: false,
-    enabled: true,
-    handlerFile: path.join(options.cwd, 'handler.js'),
-    cassetteFolder: path.join(options.cwd, '__cassettes'),
-    envVarYml: path.join(options.cwd, 'env.yml'),
-    envVarYmlRecording: path.join(options.cwd, 'env.recording.yml'),
-    testFolder: options.cwd,
-    flush: ['aws-sdk'],
-    modifiers: {}
-  });
+  Joi.assert(options, Joi.object().keys({
+    cwd: Joi.string().optional(),
+    name: Joi.string().optional(),
+    verbose: Joi.boolean().optional(),
+    enabled: Joi.boolean().optional(),
+    handlerFile: Joi.string().optional(),
+    cassetteFolder: Joi.string().optional(),
+    envVarYml: Joi.string().optional(),
+    envVarYmlRecording: Joi.string().optional(),
+    testFolder: Joi.string().optional(),
+    flush: Joi.array().items(Joi.string()).optional(),
+    modifiers: Joi.object().optional(),
+    stripHeaders: Joi.boolean().optional()
+  }));
 
-  if (fs.existsSync(options.cassetteFolder)) {
-    const invalidCassettes = sfs.walkDir(options.cassetteFolder)
-      .filter((e) => !fs.existsSync(path.join(options.testFolder, e.substring(0, e.length - 15))));
+  const cwd = get(options, 'cwd', process.cwd());
+  const name = get(options, 'name', 'lambda-test');
+  const verbose = get(options, 'verbose', false);
+  const enabled = get(options, 'enabled', true);
+  const handlerFile = get(options, 'handlerFile', path.join(cwd, 'handler.js'));
+  const cassetteFolder = get(options, 'cassetteFolder', path.join(cwd, '__cassettes'));
+  const envVarYml = get(options, 'envVarYml', path.join(cwd, 'env.yml'));
+  const envVarYmlRecording = get(options, 'envVarYmlRecording', path.join(cwd, 'env.recording.yml'));
+  const testFolder = get(options, 'testFolder', cwd);
+  const flush = get(options, 'flush', ['aws-sdk']);
+  const modifiers = get(options, 'modifiers', {});
+  const stripHeaders = get(options, 'stripHeaders', false);
+
+  if (fs.existsSync(cassetteFolder)) {
+    const invalidCassettes = sfs.walkDir(cassetteFolder)
+      .filter((e) => !fs.existsSync(path.join(testFolder, e.substring(0, e.length - 15))));
     if (invalidCassettes.length !== 0) {
       throw new Error(`Rogue Cassette(s): ${invalidCassettes.join(', ')}`);
     }
   }
 
-  sfs.walkDir(options.testFolder)
-    .map((f) => path.join(options.testFolder, f))
+  sfs.walkDir(testFolder)
+    .map((f) => path.join(testFolder, f))
     .filter((f) => {
-      const relative = path.relative(options.cassetteFolder, f);
+      const relative = path.relative(cassetteFolder, f);
       return !relative || relative.startsWith('..') || path.isAbsolute(relative);
     })
     .forEach((filePath) => {
@@ -62,38 +76,38 @@ module.exports = (options) => {
       AWS_REGION: 'us-east-1',
       AWS_ACCESS_KEY_ID: 'XXXXXXXXXXXXXXXXXXXX',
       AWS_SECRET_ACCESS_KEY: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-      ...yaml.safeLoad(fs.readFileSync(options.envVarYml, 'utf8'))
+      ...yaml.safeLoad(fs.readFileSync(envVarYml, 'utf8'))
     },
     allowOverwrite: false
   });
-  const suiteEnvVarsWrapperRecording = fs.existsSync(options.envVarYmlRecording) ? EnvManager({
-    envVars: yaml.safeLoad(fs.readFileSync(options.envVarYmlRecording, 'utf8')),
+  const suiteEnvVarsWrapperRecording = fs.existsSync(envVarYmlRecording) ? EnvManager({
+    envVars: yaml.safeLoad(fs.readFileSync(envVarYmlRecording, 'utf8')),
     allowOverwrite: true
   }) : null;
   const expectService = ExpectService();
   return {
     execute: (modifier = '') => {
-      if (options.enabled !== true) {
+      if (enabled !== true) {
         return [];
       }
 
       const isPattern = typeof modifier === 'string' || modifier instanceof String;
       const testFiles = isPattern ? globSync('**/*.spec.json', {
-        cwd: options.testFolder,
+        cwd: testFolder,
         nodir: true,
         ignore: ['**/*.spec.json_recording.json']
       }).filter((e) => new RegExp(modifier, '').test(e)) : modifier;
 
-      describe(`Testing Lambda Functions: ${options.name}`, () => {
+      describe(`Testing Lambda Functions: ${name}`, () => {
         before(() => suiteEnvVarsWrapper.apply());
         after(() => suiteEnvVarsWrapper.unapply());
 
         testFiles.forEach((testFile) => {
           // eslint-disable-next-line func-names
           it(`Test ${testFile}`, async function () {
-            const test = JSON.parse(fs.readFileSync(path.join(options.testFolder, testFile), 'utf8'));
+            const test = JSON.parse(fs.readFileSync(path.join(testFolder, testFile), 'utf8'));
             const cassetteFile = `${testFile}_recording.json`;
-            const isNewRecording = !fs.existsSync(path.join(options.cassetteFolder, cassetteFile));
+            const isNewRecording = !fs.existsSync(path.join(cassetteFolder, cassetteFile));
             if (suiteEnvVarsWrapperRecording !== null && isNewRecording) {
               suiteEnvVarsWrapperRecording.apply();
             }
@@ -110,30 +124,31 @@ module.exports = (options) => {
             if (test.timeout !== undefined) {
               this.timeout(test.timeout);
             }
-            const logRecorder = LogRecorder({ verbose: options.verbose, logger: console });
+            const logRecorder = LogRecorder({ verbose, logger: console });
             logRecorder.inject();
 
             // re-init function code here to ensures env vars are accessible outside lambda handler
             const nodeModulesDir = path.resolve(path.join(appRoot.path, 'node_modules')) + path.sep;
-            const flush = options.flush.map((e) => `${path.sep}node_modules${path.sep}${e}${path.sep}`);
+            const flushPaths = flush.map((e) => `${path.sep}node_modules${path.sep}${e}${path.sep}`);
             const nodeModulesPrefixLength = nodeModulesDir.length - 'node_modules'.length - 2;
             Object.keys(require.cache).forEach((key) => {
-              if (!key.startsWith(nodeModulesDir) || flush.some((f) => key.indexOf(f) >= nodeModulesPrefixLength)) {
+              if (!key.startsWith(nodeModulesDir)
+                || flushPaths.some((f) => key.indexOf(f) >= nodeModulesPrefixLength)) {
                 delete require.cache[key];
               }
             });
 
             try {
               const output = await HandlerExecutor({
-                handlerFile: options.handlerFile,
-                cassetteFolder: options.cassetteFolder,
-                verbose: options.verbose,
+                handlerFile,
+                cassetteFolder,
+                verbose,
                 handlerFunction: test.handler,
-                event: rewriteObject(test.event, options.modifiers),
+                event: rewriteObject(test.event, modifiers),
                 context: test.context || {},
                 cassetteFile,
                 lambdaTimeout: test.lambdaTimeout,
-                stripHeaders: get(test, 'stripHeaders', options.stripHeaders)
+                stripHeaders: get(test, 'stripHeaders', stripHeaders)
               }).execute();
               const logs = {
                 logs: logRecorder.levels()
@@ -185,7 +200,7 @@ module.exports = (options) => {
                     const apply = k.split('(', 2)[1].slice(0, -1).split('|');
                     target = get(target, apply[0]);
                     if (apply.length > 1) {
-                      target = apply.slice(1).reduce((p, c) => dynamicApply(c, p, options.modifiers), target);
+                      target = apply.slice(1).reduce((p, c) => dynamicApply(c, p, modifiers), target);
                     }
                   }
                   expectService.evaluate(test[k], target);
