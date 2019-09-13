@@ -44,7 +44,7 @@
   "dependencies": {
     "app-root-path": "2.2.1",
     "glob": "7.1.4",
-    "joi-strict": "1.0.9",
+    "joi-strict": "1.0.11",
     "js-yaml": "3.13.1",
     "lambda-wrapper": "0.3.0",
     "lodash.get": "4.4.2",
@@ -73,7 +73,7 @@
     "eslint-plugin-json": "1.4.0",
     "eslint-plugin-markdown": "1.0.0",
     "eslint-plugin-mocha": "6.1.1",
-    "js-gardener": "2.0.83",
+    "js-gardener": "2.0.85",
     "mocha": "6.2.0",
     "nock": "11.3.4",
     "nyc": "14.1.1",
