@@ -3623,13 +3623,6 @@ jmespath@0.15.0:
   resolved "https://registry.yarnpkg.com/jmespath/-/jmespath-0.15.0.tgz#a3f222a9aae9f966f5d27c796510e28091764217"
   integrity sha1-o/Iiqarp+Wb10nx5ZRDigJF2Qhc=
 
-joi-strict@1.0.11:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/joi-strict/-/joi-strict-1.0.11.tgz#33ab93215a96cd56a0b6c694be36757ee2f3bb73"
-  integrity sha512-0Zqzcu1wP67ns4IQapoArKmq1JyOhNNc+W6o2vYby7Fa1YeQHjXuRt1DJW7YE4m14fFhM6goC14KFFUDqXoHiA==
-  dependencies:
-    "@hapi/joi" "16.0.1"
-
 joi-strict@1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/joi-strict/-/joi-strict-1.0.9.tgz#9b05887cbf7160e5bff6bd9a901ce0f6af42f57c"
@@ -3642,15 +3635,15 @@ joi-strict@1.1.0:
   dependencies:
     "@hapi/joi" "16.0.1"
 
-js-gardener@2.0.85:
-  version "2.0.85"
-  resolved "https://registry.yarnpkg.com/js-gardener/-/js-gardener-2.0.85.tgz#929b0ca26c25ad3a9387a13cee1093add71c3a83"
-  integrity sha512-+t3HPPeOg13dUnbtEeZFliH05PG1NBRSvI0h63sj8TlHLWf7rptAIk96wRAiagF1V8SACVGZBzAB8NpJn0n21w==
+js-gardener@2.0.86:
+  version "2.0.86"
+  resolved "https://registry.yarnpkg.com/js-gardener/-/js-gardener-2.0.86.tgz#9c31b270b253d42ba8f9f98ea31397b1e9af9470"
+  integrity sha512-/mMfC6GgCvutN4URRQ7QKRJvphAJOxyYzzCCCeZOV5AVhEcK/D1MAbMSDrO8niBtawz3r2K30Rj7rjAvho2wBA==
   dependencies:
     chalk "2.4.2"
     fancy-log "1.3.3"
     glob "7.1.4"
-    joi-strict "1.0.11"
+    joi-strict "1.1.0"
     js-yaml "3.13.1"
     lodash.difference "4.5.0"
     lodash.get "4.4.2"
