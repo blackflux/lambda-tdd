@@ -174,10 +174,10 @@
   dependencies:
     smart-fs "1.9.11"
 
-"@blackflux/robo-config-plugin@2.6.3":
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/@blackflux/robo-config-plugin/-/robo-config-plugin-2.6.3.tgz#11dcbcfc4309a7cd7d9c3ab85f646eee9d813fd7"
-  integrity sha512-DTja80z1islgbhooDjbvfeA/YhPOZMQwpTz4G1pWR7j0K5ItmQmI5RKqs6h/V5uI/d88kY54ufX9riRRXJSMdw==
+"@blackflux/robo-config-plugin@2.6.5":
+  version "2.6.5"
+  resolved "https://registry.yarnpkg.com/@blackflux/robo-config-plugin/-/robo-config-plugin-2.6.5.tgz#9603de38711b4663af2318769d6a7b7a75a91182"
+  integrity sha512-gxO7LywiimPn8JrgdoFZAdx0sinwmkLJDY4uV+X8HBlXaylqsPpOVQ9UkWXCNQBD32Y+DADiVxfi43CIIOKUOw==
 
 "@hapi/address@2.x.x":
   version "2.1.1"
@@ -3635,6 +3635,13 @@ joi-strict@1.1.0:
   dependencies:
     "@hapi/joi" "16.0.1"
 
+joi-strict@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/joi-strict/-/joi-strict-1.1.1.tgz#ecebac91a37421e27526f64bd3beb7e83058c6ba"
+  integrity sha512-2ZgLzvWzE6KglTz1TS2ptNDntesji9fItT9hBbViej8RB5orLWT9jadhN91Snr6VPNvlZkhvIIpSc6N0TWjBVg==
+  dependencies:
+    "@hapi/joi" "16.0.1"
+
 js-gardener@2.0.87:
   version "2.0.87"
   resolved "https://registry.yarnpkg.com/js-gardener/-/js-gardener-2.0.87.tgz#d1ba395a0050eb8303efe96e92f065f30c19d038"
@@ -4605,18 +4612,6 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-nock@11.3.3:
-  version "11.3.3"
-  resolved "https://registry.yarnpkg.com/nock/-/nock-11.3.3.tgz#f4553d87ac8e501d7a995a50df7e24857f879f58"
-  integrity sha512-SrRux5onbWf2ItpmietnLYis+C2QYF08hAo9wv/3QLqaLJVHBSVBTL0EvlD8Hjrm7lTH4vExTzr9gQUsPqy5Cg==
-  dependencies:
-    chai "^4.1.2"
-    debug "^4.1.0"
-    json-stringify-safe "^5.0.1"
-    lodash "^4.17.13"
-    mkdirp "^0.5.0"
-    propagate "^2.0.0"
-
 nock@11.3.4:
   version "11.3.4"
   resolved "https://registry.yarnpkg.com/nock/-/nock-11.3.4.tgz#b3d8fde986da8f8484f4b8958e270fbb91250430"
@@ -4696,16 +4691,15 @@ node-pre-gyp@^0.12.0:
     semver "^5.3.0"
     tar "^4"
 
-node-tdd@2.5.3:
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-2.5.3.tgz#11b9073f51afdeb2e6cb305ad2bca823609c3e2c"
-  integrity sha512-UxREpqv8wvVPqkAZe5gLWHQC5foq3ciuvYU190nFOvg++oBJ9LM1CkdH1D4dPslMeoLnto44mbh7QDgPxO1OfA==
+node-tdd@2.5.4:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-2.5.4.tgz#a08d4a0dee0f477b4e950b94b78cad332971ae3d"
+  integrity sha512-53osqpWlw4hDHYc0WVqgNMqeKQGmj9pvWyDChp9Ud4q8I/XyJOGYKDfE3OSeFGFSreG8mZlovDyeamV7uina3A==
   dependencies:
-    "@hapi/joi" "15.1.1"
     callsites "3.1.0"
-    joi-strict "1.0.9"
+    joi-strict "1.1.0"
     lodash.get "4.4.2"
-    nock "11.3.3"
+    nock "11.3.4"
     smart-fs "1.9.11"
     timekeeper "2.2.0"
     tmp "0.1.0"
@@ -6531,6 +6525,19 @@ smart-fs@1.9.11:
   version "1.9.11"
   resolved "https://registry.yarnpkg.com/smart-fs/-/smart-fs-1.9.11.tgz#5e95b397078d5db1f4167338bf360b54f2e99dca"
   integrity sha512-BSCaUQ+HUPT1FM2t5Em8OKfGruOXeyWX1WOXJCVU4HNH01+iLc6EJHPACpHvlASKJ0T8bI5q6DAxzriWWRplzw==
+  dependencies:
+    fs-extra "8.1.0"
+    json-stringify-pretty-compact "2.0.0"
+    lodash.clonedeep "4.5.0"
+    lodash.isequal "4.5.0"
+    object-align "1.0.7"
+    xml-js "1.6.11"
+    yaml-boost "1.9.15"
+
+smart-fs@1.9.12:
+  version "1.9.12"
+  resolved "https://registry.yarnpkg.com/smart-fs/-/smart-fs-1.9.12.tgz#4897d26cce76f19621dd2bb73350b30b1f82faad"
+  integrity sha512-wkR7Pva0AVAGhjFfIIloY58qebcJ/3Z8GQrrNSYxZ+RD/NPSsZqqJ+NxiER2I8aqu6yk6SVtcjh6g6sl5bBH4g==
   dependencies:
     fs-extra "8.1.0"
     json-stringify-pretty-compact "2.0.0"
