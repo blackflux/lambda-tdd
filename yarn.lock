@@ -4687,13 +4687,13 @@ node-pre-gyp@^0.12.0:
     semver "^5.3.0"
     tar "^4"
 
-node-tdd@2.5.11:
-  version "2.5.11"
-  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-2.5.11.tgz#5a19005b16267f99db358615615e50abb14aac24"
-  integrity sha512-/bfaJ9zTwxiU432nbEQxMXmwyXfd/Yw0GHZyxEhCldvI0pNu8KmQddRKK92Hhzj5ROGEd0cfWqntrRCSNUh9jA==
+node-tdd@2.5.12:
+  version "2.5.12"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-2.5.12.tgz#5d2faccff59acf200ea3a6a3f0d0d9906b1f8527"
+  integrity sha512-ljUAGV2yaJ3QL0CSwcXkycJ9vW5eOfDMpDDq/08ekIBxBEZK/ReD7nhTU/jDWRrtzEFlfYwa8xWh9i+aAz6dzA==
   dependencies:
     callsites "3.1.0"
-    joi-strict "1.1.5"
+    joi-strict "1.1.6"
     lodash.get "4.4.2"
     nock "11.3.5"
     smart-fs "1.9.14"
