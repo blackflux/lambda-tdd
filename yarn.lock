@@ -6492,10 +6492,10 @@ smart-buffer@4.0.2:
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.0.2.tgz#5207858c3815cc69110703c6b94e46c15634395d"
   integrity sha512-JDhEpTKzXusOqXZ0BUIdH+CjFdO/CR3tLlf5CN34IypI+xMmXW1uB16OOY8z3cICbJlDAVJzNbwBhNO0wt9OAw==
 
-smart-fs@1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/smart-fs/-/smart-fs-1.10.0.tgz#3b8115671b85dbae821dc81cbaefc63055470190"
-  integrity sha512-BkhNauivsejgtd7fLEFfmK39VK6MbT/174JhJ4SWkpQl1/x255QwNxp6PvnEXR8AEROoCZgrlqIhYN5sd/F2Dg==
+smart-fs@1.10.1:
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/smart-fs/-/smart-fs-1.10.1.tgz#bf3cba72372f9de53333ae991abe038a89efa59e"
+  integrity sha512-jC8ghswF2ZrRpoVG6g+cpANwY3sxf8jeVCC2s8H0hgDyXzdRkJTshbZEwBhateTmr5jDAqN4di+kSEAT/D8bJA==
   dependencies:
     fs-extra "8.1.0"
     js-yaml "3.13.1"
