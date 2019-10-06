@@ -4563,6 +4563,18 @@ nock@11.3.5:
     mkdirp "^0.5.0"
     propagate "^2.0.0"
 
+nock@11.3.6:
+  version "11.3.6"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-11.3.6.tgz#cd87eb47ed9755d6d1e04dee1d56722267cb3283"
+  integrity sha512-54MSX4qeRnhwQQ2PSHlHc6pM6zNf7Dq9ni0BTFTurnDbUUssXl2Jy3E95ffaE8rZ/W/FWa9VSfzWDDnbdAsoTg==
+  dependencies:
+    chai "^4.1.2"
+    debug "^4.1.0"
+    json-stringify-safe "^5.0.1"
+    lodash "^4.17.13"
+    mkdirp "^0.5.0"
+    propagate "^2.0.0"
+
 node-emoji@^1.0.3, node-emoji@^1.4.1:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/node-emoji/-/node-emoji-1.10.0.tgz#8886abd25d9c7bb61802a658523d1f8d2a89b2da"
@@ -6449,6 +6461,20 @@ smart-fs@1.10.1:
   version "1.10.1"
   resolved "https://registry.yarnpkg.com/smart-fs/-/smart-fs-1.10.1.tgz#bf3cba72372f9de53333ae991abe038a89efa59e"
   integrity sha512-jC8ghswF2ZrRpoVG6g+cpANwY3sxf8jeVCC2s8H0hgDyXzdRkJTshbZEwBhateTmr5jDAqN4di+kSEAT/D8bJA==
+  dependencies:
+    fs-extra "8.1.0"
+    js-yaml "3.13.1"
+    json-stringify-pretty-compact "2.0.0"
+    lodash.clonedeep "4.5.0"
+    lodash.isequal "4.5.0"
+    object-align "1.0.8"
+    xml-js "1.6.11"
+    yaml-boost "1.9.17"
+
+smart-fs@1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/smart-fs/-/smart-fs-1.11.0.tgz#928bc740211ff109d170fe3f9a2ae0b6aad92416"
+  integrity sha512-80+eSmve9djwhO6d9kF3oIeE8iO1Yxn4cTOWcPFhKDCrmnGUnqKgyixhhcT3JK/2jJO77A5tIWRvA+VRgH9doA==
   dependencies:
     fs-extra "8.1.0"
     js-yaml "3.13.1"
