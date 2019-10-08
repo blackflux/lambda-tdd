@@ -48,7 +48,7 @@
     "js-yaml": "3.13.1",
     "lambda-wrapper": "0.3.0",
     "lodash.get": "4.4.2",
-    "node-tdd": "2.5.15",
+    "node-tdd": "2.5.16",
     "smart-fs": "1.11.0"
   },
   "licenses": [
@@ -73,7 +73,7 @@
     "eslint-plugin-json": "1.4.0",
     "eslint-plugin-markdown": "1.0.0",
     "eslint-plugin-mocha": "6.1.1",
-    "js-gardener": "2.0.105",
+    "js-gardener": "2.0.107",
     "mocha": "6.2.1",
     "nock": "11.4.0",
     "nyc": "14.1.1",
