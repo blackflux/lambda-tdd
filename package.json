@@ -44,7 +44,7 @@
   "dependencies": {
     "app-root-path": "3.0.0",
     "glob": "7.1.6",
-    "joi-strict": "1.1.7",
+    "joi-strict": "1.1.8",
     "js-yaml": "3.13.1",
     "lambda-wrapper": "0.3.0",
     "lodash.get": "4.4.2",
@@ -79,7 +79,7 @@
     "nyc": "14.1.1",
     "request": "2.88.0",
     "request-promise": "4.2.5",
-    "semantic-release": "15.13.30",
+    "semantic-release": "15.13.31",
     "tmp": "0.1.0",
     "uuid": "3.3.3"
   },
