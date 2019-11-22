@@ -5153,6 +5153,11 @@ object-align@1.0.8:
   resolved "https://registry.yarnpkg.com/object-align/-/object-align-1.0.8.tgz#ff549c2e80a2e5ace2d22275afe9497a5842ba54"
   integrity sha512-/2D+LEr8M9F1GEuiJBdiIrytv9o2Oh+eaO4G2pm84JJ0a6vD/cKt9ZXZxEKbo/agPFPJCLSm0Aa1Ssg5apGwvA==
 
+object-align@1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/object-align/-/object-align-1.0.9.tgz#f1b1e236cc08606d8e85062ad7eaa4234569110a"
+  integrity sha512-TcJYEU56ChboC286wnbiZA2R0xt3L05i9Y+M+tiSZBvo74qGKZl/uadN4O+wABoaKQEj0zVFPDUmfjk8QkkhHg==
+
 object-assign@^4.0.1, object-assign@^4.1.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
@@ -6601,6 +6606,20 @@ smart-fs@1.11.0:
     lodash.clonedeep "4.5.0"
     lodash.isequal "4.5.0"
     object-align "1.0.8"
+    xml-js "1.6.11"
+    yaml-boost "1.9.17"
+
+smart-fs@1.11.1:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/smart-fs/-/smart-fs-1.11.1.tgz#4e6e7bc41bff730e67c47cdf2df11bbeb8ad860a"
+  integrity sha512-oC50uh0jj6s23Hp1jOiB43LRm4jJWHxBvg8vogm9QYtnGFdLeWW4dKsfdRJ9xcGbugtLgwfXyTtRlooB2mUxww==
+  dependencies:
+    fs-extra "8.1.0"
+    js-yaml "3.13.1"
+    json-stringify-pretty-compact "2.0.0"
+    lodash.clonedeep "4.5.0"
+    lodash.isequal "4.5.0"
+    object-align "1.0.9"
     xml-js "1.6.11"
     yaml-boost "1.9.17"
 
