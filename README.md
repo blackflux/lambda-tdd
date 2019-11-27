@@ -44,7 +44,7 @@ const LambdaTdd = require('lambda-tdd');
 LambdaTdd({
   cwd: __dirname,
   verbose: minimist(process.argv.slice(2)).verbose === true,
-  timeout: minimist(process.argv.slice(2)).timeout,
+  timeout: minimist(process.argv.slice(2)).timeout
 }).execute();
 ```
 
