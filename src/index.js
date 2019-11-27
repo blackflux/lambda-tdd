@@ -25,6 +25,7 @@ module.exports = (options) => {
     cwd: Joi.string().optional(),
     name: Joi.string().optional(),
     verbose: Joi.boolean().optional(),
+    timeout: Joi.number().min(0).integer().optional(),
     enabled: Joi.boolean().optional(),
     handlerFile: Joi.string().optional(),
     cassetteFolder: Joi.string().optional(),
@@ -39,6 +40,7 @@ module.exports = (options) => {
   const cwd = get(options, 'cwd', process.cwd());
   const name = get(options, 'name', 'lambda-test');
   const verbose = get(options, 'verbose', false);
+  const timeout = get(options, 'timeout');
   const enabled = get(options, 'enabled', true);
   const handlerFile = get(options, 'handlerFile', path.join(cwd, 'handler.js'));
   const cassetteFolder = get(options, 'cassetteFolder', path.join(cwd, '__cassettes'));
@@ -121,7 +123,9 @@ module.exports = (options) => {
               randomSeeder = RandomSeeder({ seed: test.seed, reseed: test.reseed || false });
               randomSeeder.inject();
             }
-            if (test.timeout !== undefined) {
+            if (timeout !== undefined) {
+              this.timeout(timeout);
+            } else if (test.timeout !== undefined) {
               this.timeout(test.timeout);
             }
             const logRecorder = LogRecorder({ verbose, logger: console });

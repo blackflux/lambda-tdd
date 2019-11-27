@@ -38,11 +38,13 @@ To install run
 ### Initialize Test Runner and Execute
 <!-- eslint-disable import/no-extraneous-dependencies, import/no-unresolved, mocha/no-setup-in-describe -->
 ```js
+const minimist = require('minimist');
 const LambdaTdd = require('lambda-tdd');
 
 LambdaTdd({
   cwd: __dirname,
-  verbose: process.argv.slice(2).indexOf('--verbose') !== -1
+  verbose: minimist(process.argv.slice(2)).verbose === true,
+  timeout: minimist(process.argv.slice(2)).timeout,
 }).execute();
 ```
 
@@ -105,6 +107,13 @@ Type `boolean`<br>
 Default: `false`
 
 Display console output while running tests. Useful for debugging.
+
+### timeout
+
+Type `integer`<br>
+Default: `undefined`
+
+Hard overwrite test timeout for all tests.
 
 ### handlerFile
 

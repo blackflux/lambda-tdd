@@ -1,12 +1,14 @@
 const path = require('path');
 const expect = require('chai').expect;
+const minimist = require('minimist');
 const request = require('request');
 const sfs = require('smart-fs');
 const tmp = require('tmp');
 const LambdaTester = require('../src/index');
 
 const lambdaTesterParams = {
-  verbose: process.argv.slice(2).indexOf('--verbose') !== -1,
+  verbose: minimist(process.argv.slice(2)).verbose === true,
+  timeout: minimist(process.argv.slice(2)).timeout,
   cwd: path.join(__dirname, 'mock'),
   testFolder: path.join(__dirname, 'mock', 'handler', 'api'),
   cassetteFolder: path.join(__dirname, 'mock', 'handler', '__cassettes', 'api'),
@@ -29,6 +31,11 @@ describe('Testing Tester', () => {
 
   it('Test File Regex', () => {
     const testFiles = lambdaTester.execute('echo_event\\.spec\\.json');
+    expect(testFiles).to.deep.equal(['echo_event.spec.json']);
+  });
+
+  it('Testing File with timeout overwrite', () => {
+    const testFiles = LambdaTester({ ...lambdaTesterParams, timeout: 10000 }).execute(['echo_event.spec.json']);
     expect(testFiles).to.deep.equal(['echo_event.spec.json']);
   });
 
@@ -57,7 +64,7 @@ describe('Testing Tester', () => {
       sfs.smartWrite(path.join(tmpDir.name, 'handler.js'), ['module.exports.type = async () => process.env.TYPE;']);
       sfs.smartWrite(path.join(tmpDir.name, 'env.yml'), { TYPE: 'cassette' });
       testerArgs = {
-        verbose: process.argv.slice(2).indexOf('--verbose') !== -1,
+        verbose: minimist(process.argv.slice(2)).verbose === true,
         cwd: tmpDir.name,
         testFolder: path.join(tmpDir.name, 'handler'),
         cassetteFolder: path.join(tmpDir.name, 'handler', '__cassettes')
