@@ -6587,10 +6587,10 @@ smart-fs@1.11.0:
     xml-js "1.6.11"
     yaml-boost "1.9.17"
 
-smart-fs@1.11.1:
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/smart-fs/-/smart-fs-1.11.1.tgz#4e6e7bc41bff730e67c47cdf2df11bbeb8ad860a"
-  integrity sha512-oC50uh0jj6s23Hp1jOiB43LRm4jJWHxBvg8vogm9QYtnGFdLeWW4dKsfdRJ9xcGbugtLgwfXyTtRlooB2mUxww==
+smart-fs@1.11.2:
+  version "1.11.2"
+  resolved "https://registry.yarnpkg.com/smart-fs/-/smart-fs-1.11.2.tgz#e3a2c8bc103f5d1becf80def29c3bab67c5fc47b"
+  integrity sha512-hqwEn6rC6l5cehd7n7zsXe2zmcpHRk2r+QfmEzf/yIlzA+eM0Qtrk/R/Rz5KvHQgefqMOo+vkDntGII+tHli1g==
   dependencies:
     fs-extra "8.1.0"
     js-yaml "3.13.1"
@@ -6599,7 +6599,7 @@ smart-fs@1.11.1:
     lodash.isequal "4.5.0"
     object-align "1.0.9"
     xml-js "1.6.11"
-    yaml-boost "1.9.17"
+    yaml-boost "1.9.18"
 
 snapdragon-node@^2.0.1:
   version "2.1.1"
@@ -7776,6 +7776,16 @@ yaml-boost@1.9.17:
   version "1.9.17"
   resolved "https://registry.yarnpkg.com/yaml-boost/-/yaml-boost-1.9.17.tgz#4cb1c7405aa55a48488e77c34a1772c58e62d2d6"
   integrity sha512-4pPqz1pt07W3QMeQ/yZs7NuatgfH0pQGlUnzJR53uw34EvgocD1YvBZZ5WPrdO5dqVuz84zZLmFMQJHoPPrOPw==
+  dependencies:
+    js-yaml "3.13.1"
+    lodash.get "4.4.2"
+    lodash.mergewith "4.6.2"
+    lodash.set "4.3.2"
+
+yaml-boost@1.9.18:
+  version "1.9.18"
+  resolved "https://registry.yarnpkg.com/yaml-boost/-/yaml-boost-1.9.18.tgz#7b7423af4f8641a1048c3dfc7473308b82a7a9f2"
+  integrity sha512-/YrAJLcELw85HOPSzgRwV3f7crqz8rL9NqOlCzB+Tzs8SnUPoRTyGvUiVrA34u6Gkb5Yw6NIHd1r9seROLV+kA==
   dependencies:
     js-yaml "3.13.1"
     lodash.get "4.4.2"
