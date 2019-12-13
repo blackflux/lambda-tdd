@@ -44,12 +44,12 @@
   "dependencies": {
     "app-root-path": "3.0.0",
     "glob": "7.1.6",
-    "joi-strict": "1.1.9",
+    "joi-strict": "1.1.10",
     "js-yaml": "3.13.1",
     "lambda-wrapper": "0.3.0",
     "lodash.get": "4.4.2",
     "node-tdd": "2.5.20",
-    "smart-fs": "1.11.2"
+    "smart-fs": "1.11.3"
   },
   "licenses": [
     {
