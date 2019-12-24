@@ -6764,20 +6764,6 @@ smart-fs@1.11.3:
     xml-js "1.6.11"
     yaml-boost "1.9.18"
 
-smart-fs@1.11.4:
-  version "1.11.4"
-  resolved "https://registry.yarnpkg.com/smart-fs/-/smart-fs-1.11.4.tgz#3b5fd216f27d3438f5e7a2e08c0b63e3c4b39d93"
-  integrity sha512-2NL60nagM+/OMTvxpfCpvHxsI2UnijPkKm+F4bn2I90dXf5dQzxUavly48W3y9iXdO/2XopjqdnybUorbMB+JA==
-  dependencies:
-    fs-extra "8.1.0"
-    js-yaml "3.13.1"
-    json-stringify-pretty-compact "2.0.0"
-    lodash.clonedeep "4.5.0"
-    lodash.isequal "4.5.0"
-    object-align "1.0.10"
-    xml-js "1.6.11"
-    yaml-boost "1.9.18"
-
 smart-fs@1.11.5:
   version "1.11.5"
   resolved "https://registry.yarnpkg.com/smart-fs/-/smart-fs-1.11.5.tgz#01c0f7a073c9937266ae51045870c9878eb1b4b6"
