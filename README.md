@@ -45,7 +45,7 @@ LambdaTdd({
   cwd: __dirname,
   verbose: minimist(process.argv.slice(2)).verbose === true,
   timeout: minimist(process.argv.slice(2)).timeout,
-  nockHeal: minimist(process.argv.slice(2))['nock-heal'],
+  nockHeal: minimist(process.argv.slice(2))['nock-heal']
 }).execute();
 ```
 
