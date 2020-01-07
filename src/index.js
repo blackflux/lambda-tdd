@@ -26,6 +26,7 @@ module.exports = (options) => {
     name: Joi.string().optional(),
     verbose: Joi.boolean().optional(),
     timeout: Joi.number().min(0).integer().optional(),
+    nockHeal: Joi.alternatives(Joi.boolean(), Joi.string()).optional(),
     enabled: Joi.boolean().optional(),
     handlerFile: Joi.string().optional(),
     cassetteFolder: Joi.string().optional(),
@@ -41,6 +42,7 @@ module.exports = (options) => {
   const name = get(options, 'name', 'lambda-test');
   const verbose = get(options, 'verbose', false);
   const timeout = get(options, 'timeout');
+  const nockHeal = get(options, 'nockHeal', false);
   const enabled = get(options, 'enabled', true);
   const handlerFile = get(options, 'handlerFile', path.join(cwd, 'handler.js'));
   const cassetteFolder = get(options, 'cassetteFolder', path.join(cwd, '__cassettes'));
@@ -147,6 +149,7 @@ module.exports = (options) => {
                 handlerFile,
                 cassetteFolder,
                 verbose,
+                nockHeal,
                 handlerFunction: test.handler,
                 event: rewriteObject(test.event, modifiers),
                 context: test.context || {},
