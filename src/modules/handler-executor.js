@@ -11,7 +11,8 @@ module.exports = (options) => {
       const requestRecorder = RequestRecorder({
         cassetteFolder: options.cassetteFolder,
         stripHeaders: options.stripHeaders || false,
-        strict: false
+        strict: false,
+        heal: options.nockHeal
       });
       await requestRecorder.inject(options.cassetteFile);
 

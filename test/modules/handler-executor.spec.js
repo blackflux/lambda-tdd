@@ -24,7 +24,8 @@ describe('Testing HandlerExecutor', { useTmpDir: true }, () => {
       cassetteFolder: tmpDir,
       cassetteFile: 'recoding.json',
       stripHeaders: true,
-      verbose: true
+      verbose: true,
+      nockHeal: false
     })
       .execute();
     const data = fs.smartRead(path.join(tmpDir, 'recoding.json'));
@@ -38,7 +39,8 @@ describe('Testing HandlerExecutor', { useTmpDir: true }, () => {
       cassetteFolder: tmpDir,
       cassetteFile: 'recoding.json',
       stripHeaders: false,
-      verbose: true
+      verbose: true,
+      nockHeal: false
     })
       .execute();
     const data = fs.smartRead(path.join(tmpDir, 'recoding.json'));
