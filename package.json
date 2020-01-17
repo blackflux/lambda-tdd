@@ -80,9 +80,9 @@
     "nyc": "15.0.0",
     "request": "2.88.0",
     "request-promise": "4.2.5",
-    "semantic-release": "16.0.1",
+    "semantic-release": "16.0.2",
     "tmp": "0.1.0",
-    "uuid": "3.3.3"
+    "uuid": "3.4.0"
   },
   "engines": {
     "node": ">= 10"
