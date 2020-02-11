@@ -78,7 +78,7 @@
     "mocha": "7.0.1",
     "nock": "11.8.2",
     "nyc": "15.0.0",
-    "request": "2.88.0",
+    "request": "2.88.2",
     "request-promise": "4.2.5",
     "semantic-release": "17.0.2",
     "tmp": "0.1.0",
