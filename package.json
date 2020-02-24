@@ -44,7 +44,7 @@
   "dependencies": {
     "app-root-path": "3.0.0",
     "glob": "7.1.6",
-    "joi-strict": "1.1.11",
+    "joi-strict": "1.2.0",
     "js-yaml": "3.13.1",
     "lambda-wrapper": "0.3.0",
     "lodash.get": "4.4.2",
@@ -82,7 +82,7 @@
     "request-promise": "4.2.5",
     "semantic-release": "17.0.4",
     "tmp": "0.1.0",
-    "uuid": "3.4.0"
+    "uuid": "7.0.0"
   },
   "engines": {
     "node": ">= 10"

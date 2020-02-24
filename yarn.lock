@@ -3806,6 +3806,13 @@ joi-strict@1.1.11:
   dependencies:
     "@hapi/joi" "16.1.8"
 
+joi-strict@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/joi-strict/-/joi-strict-1.2.0.tgz#45801a951603e4e80377cb4b703d69c8b92d5026"
+  integrity sha512-Dwk/uPoRGz2fQuf1fgyq8v9H/H/EqdOt3/e5FpVKXVfbt7aTJOQs8danj+EqKwxRnHtmW9hNNnz0jpym1oEiuA==
+  dependencies:
+    "@hapi/joi" "16.1.8"
+
 js-gardener@2.0.133:
   version "2.0.133"
   resolved "https://registry.yarnpkg.com/js-gardener/-/js-gardener-2.0.133.tgz#58373cbc4016a6719349c57c978d21b02bb496c1"
@@ -7620,6 +7627,11 @@ uuid@3.4.0, uuid@^3.3.2, uuid@^3.3.3:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
+
+uuid@7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.0.tgz#1833d4b9ce50b732bfaa271f9cb74e974d303c79"
+  integrity sha512-LNUrNsXdI/fUsypJbWM8Jt4DgQdFAZh41p9C7WE9Cn+CULOEkoG2lgQyH68v3wnIy5K3fN4jdSt270K6IFA3MQ==
 
 v8-compile-cache@^2.0.3:
   version "2.1.0"
