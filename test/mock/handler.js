@@ -1,5 +1,5 @@
 const request = require('request-promise');
-const uuid4 = require('uuid/v4');
+const { v4: uuid4 } = require('uuid');
 
 module.exports.returnEvent = (event, context, cb) => cb(null, event);
 module.exports.returnContext = (event, context, cb) => cb(null, context);
