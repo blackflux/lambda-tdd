@@ -73,7 +73,7 @@
     "eslint-plugin-json": "2.1.1",
     "eslint-plugin-markdown": "1.0.2",
     "eslint-plugin-mocha": "6.3.0",
-    "js-gardener": "2.0.145",
+    "js-gardener": "2.0.146",
     "minimist": "1.2.5",
     "mocha": "7.1.1",
     "nock": "12.0.3",
@@ -82,7 +82,7 @@
     "request-promise": "4.2.5",
     "semantic-release": "17.0.4",
     "tmp": "0.1.0",
-    "uuid": "7.0.2"
+    "uuid": "7.0.3"
   },
   "engines": {
     "node": ">= 10"
