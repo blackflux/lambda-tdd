@@ -205,7 +205,7 @@ module.exports = (options) => {
                   }
                   if (k.indexOf('(') !== -1) {
                     const apply = k.split('(', 2)[1].slice(0, -1).split('|');
-                    target = get(target, apply[0]);
+                    target = apply[0] === '' ? target : get(target, apply[0]);
                     if (apply.length > 1) {
                       target = apply.slice(1).reduce((p, c) => dynamicApply(c, p, modifiers), target);
                     }
