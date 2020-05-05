@@ -1,0 +1,10 @@
+{
+  "handler": "returnEvent",
+  "success": true,
+  "expect(|JSON.parse)": {
+    "to.deep.equal()": {
+      "a": 1
+    }
+  },
+  "event": "{\"a\":1}"
+}
