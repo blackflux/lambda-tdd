@@ -118,7 +118,7 @@ module.exports = (options) => {
             const testEnvVarsWrapper = EnvManager({ envVars: test.env || {}, allowOverwrite: true });
             testEnvVarsWrapper.apply();
             if (test.timestamp !== undefined) {
-              timeKeeper = TimeKeeper({ unix: test.timestamp });
+              timeKeeper = TimeKeeper({ timestamp: test.timestamp });
               timeKeeper.inject();
             }
             if (test.seed !== undefined) {
