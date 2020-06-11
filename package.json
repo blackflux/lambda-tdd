@@ -75,7 +75,7 @@
     "eslint-plugin-mocha": "7.0.1",
     "js-gardener": "2.0.161",
     "minimist": "1.2.5",
-    "mocha": "7.2.0",
+    "mocha": "8.0.1",
     "nock": "12.0.3",
     "nyc": "15.1.0",
     "request": "2.88.2",
