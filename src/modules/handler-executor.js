@@ -1,7 +1,6 @@
 const wrapper = require('lambda-wrapper');
 const { RequestRecorder } = require('node-tdd');
 
-
 module.exports = (options) => {
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const runner = wrapper.wrap({ handler: require(options.handlerFile)[options.handlerFunction] });
