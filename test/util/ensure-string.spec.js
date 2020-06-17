@@ -1,7 +1,6 @@
 const expect = require('chai').expect;
 const ensureString = require('../../src/util/ensure-string');
 
-
 describe('Testing ensureString', () => {
   it('Testing Error', () => {
     expect(ensureString(new Error('some error'))).to.equal('some error');
