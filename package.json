@@ -49,7 +49,7 @@
     "lambda-wrapper": "0.3.0",
     "lodash.get": "4.4.2",
     "node-tdd": "2.11.4",
-    "smart-fs": "1.11.13"
+    "smart-fs": "1.11.14"
   },
   "licenses": [
     {
@@ -73,7 +73,7 @@
     "eslint-plugin-json": "2.1.1",
     "eslint-plugin-markdown": "1.0.2",
     "eslint-plugin-mocha": "7.0.1",
-    "js-gardener": "2.0.161",
+    "js-gardener": "2.0.162",
     "minimist": "1.2.5",
     "mocha": "8.0.1",
     "nock": "12.0.3",
