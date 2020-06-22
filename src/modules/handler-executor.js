@@ -25,7 +25,7 @@ module.exports = (options) => {
           return (options.lambdaTimeout || 300000) - (curTime - startTime);
         }
       }, (...args) => resolve(args)));
-      requestRecorder.release();
+      await requestRecorder.release();
       return { ...requestRecorder.get(), err, response };
     }
   };
