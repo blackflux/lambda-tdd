@@ -910,9 +910,9 @@ atob@^2.1.2:
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
 aws-sdk@^2.4.0:
-  version "2.703.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.703.0.tgz#b22a65094c65109ce52c206e5f46e05247c8aaf4"
-  integrity sha512-iMJueMVDp2fqopgpjPfejyFaxaksYYdRJ7bxzWEYSxR1UoSf6V9zgcrgkF+SgoxiKJ2rxsbPxhoPu2MV//b9xA==
+  version "2.704.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.704.0.tgz#7b039a0a5ba8eaabb91c5f73d06d4330192c5f30"
+  integrity sha512-Cjkc86+9sKNn34iIiMa4MimHmr1xpNQZaPVHnnQCpBuh0p6VMDPloz3xc+4LEyoNuwIBzTRjZCVUePVyc31+gw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -4951,10 +4951,10 @@ node-sass-tilde-importer@^1.0.2:
   dependencies:
     find-parent-dir "^0.3.0"
 
-node-tdd@2.13.0:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-2.13.0.tgz#dba85497a83c9a960fc3f35e60a6ba783207f86b"
-  integrity sha512-viIQU1wdsa00pX8DAWShpBFDm/KDMKT9nfIJzkmJ+dCllkn7fDHOMRpYxMBYl2NGs5+pazcUBT2ppWwts9ftnA==
+node-tdd@2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-2.14.0.tgz#bb70b4b083426bc7e39dbcc8a51bb54d3c1421e0"
+  integrity sha512-3J7HJRTJ+usXTIhdLo6ykuB8JkwH6YpkzoX3a8Qa4EB3nYFEmtkC9myv+0NQu0GAi7PaeTUGaJVKOgKDgpUJ5A==
   dependencies:
     callsites "3.1.0"
     joi-strict "1.2.2"
