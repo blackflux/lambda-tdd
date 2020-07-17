@@ -1,6 +1,7 @@
 /* eslint-disable mocha/no-setup-in-describe */
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
 const get = require('lodash.get');
 const yaml = require('js-yaml');
 const expect = require('chai').expect;
@@ -17,7 +18,6 @@ const {
 const ExpectService = require('./modules/expect-service');
 const HandlerExecutor = require('./modules/handler-executor');
 const ensureString = require('./util/ensure-string');
-const rewriteObject = require('./util/rewrite-object');
 const dynamicApply = require('./util/dynamic-apply');
 
 module.exports = (options) => {
@@ -50,7 +50,11 @@ module.exports = (options) => {
   const envVarYmlRecording = get(options, 'envVarYmlRecording', path.join(cwd, 'env.recording.yml'));
   const testFolder = get(options, 'testFolder', cwd);
   const flush = get(options, 'flush', ['aws-sdk']);
-  const modifiers = get(options, 'modifiers', {});
+  const modifiers = get(options, 'modifiers', {
+    toBase64: (input) => input.toString('base64'),
+    toGzip: (input) => zlib.gzipSync(input, { level: 9 }),
+    jsonStringify: (input) => JSON.stringify(input)
+  });
   const stripHeaders = get(options, 'stripHeaders', false);
 
   if (fs.existsSync(cassetteFolder)) {
@@ -151,11 +155,12 @@ module.exports = (options) => {
                 verbose,
                 nockHeal,
                 handlerFunction: test.handler,
-                event: rewriteObject(test.event, modifiers),
+                event: test.event,
                 context: test.context || {},
                 cassetteFile,
                 lambdaTimeout: test.lambdaTimeout,
-                stripHeaders: get(test, 'stripHeaders', stripHeaders)
+                stripHeaders: get(test, 'stripHeaders', stripHeaders),
+                modifiers
               }).execute();
               const logs = {
                 logs: logRecorder.levels()

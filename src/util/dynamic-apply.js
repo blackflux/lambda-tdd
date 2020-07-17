@@ -1,5 +1,4 @@
 const assert = require('assert');
-const zlib = require('zlib');
 const get = require('lodash.get');
 
 const apply = (path, target, modifiers) => {
@@ -13,8 +12,4 @@ const apply = (path, target, modifiers) => {
     .reduce((prev, cur) => prev[cur], modifiers[pathSplit[0]] || global[pathSplit[0]] || require(pathSplit[0]))(target);
 };
 
-module.exports = (path, target, modifiers) => apply(path, target, {
-  toBase64: (input) => input.toString('base64'),
-  toGzip: (input) => zlib.gzipSync(input, { level: 9 }),
-  ...modifiers
-});
+module.exports = (path, target, modifiers) => apply(path, target, modifiers);

@@ -1,5 +1,6 @@
 const wrapper = require('lambda-wrapper');
 const { RequestRecorder } = require('node-tdd');
+const rewriteObject = require('../util/rewrite-object');
 
 module.exports = (options) => {
   // eslint-disable-next-line global-require, import/no-dynamic-require
@@ -7,17 +8,20 @@ module.exports = (options) => {
 
   return {
     execute: async () => {
+      const modifiers = options.modifiers;
       const requestRecorder = RequestRecorder({
         cassetteFolder: options.cassetteFolder,
         stripHeaders: options.stripHeaders || false,
         strict: false,
-        heal: options.nockHeal
+        heal: options.nockHeal,
+        modifiers
       });
       await requestRecorder.inject(options.cassetteFile);
 
       const startTimestamp = process.hrtime();
       const startTime = (startTimestamp[0] * 1000) + (startTimestamp[1] / 1000000);
-      const [err, response] = await new Promise((resolve) => runner.run(options.event, {
+      const event = rewriteObject(options.event, modifiers);
+      const [err, response] = await new Promise((resolve) => runner.run(event, {
         ...options.context,
         getRemainingTimeInMillis: () => {
           const curTimeStamp = process.hrtime();

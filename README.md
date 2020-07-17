@@ -184,9 +184,9 @@ Remove rawHeaders from recordings automatically when recording.
 Type: `object`<br>
 Default: `{}`
 
-Allows definition of custom test file modifiers for `expect` and `event` (pipe operator).
+Allows definition of custom test file modifiers for `expect` and `event` and for cassette recordings (pipe operator).
 
-Default custom modifiers are: `toBase64`, `toGzip`
+Default custom modifiers are: `toBase64`, `toGzip` and `jsonStringify`
 
 ## Test File Format
 
