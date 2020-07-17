@@ -60,7 +60,22 @@
     "path": "/csv",
     "body": "",
     "status": 200,
-    "response": "success,Canada,CA,BC,\"British Columbia\",Kelowna,V1Y,49.8956,-119.4897,America/Vancouver,\"TELUS Communications Inc.\",TELUS-HSIA-KLWNBC02,\"AS852 TELUS Communications Inc.\",50.92.81.105",
+    "response|join": [
+      "success",
+      "Canada",
+      "CA",
+      "BC",
+      "\"British Columbia\"",
+      "Kelowna",
+      "V1Y",
+      "49.8956",
+      "-119.4897",
+      "America/Vancouver",
+      "\"TELUS Communications Inc.\"",
+      "TELUS-HSIA-KLWNBC02",
+      "\"AS852 TELUS Communications Inc.\"",
+      "50.92.81.105"
+    ],
     "rawHeaders": [
       "Access-Control-Allow-Origin",
       "*",
