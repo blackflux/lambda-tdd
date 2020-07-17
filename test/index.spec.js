@@ -1,4 +1,5 @@
 const path = require('path');
+const zlib = require('zlib');
 const expect = require('chai').expect;
 const minimist = require('minimist');
 const request = require('request');
@@ -13,7 +14,11 @@ const lambdaTesterParams = {
   testFolder: path.join(__dirname, 'mock', 'handler', 'api'),
   cassetteFolder: path.join(__dirname, 'mock', 'handler', '__cassettes', 'api'),
   modifiers: {
-    wrap: (input) => `{${input}}`
+    join: (input) => input.join(','),
+    wrap: (input) => `{${input}}`,
+    toBase64: (input) => input.toString('base64'),
+    toGzip: (input) => zlib.gzipSync(input, { level: 9 }),
+    jsonStringify: (input) => JSON.stringify(input)
   }
 };
 const lambdaTester = LambdaTester(lambdaTesterParams);
@@ -51,6 +56,14 @@ describe('Testing Tester', () => {
   it('Testing enabled=false', () => {
     const testFiles = LambdaTester({ ...lambdaTesterParams, enabled: false }).execute();
     expect(testFiles).to.deep.equal([]);
+  });
+
+  it('Testing with default modifiers', () => {
+    const params = { ...lambdaTesterParams };
+    delete params.modifiers;
+    const testFiles = LambdaTester(params)
+      .execute(['custom_modifiers.spec.json']);
+    expect(testFiles).to.deep.equal(['custom_modifiers.spec.json']);
   });
 
   describe('Testing env.recording.yml', () => {
