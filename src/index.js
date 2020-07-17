@@ -159,8 +159,8 @@ module.exports = (options) => {
                 context: test.context || {},
                 cassetteFile,
                 lambdaTimeout: test.lambdaTimeout,
-                stripHeaders: get(test, 'stripHeaders', stripHeaders),
-                modifiers
+                modifiers,
+                stripHeaders: get(test, 'stripHeaders', stripHeaders)
               }).execute();
               const logs = {
                 logs: logRecorder.levels()
