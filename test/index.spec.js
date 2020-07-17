@@ -14,6 +14,7 @@ const lambdaTesterParams = {
   testFolder: path.join(__dirname, 'mock', 'handler', 'api'),
   cassetteFolder: path.join(__dirname, 'mock', 'handler', '__cassettes', 'api'),
   modifiers: {
+    join: (input) => input.join(','),
     wrap: (input) => `{${input}}`,
     toBase64: (input) => input.toString('base64'),
     toGzip: (input) => zlib.gzipSync(input, { level: 9 }),
