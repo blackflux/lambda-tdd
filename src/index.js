@@ -20,6 +20,7 @@ const HandlerExecutor = require('./modules/handler-executor');
 const ensureString = require('./util/ensure-string');
 const dynamicApply = require('./util/dynamic-apply');
 
+// eslint-disable-next-line mocha/no-exports
 module.exports = (options) => {
   Joi.assert(options, Joi.object().keys({
     cwd: Joi.string().optional(),
