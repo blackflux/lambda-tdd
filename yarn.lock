@@ -4924,10 +4924,10 @@ node-sass-tilde-importer@^1.0.2:
   dependencies:
     find-parent-dir "^0.3.0"
 
-node-tdd@2.17.0:
-  version "2.17.0"
-  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-2.17.0.tgz#ee9c4b455efdb597be3840750774ceb5b5247236"
-  integrity sha512-eBRhEH0DV/yytPZgIRf5N86OLbUXRfEtdDV2vNCdU6KE0W5ZoSKNqQ9gtuaInFHH3faC/wWN8y4gG6Vgwhpemg==
+node-tdd@2.18.0:
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-2.18.0.tgz#2d4d106ac212c2050c9e22841738b5fa53f3c6b9"
+  integrity sha512-SaMGkqgeUWp9iCGF/rjLT6vrfKzbUCPzzYe/B6v/OzmhEPX7yIQqIsMlM8+Fut8KBvf2nS8Yzj/ShgwJucwfuw==
   dependencies:
     callsites "3.1.0"
     joi-strict "1.2.3"
@@ -4936,10 +4936,10 @@ node-tdd@2.17.0:
     minimist "1.2.5"
     nock "13.0.2"
     object-scan "13.1.2"
-    smart-fs "1.11.15"
+    smart-fs "1.11.16"
     timekeeper "2.2.0"
     tmp "0.2.1"
-    uuid "8.2.0"
+    uuid "8.3.0"
     xml2js "0.4.23"
 
 nopt@^4.0.1, nopt@^4.0.3:
@@ -7718,11 +7718,6 @@ uuid@3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
-
-uuid@8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.2.0.tgz#cb10dd6b118e2dada7d0cd9730ba7417c93d920e"
-  integrity sha512-CYpGiFTUrmI6OBMkAdjSDM0k5h8SkkiTP4WAjQgDgNB1S3Ou9VBEvr6q0Kv2H1mMk7IWfxYGpMH5sd5AvcIV2Q==
 
 uuid@8.3.0:
   version "8.3.0"
