@@ -239,10 +239,10 @@
   dependencies:
     smart-fs "1.11.15"
 
-"@blackflux/robo-config-plugin@3.9.3":
-  version "3.9.3"
-  resolved "https://registry.yarnpkg.com/@blackflux/robo-config-plugin/-/robo-config-plugin-3.9.3.tgz#1323eddb60b45f1bacee4298ad2ea37bbd29c15d"
-  integrity sha512-8XMeAqmiTUm0JIvcNA22z8SOJYGf01E2o914+DEk2ukjjbwgU67kcXWTT7a7xboMRdh2YhaWAT2Cf+baF7Th4Q==
+"@blackflux/robo-config-plugin@3.9.4":
+  version "3.9.4"
+  resolved "https://registry.yarnpkg.com/@blackflux/robo-config-plugin/-/robo-config-plugin-3.9.4.tgz#6bb9582b4e92433777f9b2ebbf4c8f9e31cfae81"
+  integrity sha512-lNvTB8oa22CJX8CjxBvE0sbW+/Dnj2yd7iQIL9gKWIjWltt56BsO+lqbyJ0g3hwzixQUrzWqMFKi8rOZK3oVCQ==
 
 "@hapi/address@^4.0.1":
   version "4.1.0"
@@ -899,9 +899,9 @@ atob@^2.1.2:
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
 aws-sdk@^2.4.0:
-  version "2.730.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.730.0.tgz#5b2775bb0c3cd7764031a17a9bcac3f1aafc385e"
-  integrity sha512-hYHplsbgUDP0XuaVJaHx2L/nC0E1i+4dGlkAQpkJz3qQ4NDfLnrbUFsA2g3AyWAsrnjrBNCkexPvwnV82Qng1g==
+  version "2.731.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.731.0.tgz#a2564d882b943c2080d5100f5021088750cfb5f5"
+  integrity sha512-SUTzpr7gRUpgj0gK03B3YV2ziU1079sZ7jQV2AsmkaexZz50ANXC41Gv1qcLohzkTiPNM344qPZMTo5qeuK7LQ==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -4882,6 +4882,16 @@ nock@13.0.3:
     lodash.set "^4.3.2"
     propagate "^2.0.0"
 
+nock@13.0.4:
+  version "13.0.4"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-13.0.4.tgz#9fb74db35d0aa056322e3c45be14b99105cd7510"
+  integrity sha512-alqTV8Qt7TUbc74x1pKRLSENzfjp4nywovcJgi/1aXDiUxXdt7TkruSTF5MDWPP7UoPVgea4F9ghVdmX0xxnSA==
+  dependencies:
+    debug "^4.1.0"
+    json-stringify-safe "^5.0.1"
+    lodash.set "^4.3.2"
+    propagate "^2.0.0"
+
 node-emoji@^1.0.3, node-emoji@^1.10.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/node-emoji/-/node-emoji-1.10.0.tgz#8886abd25d9c7bb61802a658523d1f8d2a89b2da"
@@ -4939,10 +4949,10 @@ node-sass-tilde-importer@^1.0.2:
   dependencies:
     find-parent-dir "^0.3.0"
 
-node-tdd@2.18.1:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-2.18.1.tgz#7b7016784393663e5145286fb09ba3157cd31457"
-  integrity sha512-44cLBbhRJBhRcwlqC3shdbu5oei3XpvIw3xrc/onZyRfq+Lmi5/YU8IzPODw6be6K38rUyo754hP19XCEVyrpw==
+node-tdd@2.18.2:
+  version "2.18.2"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-2.18.2.tgz#d89e03e084c80348610c862f94b24310bd383f56"
+  integrity sha512-iFIlYrRCjgl949dZ5Q1Qj8J+afoMu/FGZlhMMKqLFgYkFZrZB4pmOdxSXxrIxoqXcxcEyn2wpE2gtKJq6MYluw==
   dependencies:
     callsites "3.1.0"
     joi-strict "1.2.3"
