@@ -83,7 +83,7 @@
     "semantic-release": "17.1.2",
     "tmp": "0.2.1",
     "uuid": "8.3.0",
-    "babel-preset-latest-node": "4.1.0"
+    "babel-preset-latest-node": "5.0.0"
   },
   "engines": {
     "node": ">= 10"
