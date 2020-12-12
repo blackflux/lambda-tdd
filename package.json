@@ -49,7 +49,7 @@
     "js-yaml": "3.14.0",
     "lambda-wrapper": "0.3.0",
     "lodash.get": "4.4.2",
-    "node-tdd": "2.18.10",
+    "node-tdd": "2.18.12",
     "smart-fs": "1.11.21"
   },
   "licenses": [
