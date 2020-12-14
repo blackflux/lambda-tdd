@@ -4013,10 +4013,18 @@ js-tokens@^4.0.0:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
-js-yaml@3.14.0, js-yaml@^3.13.0, js-yaml@^3.13.1, js-yaml@^3.4.2:
+js-yaml@3.14.0:
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.14.0.tgz#a7a34170f26a21bb162424d8adacb4113a69e482"
   integrity sha512-/4IbIeHcD9VMHFqDR/gQ7EdZdLimOvW2DdcxFjdyyZ9NsbS+ccrXqVWDtab/lRl5AlUqmpBx8EhPaWR+OtY17A==
+  dependencies:
+    argparse "^1.0.7"
+    esprima "^4.0.0"
+
+js-yaml@3.14.1, js-yaml@^3.13.0, js-yaml@^3.13.1, js-yaml@^3.4.2:
+  version "3.14.1"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.14.1.tgz#dae812fdb3825fa306609a8717383c50c36a0537"
+  integrity sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
@@ -5394,6 +5402,11 @@ object-align@1.0.14:
   version "1.0.14"
   resolved "https://registry.yarnpkg.com/object-align/-/object-align-1.0.14.tgz#e040ee0e017e9d575f56edbb33b36b94303c2cf1"
   integrity sha512-RtMw2ieTSZIqLJu2CKr0ZDATPVkB8UmLrjQ/9v3UnzYMeJeKfFphLtZKtNFhzTjv/btljjLGgbVMWN5s4EWHEQ==
+
+object-align@1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/object-align/-/object-align-1.0.15.tgz#0c0a376d7f33d7c8ac028640c5d5936d7ec54a0d"
+  integrity sha512-UJruG3kzh6Oi0KAU6FVF0y6I4deAKoG1eaS4xCCYOwul3gX7XR2IcLzAWL91n45CiehUXPN/Ws/fPLTmyocE4g==
 
 object-assign@^4.0.1, object-assign@^4.1.0:
   version "4.1.1"
@@ -6883,6 +6896,20 @@ smart-fs@1.11.21:
     xml-js "1.6.11"
     yaml-boost "1.9.25"
 
+smart-fs@1.12.3:
+  version "1.12.3"
+  resolved "https://registry.yarnpkg.com/smart-fs/-/smart-fs-1.12.3.tgz#a6aa4fa057a5e8e406b504d8bf2269129e44a46e"
+  integrity sha512-UrO3p1GPp444Pool0ydhJ2yTJ/wNqMgtxC6IsV9pblZBDUCHpHF9Lirlgo3pC9oQ9cF/37oqCxkjXvLnhCgwXA==
+  dependencies:
+    fs-extra "9.0.1"
+    js-yaml "3.14.1"
+    json-stringify-pretty-compact "2.0.0"
+    lodash.clonedeep "4.5.0"
+    lodash.isequal "4.5.0"
+    object-align "1.0.15"
+    xml-js "1.6.11"
+    yaml-boost "1.10.2"
+
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"
@@ -8150,6 +8177,16 @@ yallist@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-4.0.0.tgz#9bb92790d9c0effec63be73519e11a35019a3a72"
   integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
+
+yaml-boost@1.10.2:
+  version "1.10.2"
+  resolved "https://registry.yarnpkg.com/yaml-boost/-/yaml-boost-1.10.2.tgz#1808790ce6b2f9de5faedcb2a76f5783e934dcad"
+  integrity sha512-7WVZLELKtv2yc1LK683b+Tw7U9O6B9oNzmXnK0+yQ3DnTpwfe3cTQXduqRvipvrS7qsllFCZYt20Y5Mp5X0s9w==
+  dependencies:
+    js-yaml "3.14.0"
+    lodash.get "4.4.2"
+    lodash.mergewith "4.6.2"
+    lodash.set "4.3.2"
 
 yaml-boost@1.9.25:
   version "1.9.25"
