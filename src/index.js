@@ -85,12 +85,12 @@ module.exports = (options) => {
       AWS_REGION: 'us-east-1',
       AWS_ACCESS_KEY_ID: 'XXXXXXXXXXXXXXXXXXXX',
       AWS_SECRET_ACCESS_KEY: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-      ...yaml.safeLoad(fs.readFileSync(envVarYml, 'utf8'))
+      ...yaml.load(fs.readFileSync(envVarYml, 'utf8'))
     },
     allowOverwrite: false
   });
   const suiteEnvVarsWrapperRecording = fs.existsSync(envVarYmlRecording) ? EnvManager({
-    envVars: yaml.safeLoad(fs.readFileSync(envVarYmlRecording, 'utf8')),
+    envVars: yaml.load(fs.readFileSync(envVarYmlRecording, 'utf8')),
     allowOverwrite: true
   }) : null;
   const expectService = ExpectService();
