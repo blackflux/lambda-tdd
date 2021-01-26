@@ -50,7 +50,7 @@
     "lambda-wrapper": "0.3.0",
     "lodash.get": "4.4.2",
     "node-tdd": "2.19.1",
-    "smart-fs": "1.12.4"
+    "smart-fs": "1.12.5"
   },
   "licenses": [
     {
