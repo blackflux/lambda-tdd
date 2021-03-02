@@ -77,7 +77,7 @@
     "js-gardener": "2.0.185",
     "minimist": "1.2.5",
     "mocha": "8.3.0",
-    "nock": "13.0.9",
+    "nock": "13.0.10",
     "nyc": "15.1.0",
     "request": "2.88.2",
     "request-promise": "4.2.6",
