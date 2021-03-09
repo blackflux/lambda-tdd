@@ -45,7 +45,7 @@
   "dependencies": {
     "app-root-path": "3.0.0",
     "glob": "7.1.6",
-    "joi-strict": "1.2.9",
+    "joi-strict": "1.2.10",
     "js-yaml": "4.0.0",
     "lambda-wrapper": "0.3.0",
     "lodash.get": "4.4.2",
