@@ -129,5 +129,20 @@ describe('Testing Tester', () => {
       sfs.smartWrite(path.join(tmpDir.name, 'handler', 'test.js'), []);
       expect(() => LambdaTester(testerArgs).execute()).to.throw(`Unexpected File: ${tmpDir.name}/handler/test.js`);
     });
+
+    it('Testing testHeal', async () => {
+      const testFile = path.join(tmpDir.name, 'handler', 'api', 'test.spec.json');
+      sfs.smartWrite(testFile, {
+        handler: 'type',
+        success: true,
+        expect: {
+          'to.deep.equal()': 'different value'
+        }
+      });
+      expect(await LambdaTester({
+        ...testerArgs,
+        testHeal: true
+      }).execute()).to.deep.equal(['api/test.spec.json']);
+    });
   });
 });

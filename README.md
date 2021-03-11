@@ -123,6 +123,13 @@ Default: `false`
 
 Set cassette healing flag for underlying [node-tdd](https://github.com/blackflux/node-tdd)
 
+### testHeal
+
+Type `boolean`<br>
+Default: `false`
+
+Automatically heals test when possible.
+
 ### handlerFile
 
 Type: `string`<br>

@@ -28,6 +28,7 @@ module.exports = (options) => {
     verbose: Joi.boolean().optional(),
     timeout: Joi.number().min(0).integer().optional(),
     nockHeal: Joi.alternatives(Joi.boolean(), Joi.string()).optional(),
+    testHeal: Joi.boolean().optional(),
     enabled: Joi.boolean().optional(),
     handlerFile: Joi.string().optional(),
     cassetteFolder: Joi.string().optional(),
@@ -44,6 +45,7 @@ module.exports = (options) => {
   const verbose = get(options, 'verbose', false);
   const timeout = get(options, 'timeout');
   const nockHeal = get(options, 'nockHeal', false);
+  const testHeal = get(options, 'testHeal', false);
   const enabled = get(options, 'enabled', true);
   const handlerFile = get(options, 'handlerFile', path.join(cwd, 'handler.js'));
   const cassetteFolder = get(options, 'cassetteFolder', path.join(cwd, '__cassettes'));
@@ -203,7 +205,7 @@ module.exports = (options) => {
                 .keys(test)
                 .filter((k) => k.match(/^(?:expect|logs|errorLogs|defaultLogs)(?:\(.*?\)$)?/))
                 .forEach((k) => {
-                  let target = null;
+                  let target;
                   if (k.startsWith('expect')) {
                     target = test.success ? output.response : output.err;
                   } else {
@@ -215,6 +217,10 @@ module.exports = (options) => {
                     if (apply.length > 1) {
                       target = apply.slice(1).reduce((p, c) => dynamicApply(c, p, modifiers), target);
                     }
+                  }
+                  if (testHeal !== false && 'to.deep.equal()' in test[k]) {
+                    test[k]['to.deep.equal()'] = target;
+                    sfs.smartWrite(path.join(testFolder, testFile), test);
                   }
                   expectService.evaluate(test[k], target);
                 });
