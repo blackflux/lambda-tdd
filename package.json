@@ -49,7 +49,7 @@
     "js-yaml": "4.0.0",
     "lambda-wrapper": "0.3.0",
     "lodash.get": "4.4.2",
-    "node-tdd": "3.0.3",
+    "node-tdd": "3.0.4",
     "smart-fs": "2.0.2"
   },
   "licenses": [
@@ -74,7 +74,7 @@
     "eslint-plugin-json": "2.1.2",
     "eslint-plugin-markdown": "2.0.0",
     "eslint-plugin-mocha": "8.1.0",
-    "js-gardener": "3.0.1",
+    "js-gardener": "3.0.2",
     "minimist": "1.2.5",
     "mocha": "8.3.2",
     "nock": "13.0.11",
