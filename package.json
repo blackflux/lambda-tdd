@@ -44,7 +44,7 @@
   "homepage": "https://github.com/blackflux/lambda-tdd#readme",
   "dependencies": {
     "app-root-path": "3.0.0",
-    "glob": "7.1.6",
+    "glob": "7.1.7",
     "joi-strict": "2.0.0",
     "js-yaml": "4.1.0",
     "lambda-wrapper": "0.3.0",
