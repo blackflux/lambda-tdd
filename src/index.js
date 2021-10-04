@@ -144,10 +144,33 @@ module.exports = (options) => {
             const nodeModulesDir = path.resolve(path.join(appRoot.path, 'node_modules')) + path.sep;
             const flushPaths = flush.map((e) => `${path.sep}node_modules${path.sep}${e}${path.sep}`);
             const nodeModulesPrefixLength = nodeModulesDir.length - 'node_modules'.length - 2;
+            const shouldFlushEntry = (key) => !key.startsWith(nodeModulesDir)
+              || flushPaths.some((f) => key.indexOf(f) >= nodeModulesPrefixLength);
             Object.keys(require.cache).forEach((key) => {
-              if (!key.startsWith(nodeModulesDir)
-                || flushPaths.some((f) => key.indexOf(f) >= nodeModulesPrefixLength)) {
+              const mod = require.cache[key];
+
+              // remove children that should be flushed
+              for (let i = mod.children.length - 1; i >= 0; i -= 1) {
+                const childMod = mod.children[i];
+                if (childMod && shouldFlushEntry(childMod.id)) {
+                  // cleanup exports
+                  childMod.exports = {};
+                  mod.children.splice(i, 1);
+                  for (let j = 0; j < childMod.children.length; j += 1) {
+                    delete childMod.children[j];
+                  }
+                }
+              }
+
+              if (shouldFlushEntry(key)) {
+                // delete entry
                 delete require.cache[key];
+                if (mod.parent) {
+                  const ix = mod.parent.children.indexOf(mod);
+                  if (ix >= 0) {
+                    mod.parent.children.splice(ix, 1);
+                  }
+                }
               }
             });
 
