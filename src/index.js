@@ -149,7 +149,7 @@ module.exports = (options) => {
             Object.keys(require.cache).forEach((key) => {
               const mod = require.cache[key];
 
-              // remove children that are extensions
+              // remove children that should be flushed
               for (let i = mod.children.length - 1; i >= 0; i -= 1) {
                 const childMod = mod.children[i];
                 if (childMod && shouldFlushEntry(childMod.id)) {
