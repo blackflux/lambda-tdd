@@ -145,9 +145,34 @@ module.exports = (options) => {
             const flushPaths = flush.map((e) => `${path.sep}node_modules${path.sep}${e}${path.sep}`);
             const nodeModulesPrefixLength = nodeModulesDir.length - 'node_modules'.length - 2;
             Object.keys(require.cache).forEach((key) => {
+              const mod = require.cache[key];
+
+              // remove children that are extensions
+              for (let i = mod.children.length - 1; i >= 0; i -= 1) {
+                const childMod = mod.children[i];
+                if (childMod && (
+                  !childMod.id.startsWith(nodeModulesDir)
+                  || flushPaths.some((f) => childMod.id.indexOf(f) >= nodeModulesPrefixLength)
+                )) {
+                  // cleanup exports
+                  childMod.exports = {};
+                  mod.children.splice(i, 1);
+                  for (let j = 0; j < childMod.children.length; j += 1) {
+                    delete childMod.children[j];
+                  }
+                }
+              }
+
               if (!key.startsWith(nodeModulesDir)
                 || flushPaths.some((f) => key.indexOf(f) >= nodeModulesPrefixLength)) {
+                // delete entry
                 delete require.cache[key];
+                if (mod.parent) {
+                  const ix = mod.parent.children.indexOf(mod);
+                  if (ix >= 0) {
+                    mod.parent.children.splice(ix, 1);
+                  }
+                }
               }
             });
 
