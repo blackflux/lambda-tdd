@@ -144,8 +144,8 @@ module.exports = (options) => {
             const nodeModulesDir = path.resolve(path.join(appRoot.path, 'node_modules')) + path.sep;
             const flushPaths = flush.map((e) => `${path.sep}node_modules${path.sep}${e}${path.sep}`);
             const nodeModulesPrefixLength = nodeModulesDir.length - 'node_modules'.length - 2;
-            const shouldFlushEntry = (value) => !value.startsWith(nodeModulesDir)
-              || flushPaths.some((f) => value.indexOf(f) >= nodeModulesPrefixLength);
+            const shouldFlushEntry = (key) => !key.startsWith(nodeModulesDir)
+              || flushPaths.some((f) => key.indexOf(f) >= nodeModulesPrefixLength);
             Object.keys(require.cache).forEach((key) => {
               const mod = require.cache[key];
 
