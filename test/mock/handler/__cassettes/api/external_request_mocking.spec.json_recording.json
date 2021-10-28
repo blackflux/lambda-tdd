@@ -1,37 +1,41 @@
 [
-    {
-        "scope": "http://ip-api.com:80",
-        "method": "GET",
-        "path": "/json",
-        "body": "",
-        "status": 200,
-        "response": {
-            "as": "AS46562 Total Server Solutions L.L.C.",
-            "city": "Seattle",
-            "country": "United States",
-            "countryCode": "US",
-            "isp": "LogicWeb Inc",
-            "lat": 47.6062,
-            "lon": -122.3321,
-            "org": "Total Server Solutions L.L.C.",
-            "query": "173.244.44.10",
-            "region": "WA",
-            "regionName": "Washington",
-            "status": "success",
-            "timezone": "America/Los_Angeles",
-            "zip": "98111"
-        },
-        "rawHeaders": [
-            "Access-Control-Allow-Origin",
-            "*",
-            "Content-Type",
-            "application/json; charset=utf-8",
-            "Date",
-            "Sun, 19 Nov 2017 02:02:30 GMT",
-            "Content-Length",
-            "327",
-            "Connection",
-            "close"
-        ]
+  {
+    "scope": "http://ip-api.com:80",
+    "method": "GET",
+    "path": "/json",
+    "body": "",
+    "status": 200,
+    "response": {
+      "as": "AS46562 Total Server Solutions L.L.C.",
+      "city": "Seattle",
+      "country": "United States",
+      "countryCode": "US",
+      "isp": "LogicWeb Inc",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "org": "Total Server Solutions L.L.C.",
+      "query": "173.244.44.10",
+      "region": "WA",
+      "regionName": "Washington",
+      "status": "success",
+      "timezone": "America/Los_Angeles",
+      "zip": "98111"
+    },
+    "rawHeaders": [
+      "Access-Control-Allow-Origin",
+      "*",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Date",
+      "Sun, 19 Nov 2017 02:02:30 GMT",
+      "Content-Length",
+      "327",
+      "Connection",
+      "close"
+    ],
+    "reqheaders": {
+      "host": "ip-api.com",
+      "accept": "application/json"
     }
+  }
 ]

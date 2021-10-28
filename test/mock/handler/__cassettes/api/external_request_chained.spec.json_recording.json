@@ -32,7 +32,11 @@
       "318",
       "Connection",
       "close"
-    ]
+    ],
+    "reqheaders": {
+      "host": "ip-api.com",
+      "accept": "application/json"
+    }
   },
   {
     "scope": "http://ip-api.com:80",
@@ -52,7 +56,11 @@
       "632",
       "Connection",
       "close"
-    ]
+    ],
+    "reqheaders": {
+      "host": "ip-api.com",
+      "accept": "application/json"
+    }
   },
   {
     "scope": "http://ip-api.com:80",
@@ -72,7 +80,11 @@
       "182",
       "Connection",
       "close"
-    ]
+    ],
+    "reqheaders": {
+      "host": "ip-api.com",
+      "accept": "application/json"
+    }
   },
   {
     "scope": "http://ip-api.com:80",
@@ -92,6 +104,10 @@
       "461",
       "Connection",
       "close"
-    ]
+    ],
+    "reqheaders": {
+      "host": "ip-api.com",
+      "accept": "application/json"
+    }
   }
 ]
