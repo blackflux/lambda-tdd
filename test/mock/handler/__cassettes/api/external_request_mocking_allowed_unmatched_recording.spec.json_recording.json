@@ -32,7 +32,11 @@
       "327",
       "Connection",
       "close"
-    ]
+    ],
+    "reqheaders": {
+      "host": "ip-api.com",
+      "accept": "application/json"
+    }
   },
   {
     "scope": "http://ip-api.com:80",
