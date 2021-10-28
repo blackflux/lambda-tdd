@@ -10,6 +10,8 @@ const LambdaTester = require('../src/index');
 const lambdaTesterParams = {
   verbose: minimist(process.argv.slice(2)).verbose === true,
   timeout: minimist(process.argv.slice(2)).timeout,
+  nockHeal: minimist(process.argv.slice(2))['nock-heal'],
+  testHeal: minimist(process.argv.slice(2))['test-heal'],
   cwd: path.join(__dirname, 'mock'),
   testFolder: path.join(__dirname, 'mock', 'handler', 'api'),
   cassetteFolder: path.join(__dirname, 'mock', 'handler', '__cassettes', 'api'),
