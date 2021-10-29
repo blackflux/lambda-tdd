@@ -13,4 +13,10 @@ describe('Testing ensureString', () => {
   it('Testing string', () => {
     expect(ensureString('some string')).to.equal('some string');
   });
+
+  it('Testing circular object', () => {
+    const obj = { a: 1 };
+    obj.b = obj;
+    expect(ensureString(obj)).to.equal('{"a":1,"b":"<circular*>"}');
+  });
 });
