@@ -44,12 +44,13 @@
   "homepage": "https://github.com/blackflux/lambda-tdd#readme",
   "dependencies": {
     "app-root-path": "3.0.0",
+    "chai-string": "1.5.0",
     "glob": "7.2.0",
     "joi-strict": "2.0.1",
     "js-yaml": "4.1.0",
     "lambda-wrapper": "0.3.0",
     "lodash.get": "4.4.2",
-    "node-tdd": "3.1.1",
+    "node-tdd": "3.1.2",
     "smart-fs": "2.0.3"
   },
   "licenses": [
