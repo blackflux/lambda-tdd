@@ -2,7 +2,8 @@
   "handler": "returnEvent",
   "success": true,
   "expect(body|JSON.parse|[field[0]])": {
-    "to.deep.equal()": "value1"
+    "to.deep.equal()": "value1",
+    "to.startWith()": "value"
   },
   "event": {
     "body|JSON.stringify": {
