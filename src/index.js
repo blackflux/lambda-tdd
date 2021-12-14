@@ -49,8 +49,8 @@ module.exports = (options) => {
   const enabled = get(options, 'enabled', true);
   const handlerFile = get(options, 'handlerFile', path.join(cwd, 'handler.js'));
   const cassetteFolder = get(options, 'cassetteFolder', path.join(cwd, '__cassettes'));
-  const envVarYml = get(options, 'envVarYml', path.join(cwd, 'env.yml'));
-  const envVarYmlRecording = get(options, 'envVarYmlRecording', path.join(cwd, 'env.recording.yml'));
+  const envVarYml = get(options, 'envVarYml', path.join(cwd, 'env-vars.yml'));
+  const envVarYmlRecording = get(options, 'envVarYmlRecording', path.join(cwd, 'env-vars.recording.yml'));
   const testFolder = get(options, 'testFolder', cwd);
   const flush = get(options, 'flush', ['aws-sdk']);
   const modifiers = get(options, 'modifiers', {
@@ -122,7 +122,7 @@ module.exports = (options) => {
             if (suiteEnvVarsWrapperRecording !== null && isNewRecording) {
               suiteEnvVarsWrapperRecording.apply();
             }
-            const testEnvVarsWrapper = EnvManager({ envVars: test.env || {}, allowOverwrite: true });
+            const testEnvVarsWrapper = EnvManager({ envVars: test.envVars || {}, allowOverwrite: true });
             testEnvVarsWrapper.apply();
             if (test.timestamp !== undefined) {
               timeKeeper = TimeKeeper({ timestamp: test.timestamp });
@@ -140,7 +140,7 @@ module.exports = (options) => {
             const logRecorder = LogRecorder({ verbose, logger: console });
             logRecorder.inject();
 
-            // re-init function code here to ensures env vars are accessible outside lambda handler
+            // re-init function code here to ensures envVars are accessible outside lambda handler
             const nodeModulesDir = path.resolve(path.join(appRoot.path, 'node_modules')) + path.sep;
             const flushPaths = flush.map((e) => `${path.sep}node_modules${path.sep}${e}${path.sep}`);
             const nodeModulesPrefixLength = nodeModulesDir.length - 'node_modules'.length - 2;
@@ -203,7 +203,7 @@ module.exports = (options) => {
                 'timeout',
                 'event',
                 'context',
-                'env',
+                'envVars',
                 'logs',
                 'error',
                 'nock',
