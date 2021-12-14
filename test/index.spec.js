@@ -68,7 +68,7 @@ describe('Testing Tester', () => {
     expect(testFiles).to.deep.equal(['custom_modifiers.spec.json']);
   });
 
-  describe('Testing env.recording.yml', () => {
+  describe('Testing env-vars.recording.yml', () => {
     let tmpDir;
     let testerArgs;
     before(() => {
@@ -77,7 +77,7 @@ describe('Testing Tester', () => {
     beforeEach(() => {
       tmpDir = tmp.dirSync({ unsafeCleanup: true });
       sfs.smartWrite(path.join(tmpDir.name, 'handler.js'), ['module.exports.type = async () => process.env.TYPE;']);
-      sfs.smartWrite(path.join(tmpDir.name, 'env.yml'), { TYPE: 'cassette' });
+      sfs.smartWrite(path.join(tmpDir.name, 'env-vars.yml'), { TYPE: 'cassette' });
       testerArgs = {
         verbose: minimist(process.argv.slice(2)).verbose === true,
         cwd: tmpDir.name,
@@ -86,7 +86,7 @@ describe('Testing Tester', () => {
       };
     });
 
-    it('Testing without env.recording.yml', () => {
+    it('Testing without env-vars.recording.yml', () => {
       sfs.smartWrite(path.join(tmpDir.name, 'handler', 'api', 'test.spec.json'), {
         handler: 'type',
         success: true,
@@ -97,8 +97,8 @@ describe('Testing Tester', () => {
       expect(LambdaTester(testerArgs).execute()).to.deep.equal(['api/test.spec.json']);
     });
 
-    it('Testing env.recording.yml without recording', () => {
-      sfs.smartWrite(path.join(tmpDir.name, 'env.recording.yml'), { TYPE: 'recording' });
+    it('Testing env-vars.recording.yml without recording', () => {
+      sfs.smartWrite(path.join(tmpDir.name, 'env-vars.recording.yml'), { TYPE: 'recording' });
       sfs.smartWrite(path.join(tmpDir.name, 'handler', 'api', 'test.spec.json'), {
         handler: 'type',
         success: true,
@@ -109,8 +109,8 @@ describe('Testing Tester', () => {
       expect(LambdaTester(testerArgs).execute()).to.deep.equal(['api/test.spec.json']);
     });
 
-    it('Testing env.recording.yml with recording', () => {
-      sfs.smartWrite(path.join(tmpDir.name, 'env.recording.yml'), { TYPE: 'recording' });
+    it('Testing env-vars.recording.yml with recording', () => {
+      sfs.smartWrite(path.join(tmpDir.name, 'env-vars.recording.yml'), { TYPE: 'recording' });
       sfs.smartWrite(path.join(tmpDir.name, 'handler', '__cassettes', 'api', 'test.spec.json_recording.json'), []);
       sfs.smartWrite(path.join(tmpDir.name, 'handler', 'api', 'test.spec.json'), {
         handler: 'type',

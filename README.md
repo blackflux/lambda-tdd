@@ -63,7 +63,7 @@ The example above allows for use of a `--filter=REGEX` parameter to only execute
 ```json
 {
   "handler": "geoIp",
-  "env": {
+  "envVars": {
     "GOOGLE_PROJECT_ID": "123456789"
   },
   "event": {
@@ -147,7 +147,7 @@ Folder containing nock recordings.
 ### envVarYml
 
 Type: `string`<br>
-Default: `env.yml`
+Default: `env-vars.yml`
 
 Specify yaml file containing environment variables. To allow overwriting of existing environment variables prefix with `^`. Otherwise an exception is thrown.
 
@@ -156,7 +156,7 @@ Environment variables set by default are `AWS_REGION`, `AWS_ACCESS_KEY_ID` and `
 ### envVarYmlRecording
 
 Type: `string`<br>
-Default: `env.recording.yml`
+Default: `env-vars.recording.yml`
 
 Similar to envVarYml. Environment variables declared get applied on top of envVarYml iff this is a new test recording.
 
@@ -208,7 +208,7 @@ module.exports.returnEvent = (event, context, cb) => cb(null, event);
 ```
 we would set this to `returnEvent`.
 
-### env
+### envVars
 
 Type `object`<br>
 Default: `{}`
