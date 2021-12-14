@@ -26,7 +26,8 @@ describe('Testing HandlerExecutor', { useTmpDir: true }, () => {
       stripHeaders: true,
       verbose: true,
       nockHeal: false,
-      modifiers: {}
+      modifiers: {},
+      reqHeaderOverwrite: {}
     })
       .execute();
     const data = fs.smartRead(path.join(tmpDir, 'recoding.json'));
@@ -42,7 +43,8 @@ describe('Testing HandlerExecutor', { useTmpDir: true }, () => {
       stripHeaders: false,
       verbose: true,
       nockHeal: false,
-      modifiers: {}
+      modifiers: {},
+      reqHeaderOverwrite: {}
     })
       .execute();
     const data = fs.smartRead(path.join(tmpDir, 'recoding.json'));
