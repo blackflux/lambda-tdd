@@ -37,6 +37,7 @@ module.exports = (options) => {
     testFolder: Joi.string().optional(),
     flush: Joi.array().items(Joi.string()).optional(),
     modifiers: Joi.object().optional(),
+    reqHeaderOverwrite: Joi.object().optional(),
     stripHeaders: Joi.boolean().optional()
   }));
 
@@ -58,6 +59,7 @@ module.exports = (options) => {
     toGzip: (input) => zlib.gzipSync(input, { level: 9 }),
     jsonStringify: (input) => JSON.stringify(input)
   });
+  const reqHeaderOverwrite = get(options, 'reqHeaderOverwrite', {});
   const stripHeaders = get(options, 'stripHeaders', false);
 
   if (fs.existsSync(cassetteFolder)) {
@@ -186,7 +188,8 @@ module.exports = (options) => {
                 cassetteFile,
                 lambdaTimeout: test.lambdaTimeout,
                 modifiers,
-                stripHeaders: get(test, 'stripHeaders', stripHeaders)
+                stripHeaders: get(test, 'stripHeaders', stripHeaders),
+                reqHeaderOverwrite
               }).execute();
               const logs = {
                 logs: logRecorder.levels()

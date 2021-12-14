@@ -195,6 +195,12 @@ Allows definition of custom test file modifiers for `expect` and `event` and for
 
 Default custom modifiers are: `toBase64`, `toGzip` and `jsonStringify`
 
+### reqHeaderOverwrite
+Type: `object`<br>
+Default: `{}`
+
+Used to define overwrite values for cassette `reqheaders`.
+
 ## Test File Format
 
 ### handler
