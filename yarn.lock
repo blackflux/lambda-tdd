@@ -4777,10 +4777,10 @@ node-sass-tilde-importer@^1.0.2:
   dependencies:
     find-parent-dir "^0.3.0"
 
-node-tdd@3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-3.2.0.tgz#cd9942a7b2610cdf7dd944daa9a8d65454893ab2"
-  integrity sha512-K2TidaSfno08wagK+mF1T/TDDu/m1yISE/Y5el+4ecycPhcti1MpR6kqZsK1MJLvxyKcqY5COl14bF8fo08SeA==
+node-tdd@3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-3.3.0.tgz#1dc12ec47e5f6b948374faa66a0431e035f4700d"
+  integrity sha512-LRVdinf628f5gcxfjRZwjBXtQ4Qy6yt+tb1sqM4PEMI5k0wR6+FhRocyq1ekgBdYhZDtmzfFjOjGYQTV5jhRJw==
   dependencies:
     callsites "3.1.0"
     compare-urls "2.0.0"
