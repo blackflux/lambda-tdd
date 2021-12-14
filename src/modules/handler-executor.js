@@ -13,7 +13,8 @@ module.exports = (options) => {
         stripHeaders: options.stripHeaders || false,
         strict: false,
         heal: options.nockHeal,
-        modifiers: options.modifiers
+        modifiers: options.modifiers,
+        reqHeaderOverwrite: options.reqHeaderOverwrite
       });
       await requestRecorder.inject(options.cassetteFile);
 
