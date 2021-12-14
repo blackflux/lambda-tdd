@@ -188,8 +188,8 @@ module.exports = (options) => {
                 cassetteFile,
                 lambdaTimeout: test.lambdaTimeout,
                 modifiers,
-                stripHeaders: get(test, 'stripHeaders', stripHeaders),
-                reqHeaderOverwrite
+                reqHeaderOverwrite,
+                stripHeaders: get(test, 'stripHeaders', stripHeaders)
               }).execute();
               const logs = {
                 logs: logRecorder.levels()
