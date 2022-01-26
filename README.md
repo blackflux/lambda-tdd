@@ -36,12 +36,14 @@ To install run
     $ npm install --save-dev lambda-tdd
 
 ### Initialize Test Runner and Execute
-<!-- eslint-disable import/no-extraneous-dependencies, import/no-unresolved, mocha/no-setup-in-describe -->
+<!-- eslint-disable import/no-extraneous-dependencies, import/no-unresolved, mocha/no-setup-in-describe, import/extensions -->
 ```js
 const minimist = require('minimist');
 const LambdaTdd = require('lambda-tdd');
+const handler = require('./handler');
 
 LambdaTdd({
+  handler,
   cwd: __dirname,
   verbose: minimist(process.argv.slice(2)).verbose === true,
   timeout: minimist(process.argv.slice(2)).timeout,
@@ -88,6 +90,13 @@ More examples can be found [here](https://github.com/blackflux/lambda-tdd/tree/m
 
 ## Test Runner Options
 
+### handler
+
+Type: `object`<br>
+Default: *required*
+
+Object with handler functions (import handler file)
+
 ### cwd
 
 Type: `string`<br>
@@ -129,13 +138,6 @@ Type `boolean`<br>
 Default: `false`
 
 Automatically heals test when possible.
-
-### handlerFile
-
-Type: `string`<br>
-Default: `handler.js`
-
-Handler file containing the handler functions (specified in test).
 
 ### cassetteFolder
 
