@@ -6,20 +6,22 @@ const HandlerExecutor = require('../../src/modules/handler-executor');
 
 describe('Testing HandlerExecutor', { useTmpDir: true }, () => {
   let tmpDir;
-  let handlerFile;
+  let handler;
   beforeEach(({ dir }) => {
     tmpDir = dir;
-    handlerFile = path.join(tmpDir, 'handler.js');
+    const handlerFile = path.join(tmpDir, 'handler.js');
     fs.smartWrite(handlerFile, [
       "const https = require('https');",
       'module.exports.call = (event, context, cb) => https',
       "  .get('https://google.com', (r) => { r.on('data', () => {}); r.on('end', cb); });"
     ]);
+    // eslint-disable-next-line import/no-dynamic-require,global-require
+    handler = require(handlerFile);
   });
 
   it('Testing header stripped', async () => {
     await HandlerExecutor({
-      handlerFile: handlerFile.slice(0, -3),
+      handler,
       handlerFunction: 'call',
       cassetteFolder: tmpDir,
       cassetteFile: 'recoding.json',
@@ -36,7 +38,7 @@ describe('Testing HandlerExecutor', { useTmpDir: true }, () => {
 
   it('Testing header not stripped', async () => {
     await HandlerExecutor({
-      handlerFile: handlerFile.slice(0, -3),
+      handler,
       handlerFunction: 'call',
       cassetteFolder: tmpDir,
       cassetteFile: 'recoding.json',
