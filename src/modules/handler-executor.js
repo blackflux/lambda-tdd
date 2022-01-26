@@ -1,11 +1,10 @@
-const assert = require('assert');
 const wrapper = require('lambda-wrapper');
 const { RequestRecorder } = require('node-tdd');
 const rewriteObject = require('../util/rewrite-object');
 
 module.exports = (options) => {
-  assert(options.handlerFunction in options.handler);
-  const runner = wrapper.wrap({ handler: options.handler[options.handlerFunction] });
+  // eslint-disable-next-line global-require, import/no-dynamic-require
+  const runner = wrapper.wrap({ handler: require(options.handlerFile)[options.handlerFunction] });
 
   return {
     execute: async () => {

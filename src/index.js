@@ -23,7 +23,6 @@ const dynamicApply = require('./util/dynamic-apply');
 // eslint-disable-next-line mocha/no-exports
 module.exports = (options) => {
   Joi.assert(options, Joi.object().keys({
-    handler: Joi.object(),
     cwd: Joi.string().optional(),
     name: Joi.string().optional(),
     verbose: Joi.boolean().optional(),
@@ -31,6 +30,7 @@ module.exports = (options) => {
     nockHeal: Joi.alternatives(Joi.boolean(), Joi.string()).optional(),
     testHeal: Joi.boolean().optional(),
     enabled: Joi.boolean().optional(),
+    handlerFile: Joi.string().optional(),
     cassetteFolder: Joi.string().optional(),
     envVarYml: Joi.string().optional(),
     envVarYmlRecording: Joi.string().optional(),
@@ -41,7 +41,6 @@ module.exports = (options) => {
     stripHeaders: Joi.boolean().optional()
   }));
 
-  const handler = get(options, 'handler');
   const cwd = get(options, 'cwd', process.cwd());
   const name = get(options, 'name', 'lambda-test');
   const verbose = get(options, 'verbose', false);
@@ -49,6 +48,7 @@ module.exports = (options) => {
   const nockHeal = get(options, 'nockHeal', false);
   const testHeal = get(options, 'testHeal', false);
   const enabled = get(options, 'enabled', true);
+  const handlerFile = get(options, 'handlerFile', path.join(cwd, 'handler.js'));
   const cassetteFolder = get(options, 'cassetteFolder', path.join(cwd, '__cassettes'));
   const envVarYml = get(options, 'envVarYml', path.join(cwd, 'env-vars.yml'));
   const envVarYmlRecording = get(options, 'envVarYmlRecording', path.join(cwd, 'env-vars.recording.yml'));
@@ -169,8 +169,6 @@ module.exports = (options) => {
                 delete require.cache[key];
                 if (mod.parent) {
                   const ix = mod.parent.children.indexOf(mod);
-                  // eslint-disable-next-line @blackflux/rules/istanbul-prevent-ignore
-                  /* istanbul ignore if */
                   if (ix >= 0) {
                     mod.parent.children.splice(ix, 1);
                   }
@@ -180,7 +178,7 @@ module.exports = (options) => {
 
             try {
               const output = await HandlerExecutor({
-                handler,
+                handlerFile,
                 cassetteFolder,
                 verbose,
                 nockHeal,
