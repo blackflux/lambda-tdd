@@ -177,6 +177,7 @@ module.exports = (options) => {
                 }
               }
             });
+            process.env.TEST_SEED = Math.random();
 
             try {
               const output = await HandlerExecutor({
