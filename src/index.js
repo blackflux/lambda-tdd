@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
+const crypto = require('crypto');
 const get = require('lodash.get');
 const yaml = require('js-yaml');
 const expect = require('chai').expect;
@@ -177,7 +178,7 @@ module.exports = (options) => {
                 }
               }
             });
-            process.env.TEST_SEED = Math.random();
+            process.env.TEST_SEED = crypto.randomBytes(48).toString('hex');
 
             try {
               const output = await HandlerExecutor({
