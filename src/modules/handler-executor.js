@@ -3,7 +3,7 @@ const { RequestRecorder } = require('node-tdd');
 const rewriteObject = require('../util/rewrite-object');
 
 module.exports = async (options) => {
-  const handlers = await import(options.handlerFile);
+  const handlers = (await import(options.handlerFile)).default;
   const runner = wrapper.wrap({ handler: handlers[options.handlerFunction] });
   const requestRecorder = RequestRecorder({
     cassetteFolder: options.cassetteFolder,
