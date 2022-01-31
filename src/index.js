@@ -169,6 +169,8 @@ module.exports = (options) => {
                 delete require.cache[key];
                 if (mod.parent) {
                   const ix = mod.parent.children.indexOf(mod);
+                  // eslint-disable-next-line @blackflux/rules/istanbul-prevent-ignore
+                  /* istanbul ignore if */
                   if (ix >= 0) {
                     mod.parent.children.splice(ix, 1);
                   }
@@ -190,7 +192,7 @@ module.exports = (options) => {
                 modifiers,
                 reqHeaderOverwrite,
                 stripHeaders: get(test, 'stripHeaders', stripHeaders)
-              }).execute();
+              });
               const logs = {
                 logs: logRecorder.levels()
                   .reduce((p, level) => Object.assign(p, { [level]: logRecorder.get(level) }), logRecorder.get())

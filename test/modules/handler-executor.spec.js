@@ -19,7 +19,7 @@ describe('Testing HandlerExecutor', { useTmpDir: true }, () => {
 
   it('Testing header stripped', async () => {
     await HandlerExecutor({
-      handlerFile: handlerFile.slice(0, -3),
+      handlerFile,
       handlerFunction: 'call',
       cassetteFolder: tmpDir,
       cassetteFile: 'recoding.json',
@@ -28,15 +28,14 @@ describe('Testing HandlerExecutor', { useTmpDir: true }, () => {
       nockHeal: false,
       modifiers: {},
       reqHeaderOverwrite: {}
-    })
-      .execute();
+    });
     const data = fs.smartRead(path.join(tmpDir, 'recoding.json'));
     expect(data[0].rawHeaders).to.equal(undefined);
   });
 
   it('Testing header not stripped', async () => {
     await HandlerExecutor({
-      handlerFile: handlerFile.slice(0, -3),
+      handlerFile,
       handlerFunction: 'call',
       cassetteFolder: tmpDir,
       cassetteFile: 'recoding.json',
@@ -45,8 +44,7 @@ describe('Testing HandlerExecutor', { useTmpDir: true }, () => {
       nockHeal: false,
       modifiers: {},
       reqHeaderOverwrite: {}
-    })
-      .execute();
+    });
     const data = fs.smartRead(path.join(tmpDir, 'recoding.json'));
     expect(data[0].rawHeaders).to.not.equal(undefined);
   });
