@@ -2,14 +2,12 @@ const path = require('path');
 const zlib = require('zlib');
 const expect = require('chai').expect;
 const minimist = require('minimist');
-const request = require('request-promise');
+const request = require('request');
 const sfs = require('smart-fs');
 const tmp = require('tmp');
 const LambdaTester = require('../src/index');
-const handler = require('./mock/handler');
 
 const lambdaTesterParams = {
-  handler,
   verbose: minimist(process.argv.slice(2)).verbose === true,
   timeout: minimist(process.argv.slice(2)).timeout,
   nockHeal: minimist(process.argv.slice(2))['nock-heal'],
@@ -52,7 +50,7 @@ describe('Testing Tester', () => {
     request.get('http://google.com', (err, res, body) => {
       expect(err).to.equal(null);
       // maximum of 60 seconds diff
-      expect(Math.abs(new Date(res.headers.date) / 1 - Date.now())).to.be.at.most(60 * 1000);
+      expect(Math.abs(new Date(res.headers.date).valueOf() - Date.now())).to.be.at.most(60 * 1000);
       done();
     });
   });
@@ -78,12 +76,9 @@ describe('Testing Tester', () => {
     });
     beforeEach(() => {
       tmpDir = tmp.dirSync({ unsafeCleanup: true });
-      const handlerFile = path.join(tmpDir.name, 'handler.js');
-      sfs.smartWrite(handlerFile, ['module.exports.type = async () => process.env.TYPE;']);
+      sfs.smartWrite(path.join(tmpDir.name, 'handler.js'), ['module.exports.type = async () => process.env.TYPE;']);
       sfs.smartWrite(path.join(tmpDir.name, 'env-vars.yml'), { TYPE: 'cassette' });
       testerArgs = {
-        // eslint-disable-next-line global-require,import/no-dynamic-require
-        handler: require(handlerFile),
         verbose: minimist(process.argv.slice(2)).verbose === true,
         cwd: tmpDir.name,
         testFolder: path.join(tmpDir.name, 'handler'),
