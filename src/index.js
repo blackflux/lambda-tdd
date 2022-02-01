@@ -117,6 +117,7 @@ module.exports = (options) => {
         after(() => suiteEnvVarsWrapper.unapply());
 
         testFiles.forEach((testFile) => {
+          const testSeed = crypto.randomBytes(16).toString('hex');
           // eslint-disable-next-line func-names
           it(`Test ${testFile}`, async function () {
             const test = JSON.parse(fs.readFileSync(path.join(testFolder, testFile), 'utf8'));
@@ -178,7 +179,7 @@ module.exports = (options) => {
                 }
               }
             });
-            process.env.TEST_SEED = crypto.randomBytes(48).toString('hex');
+            process.env.TEST_SEED = testSeed;
 
             try {
               const output = await HandlerExecutor({
