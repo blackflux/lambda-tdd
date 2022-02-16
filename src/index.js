@@ -136,10 +136,10 @@ module.exports = (options) => {
               randomSeeder = RandomSeeder({ seed: test.seed, reseed: test.reseed || false });
               randomSeeder.inject();
             }
-            if (timeout !== undefined) {
-              this.timeout(timeout);
-            } else if (test.timeout !== undefined) {
+            if (test.timeout !== undefined) {
               this.timeout(test.timeout);
+            } else if (timeout !== undefined) {
+              this.timeout(timeout);
             }
             const logRecorder = LogRecorder({ verbose, logger: console });
             logRecorder.inject();
