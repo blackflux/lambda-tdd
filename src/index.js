@@ -137,10 +137,10 @@ module.exports = (options) => {
               randomSeeder.inject();
             }
             const timeoutMax = Math.max(
-              test.timeout !== undefined ? test.timeout : -1,
-              timeout !== undefined ? timeout : -1
+              test.timeout !== undefined ? test.timeout : 0,
+              timeout !== undefined ? timeout : 0
             );
-            if (timeoutMax !== -1) {
+            if (timeoutMax > 0) {
               this.timeout(timeoutMax);
             }
             const logRecorder = LogRecorder({ verbose, logger: console });
