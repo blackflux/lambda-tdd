@@ -13,7 +13,7 @@ const getCircularReplacer = () => {
   };
 };
 
-module.exports = (e) => {
+export default (e) => {
   if (typeof e === 'string' || e instanceof String) {
     return e;
   }

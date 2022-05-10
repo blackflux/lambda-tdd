@@ -1,11 +1,11 @@
-const chai = require('chai');
-const chaiString = require('chai-string');
-const ensureString = require('../util/ensure-string');
+import chai from 'chai';
+import chaiString from 'chai-string';
+import ensureString from '../util/ensure-string.js';
 
 chai.use(chaiString);
 const { expect } = chai;
 
-module.exports = () => {
+export default () => {
   const handleDynamicExpect = (target, check) => {
     let result = 0;
     Object.keys(check).forEach((key) => {

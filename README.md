@@ -38,11 +38,12 @@ To install run
 ### Initialize Test Runner and Execute
 <!-- eslint-disable import/no-extraneous-dependencies, import/no-unresolved, mocha/no-setup-in-describe -->
 ```js
-const minimist = require('minimist');
-const LambdaTdd = require('lambda-tdd');
+import fs from 'smart-fs';
+import minimist from 'minimist';
+import LambdaTdd from 'lambda-tdd';
 
 LambdaTdd({
-  cwd: __dirname,
+  cwd: fs.dirname(import.meta.url),
   verbose: minimist(process.argv.slice(2)).verbose === true,
   timeout: minimist(process.argv.slice(2)).timeout,
   nockHeal: minimist(process.argv.slice(2))['nock-heal']
@@ -168,18 +169,6 @@ Type: `string`<br>
 Default: ``
 
 Folder containing test files.
-
-### flush
-Type: `array`<br>
-Default: `["aws-sdk"]`
-
-List of dependencies that are required to be flushed before test run.
-Useful if you need to re-initialize a module that automatically picks up
-environment variables on initialization (e.g. aws-sdk).
-
-The current project files are always flushed between test runs.
-
-This can not be used for natively compiled modules.
 
 ### stripHeaders
 Type: `boolean`<br>
@@ -346,7 +335,7 @@ Can define the recordings that are allowed to be out of order.
 
 Uses [Chai Assertion Library](http://chaijs.com/api/bdd/) syntax written as json. Lets assume we have an output array `[1, 2]` we want to validate. We can write
 ```js
-const { expect } = require('chai');
+import { expect } from 'chai';
 
 expect([1, 2]).to.contain(1);
 expect([1, 2]).to.contain(2);
