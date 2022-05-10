@@ -1,28 +1,29 @@
 /* eslint-disable mocha/no-setup-in-describe */
-const fs = require('fs');
-const path = require('path');
-const zlib = require('zlib');
-const crypto = require('crypto');
-const get = require('lodash.get');
-const yaml = require('js-yaml');
-const expect = require('chai').expect;
-const Joi = require('joi-strict');
-const globSync = require('glob').sync;
-const appRoot = require('app-root-path');
-const sfs = require('smart-fs');
-const {
+import fs from 'fs';
+import path from 'path';
+import zlib from 'zlib';
+import crypto from 'crypto';
+import get from 'lodash.get';
+import yaml from 'js-yaml';
+import Joi from 'joi-strict';
+import sfs from 'smart-fs';
+import { expect } from 'chai';
+import glob from 'glob';
+import {
   EnvManager,
   TimeKeeper,
   LogRecorder,
   RandomSeeder
-} = require('node-tdd');
-const ExpectService = require('./modules/expect-service');
-const HandlerExecutor = require('./modules/handler-executor');
-const ensureString = require('./util/ensure-string');
-const dynamicApply = require('./util/dynamic-apply');
+} from 'node-tdd';
+import ExpectService from './modules/expect-service.js';
+import HandlerExecutor from './modules/handler-executor.js';
+import ensureString from './util/ensure-string.js';
+import dynamicApply from './util/dynamic-apply.cjs';
+
+const { sync: globSync } = glob;
 
 // eslint-disable-next-line mocha/no-exports
-module.exports = (options) => {
+export default (options) => {
   Joi.assert(options, Joi.object().keys({
     cwd: Joi.string().optional(),
     name: Joi.string().optional(),
@@ -36,7 +37,6 @@ module.exports = (options) => {
     envVarYml: Joi.string().optional(),
     envVarYmlRecording: Joi.string().optional(),
     testFolder: Joi.string().optional(),
-    flush: Joi.array().items(Joi.string()).optional(),
     modifiers: Joi.object().optional(),
     reqHeaderOverwrite: Joi.object().optional(),
     stripHeaders: Joi.boolean().optional()
@@ -54,7 +54,6 @@ module.exports = (options) => {
   const envVarYml = get(options, 'envVarYml', path.join(cwd, 'env-vars.yml'));
   const envVarYmlRecording = get(options, 'envVarYmlRecording', path.join(cwd, 'env-vars.recording.yml'));
   const testFolder = get(options, 'testFolder', cwd);
-  const flush = get(options, 'flush', ['aws-sdk']);
   const modifiers = get(options, 'modifiers', {
     toBase64: (input) => input.toString('base64'),
     toGzip: (input) => zlib.gzipSync(input, { level: 9 }),
@@ -146,41 +145,6 @@ module.exports = (options) => {
             const logRecorder = LogRecorder({ verbose, logger: console });
             logRecorder.inject();
 
-            // re-init function code here to ensures envVars are accessible outside lambda handler
-            const nodeModulesDir = path.resolve(path.join(appRoot.path, 'node_modules')) + path.sep;
-            const flushPaths = flush.map((e) => `${path.sep}node_modules${path.sep}${e}${path.sep}`);
-            const nodeModulesPrefixLength = nodeModulesDir.length - 'node_modules'.length - 2;
-            const shouldFlushEntry = (key) => !key.startsWith(nodeModulesDir)
-              || flushPaths.some((f) => key.indexOf(f) >= nodeModulesPrefixLength);
-            Object.keys(require.cache).forEach((key) => {
-              const mod = require.cache[key];
-
-              // remove children that should be flushed
-              for (let i = mod.children.length - 1; i >= 0; i -= 1) {
-                const childMod = mod.children[i];
-                if (childMod && shouldFlushEntry(childMod.id)) {
-                  // cleanup exports
-                  childMod.exports = {};
-                  mod.children.splice(i, 1);
-                  for (let j = 0; j < childMod.children.length; j += 1) {
-                    delete childMod.children[j];
-                  }
-                }
-              }
-
-              if (shouldFlushEntry(key)) {
-                // delete entry
-                delete require.cache[key];
-                if (mod.parent) {
-                  const ix = mod.parent.children.indexOf(mod);
-                  // eslint-disable-next-line @blackflux/rules/istanbul-prevent-ignore
-                  /* istanbul ignore if */
-                  if (ix >= 0) {
-                    mod.parent.children.splice(ix, 1);
-                  }
-                }
-              }
-            });
             process.env.TEST_SEED = testSeed;
 
             try {

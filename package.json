@@ -1,17 +1,18 @@
 {
   "name": "lambda-tdd",
+  "type": "module",
   "version": "0.0.0-development",
   "description": "Test Framework for AWS Lambda",
   "main": "lib/index.js",
   "scripts": {
     "clean": "rm -rf lib",
-    "build": "npx babel src --out-dir lib --copy-files --include-dotfiles --config-file ./.babelrc",
+    "build": "cp -rf ./src ./lib",
     "build-clean": "yarn run clean && yarn run build",
-    "test-simple": "nyc mocha \"./test/**/*.spec.js\"",
+    "test-simple": "c8 mocha --experimental-loader=./test/hot.js \"./test/**/*.spec.js\"",
     "test": "yarn run clean && yarn run gardener && yarn run test-simple",
     "coveralls": "node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info",
     "semantic-release": "yarn run build-clean && npx semantic-release",
-    "gardener": "node gardener",
+    "gardener": "node gardener.js",
     "docker": "docker run --net host -u`id -u`:`id -g` -v $(pwd):/user/project -v ~/.aws:/user/.aws -v ~/.npmrc:/user/.npmrc -w /user/project -it --entrypoint /bin/bash",
     "t": "yarn test",
     "ts": "yarn run test-simple",
@@ -43,15 +44,14 @@
   },
   "homepage": "https://github.com/blackflux/lambda-tdd#readme",
   "dependencies": {
-    "app-root-path": "3.0.0",
     "chai-string": "1.5.0",
-    "glob": "7.2.0",
+    "glob": "8.0.1",
     "joi-strict": "2.0.1",
     "js-yaml": "4.1.0",
     "lambda-wrapper": "0.3.0",
     "lodash.get": "4.4.2",
     "node-tdd": "3.4.0",
-    "smart-fs": "2.0.3"
+    "smart-fs": "3.0.1"
   },
   "licenses": [
     {
@@ -60,70 +60,37 @@
     }
   ],
   "devDependencies": {
-    "@babel/cli": "7.15.7",
-    "@babel/core": "7.15.8",
-    "@babel/register": "7.15.3",
-    "@blackflux/eslint-plugin-rules": "2.0.4",
-    "@blackflux/robo-config-plugin": "5.3.5",
-    "babel-eslint": "10.1.0",
-    "babel-preset-latest-node": "5.5.1",
-    "chai": "4.3.4",
+    "@babel/core": "7.17.10",
+    "@babel/eslint-parser": "7.17.0",
+    "@babel/register": "7.17.7",
+    "@blackflux/eslint-plugin-rules": "2.1.0",
+    "@blackflux/robo-config-plugin": "7.7.12",
+    "c8": "7.11.2",
+    "chai": "4.3.6",
     "coveralls": "3.1.1",
-    "eslint": "7.32.0",
-    "eslint-config-airbnb-base": "14.2.1",
-    "eslint-plugin-import": "2.25.2",
+    "eslint": "8.15.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.26.0",
     "eslint-plugin-json": "3.1.0",
     "eslint-plugin-markdown": "2.2.1",
-    "eslint-plugin-mocha": "9.0.0",
-    "js-gardener": "3.0.3",
-    "minimist": "1.2.5",
-    "mocha": "9.1.3",
-    "nock": "13.1.4",
-    "nyc": "15.1.0",
+    "eslint-plugin-mocha": "10.0.3",
+    "js-gardener": "3.0.5",
+    "minimist": "1.2.6",
+    "mocha": "10.0.0",
+    "nock": "13.2.4",
     "request": "2.88.2",
     "request-promise": "4.2.6",
-    "semantic-release": "17.4.7",
     "tmp": "0.2.1",
     "uuid": "8.3.0"
   },
   "engines": {
-    "node": ">= 12"
+    "node": ">= 14"
   },
   "files": [
     "lib"
   ],
   "peerDependencies": {
-    "chai": ">= 4.2.0",
-    "nock": ">= 9.3.2"
-  },
-  "nyc": {
-    "tempDir": "./coverage/.nyc_output",
-    "report-dir": "./coverage",
-    "check-coverage": true,
-    "per-file": false,
-    "lines": 100,
-    "statements": 100,
-    "functions": 100,
-    "branches": 100,
-    "include": [
-      "**/*.js"
-    ],
-    "exclude": [
-      "gardener.js",
-      "node_modules/*",
-      "coverage/*",
-      "lib/*"
-    ],
-    "reporter": [
-      "lcov",
-      "text-summary"
-    ],
-    "require": [
-      "@babel/register"
-    ],
-    "extension": [],
-    "cache": true,
-    "all": true,
-    "babel": true
+    "chai": ">= 4.3.6",
+    "nock": ">= 13.2.4"
   }
 }

@@ -1,20 +1,20 @@
-const path = require('path');
-const zlib = require('zlib');
-const expect = require('chai').expect;
-const minimist = require('minimist');
-const request = require('request');
-const sfs = require('smart-fs');
-const tmp = require('tmp');
-const LambdaTester = require('../src/index');
+import path from 'path';
+import zlib from 'zlib';
+import minimist from 'minimist';
+import request from 'request';
+import fs from 'smart-fs';
+import tmp from 'tmp';
+import { expect } from 'chai';
+import LambdaTester from '../src/index.js';
 
 const lambdaTesterParams = {
   verbose: minimist(process.argv.slice(2)).verbose === true,
   timeout: minimist(process.argv.slice(2)).timeout,
   nockHeal: minimist(process.argv.slice(2))['nock-heal'],
   testHeal: minimist(process.argv.slice(2))['test-heal'],
-  cwd: path.join(__dirname, 'mock'),
-  testFolder: path.join(__dirname, 'mock', 'handler', 'api'),
-  cassetteFolder: path.join(__dirname, 'mock', 'handler', '__cassettes', 'api'),
+  cwd: path.join(fs.dirname(import.meta.url), 'mock'),
+  testFolder: path.join(fs.dirname(import.meta.url), 'mock', 'handler', 'api'),
+  cassetteFolder: path.join(fs.dirname(import.meta.url), 'mock', 'handler', '__cassettes', 'api'),
   modifiers: {
     join: (input) => input.join(','),
     wrap: (input) => `{${input}}`,
@@ -76,8 +76,8 @@ describe('Testing Tester', () => {
     });
     beforeEach(() => {
       tmpDir = tmp.dirSync({ unsafeCleanup: true });
-      sfs.smartWrite(path.join(tmpDir.name, 'handler.js'), ['module.exports.type = async () => process.env.TYPE;']);
-      sfs.smartWrite(path.join(tmpDir.name, 'env-vars.yml'), { TYPE: 'cassette' });
+      fs.smartWrite(path.join(tmpDir.name, 'handler.js'), ['module.exports.type = async () => process.env.TYPE;']);
+      fs.smartWrite(path.join(tmpDir.name, 'env-vars.yml'), { TYPE: 'cassette' });
       testerArgs = {
         verbose: minimist(process.argv.slice(2)).verbose === true,
         cwd: tmpDir.name,
@@ -87,7 +87,7 @@ describe('Testing Tester', () => {
     });
 
     it('Testing without env-vars.recording.yml', () => {
-      sfs.smartWrite(path.join(tmpDir.name, 'handler', 'api', 'test.spec.json'), {
+      fs.smartWrite(path.join(tmpDir.name, 'handler', 'api', 'test.spec.json'), {
         handler: 'type',
         success: true,
         expect: {
@@ -98,8 +98,8 @@ describe('Testing Tester', () => {
     });
 
     it('Testing env-vars.recording.yml without recording', () => {
-      sfs.smartWrite(path.join(tmpDir.name, 'env-vars.recording.yml'), { TYPE: 'recording' });
-      sfs.smartWrite(path.join(tmpDir.name, 'handler', 'api', 'test.spec.json'), {
+      fs.smartWrite(path.join(tmpDir.name, 'env-vars.recording.yml'), { TYPE: 'recording' });
+      fs.smartWrite(path.join(tmpDir.name, 'handler', 'api', 'test.spec.json'), {
         handler: 'type',
         success: true,
         expect: {
@@ -110,9 +110,9 @@ describe('Testing Tester', () => {
     });
 
     it('Testing env-vars.recording.yml with recording', () => {
-      sfs.smartWrite(path.join(tmpDir.name, 'env-vars.recording.yml'), { TYPE: 'recording' });
-      sfs.smartWrite(path.join(tmpDir.name, 'handler', '__cassettes', 'api', 'test.spec.json_recording.json'), []);
-      sfs.smartWrite(path.join(tmpDir.name, 'handler', 'api', 'test.spec.json'), {
+      fs.smartWrite(path.join(tmpDir.name, 'env-vars.recording.yml'), { TYPE: 'recording' });
+      fs.smartWrite(path.join(tmpDir.name, 'handler', '__cassettes', 'api', 'test.spec.json_recording.json'), []);
+      fs.smartWrite(path.join(tmpDir.name, 'handler', 'api', 'test.spec.json'), {
         handler: 'type',
         success: true,
         expect: {
@@ -123,18 +123,18 @@ describe('Testing Tester', () => {
     });
 
     it('Testing rogue cassette', () => {
-      sfs.smartWrite(path.join(tmpDir.name, 'handler', '__cassettes', 'api', 'test.spec.json_recording.json'), []);
+      fs.smartWrite(path.join(tmpDir.name, 'handler', '__cassettes', 'api', 'test.spec.json_recording.json'), []);
       expect(() => LambdaTester(testerArgs).execute()).to.throw('Rogue Cassette(s): api/test.spec.json_recording.json');
     });
 
     it('Testing for invalid test file', () => {
-      sfs.smartWrite(path.join(tmpDir.name, 'handler', 'test.js'), []);
+      fs.smartWrite(path.join(tmpDir.name, 'handler', 'test.js'), []);
       expect(() => LambdaTester(testerArgs).execute()).to.throw(`Unexpected File: ${tmpDir.name}/handler/test.js`);
     });
 
     it('Testing testHeal', async () => {
       const testFile = path.join(tmpDir.name, 'handler', 'api', 'test.spec.json');
-      sfs.smartWrite(testFile, {
+      fs.smartWrite(testFile, {
         handler: 'type',
         success: true,
         expect: {
