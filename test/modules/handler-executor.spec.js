@@ -1,8 +1,8 @@
-const fs = require('smart-fs');
-const path = require('path');
-const expect = require('chai').expect;
-const { describe } = require('node-tdd');
-const HandlerExecutor = require('../../src/modules/handler-executor');
+import fs from 'smart-fs';
+import path from 'path';
+import { describe } from 'node-tdd';
+import { expect } from 'chai';
+import HandlerExecutor from '../../src/modules/handler-executor.js';
 
 describe('Testing HandlerExecutor', { useTmpDir: true }, () => {
   let tmpDir;

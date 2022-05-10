@@ -1,4 +1,4 @@
-const dynamicApply = require('./dynamic-apply');
+import dynamicApply from './dynamic-apply.cjs';
 
 const rewrite = (input, modifiers) => {
   if (input !== null && input instanceof Object) {
@@ -17,4 +17,4 @@ const rewrite = (input, modifiers) => {
   return input;
 };
 
-module.exports = rewrite;
+export default rewrite;

@@ -1,5 +1,5 @@
-const expect = require('chai').expect;
-const ensureString = require('../../src/util/ensure-string');
+import { expect } from 'chai';
+import ensureString from '../../src/util/ensure-string.js';
 
 describe('Testing ensureString', () => {
   it('Testing Error', () => {
