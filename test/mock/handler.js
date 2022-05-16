@@ -1,13 +1,15 @@
+import crypto from 'crypto';
 import request from 'request-promise';
-
-import { v4 as uuid4 } from 'uuid';
 
 export const returnEvent = (event, context, cb) => cb(null, event);
 export const returnContext = (event, context, cb) => cb(null, context);
 export const returnError = (event, context, cb) => cb('error');
 export const returnEnv = (event, context, cb) => cb(null, process.env);
 export const returnUnix = (event, context, cb) => cb(null, { unix: Math.floor(new Date() / 1000) });
-export const returnRandom = (event, context, cb) => cb(null, { random1: uuid4(), random2: uuid4() });
+export const returnRandom = (event, context, cb) => cb(null, {
+  random1: crypto.randomUUID(),
+  random2: crypto.randomUUID()
+});
 export const returnTimeout = (event, context, cb) => cb(null, { timeout: context.getRemainingTimeInMillis() });
 export const returnExternal = (event, context, cb) => request
   .get('http://ip-api.com/json', { json: true })
