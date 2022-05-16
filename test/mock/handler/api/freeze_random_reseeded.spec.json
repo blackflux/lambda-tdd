@@ -5,8 +5,8 @@
   "reseed": true,
   "expect": {
     "to.deep.equal()": {
-      "random1": "09137507-88b3-4987-9726-4964f811ff2d",
-      "random2": "09137507-88b3-4987-9726-4964f811ff2d"
+      "random1": "f31986d5-e51f-4b6a-ac53-89eb5b8dd096",
+      "random2": "f31986d5-e51f-4b6a-ac53-89eb5b8dd096"
     }
   }
 }
