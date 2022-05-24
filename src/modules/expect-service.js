@@ -15,6 +15,9 @@ export default ({ replace = [] } = {}) => {
     if (typeof value === 'string') {
       return replacer(value);
     }
+    if (![Object, Array].includes(value?.constructor)) {
+      return value;
+    }
     const cloned = cloneDeep(value);
     objectScan(['**'], {
       filterFn: ({ parent, property, value: v }) => {
