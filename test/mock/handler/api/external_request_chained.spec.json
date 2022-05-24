@@ -1,7 +1,29 @@
 {
   "handler": "returnChainedExternal",
   "success": true,
-  "response": {
-    "to.deep.equal()": "[{\"as\":\"AS852 TELUS Communications Inc.\",\"city\":\"Kelowna\",\"country\":\"Canada\",\"countryCode\":\"CA\",\"isp\":\"TELUS Communications Inc.\",\"lat\":49.8956,\"lon\":-119.4897,\"org\":\"TELUS-HSIA-KLWNBC02\",\"query\":\"50.92.81.105\",\"region\":\"BC\",\"regionName\":\"British Columbia\",\"status\":\"success\",\"timezone\":\"America/Vancouver\",\"zip\":\"V1Y\"},[\"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?>\\n<query>\\n\\t<status><![CDATA[success]]></status>\\n\\t<country><![CDATA[Canada]]></country>\\n\\t<countryCode><![CDATA[CA]]></countryCode>\\n\\t<region><![CDATA[BC]]></region>\\n\\t<regionName><![CDATA[British Columbia]]></regionName>\\n\\t<city><![CDATA[Kelowna]]></city>\\n\\t<zip><![CDATA[V1Y]]></zip>\\n\\t<lat><![CDATA[49.8956]]></lat>\\n\\t<lon><![CDATA[-119.4897]]></lon>\\n\\t<timezone><![CDATA[America/Vancouver]]></timezone>\\n\\t<isp><![CDATA[TELUS Communications Inc.]]></isp>\\n\\t<org><![CDATA[TELUS-HSIA-KLWNBC02]]></org>\\n\\t<as><![CDATA[AS852 TELUS Communications Inc.]]></as>\\n\\t<query><![CDATA[50.92.81.105]]></query>\\n</query>\",\"success,Canada,CA,BC,\\\"British Columbia\\\",Kelowna,V1Y,49.8956,-119.4897,America/Vancouver,\\\"TELUS Communications Inc.\\\",TELUS-HSIA-KLWNBC02,\\\"AS852 TELUS Communications Inc.\\\",50.92.81.105\"],\"a:14:{s:11:\\\"countryCode\\\";s:2:\\\"CA\\\";s:7:\\\"country\\\";s:6:\\\"Canada\\\";s:10:\\\"regionName\\\";s:16:\\\"British Columbia\\\";s:3:\\\"lat\\\";d:49.895599365234375;s:8:\\\"timezone\\\";s:17:\\\"America/Vancouver\\\";s:2:\\\"as\\\";s:31:\\\"AS852 TELUS Communications Inc.\\\";s:6:\\\"status\\\";s:7:\\\"success\\\";s:5:\\\"query\\\";s:12:\\\"50.92.81.105\\\";s:4:\\\"city\\\";s:7:\\\"Kelowna\\\";s:3:\\\"zip\\\";s:3:\\\"V1Y\\\";s:3:\\\"org\\\";s:19:\\\"TELUS-HSIA-KLWNBC02\\\";s:6:\\\"region\\\";s:2:\\\"BC\\\";s:3:\\\"lon\\\";d:-119.48970031738281;s:3:\\\"isp\\\";s:25:\\\"TELUS Communications Inc.\\\";}\"]"
+  "expect": {
+    "to.deep.equal()": [
+      {
+        "as": "AS852 TELUS Communications Inc.",
+        "city": "Kelowna",
+        "country": "Canada",
+        "countryCode": "CA",
+        "isp": "TELUS Communications Inc.",
+        "lat": 49.8956,
+        "lon": -119.4897,
+        "org": "TELUS-HSIA-KLWNBC02",
+        "query": "50.92.81.105",
+        "region": "BC",
+        "regionName": "British Columbia",
+        "status": "success",
+        "timezone": "America/Vancouver",
+        "zip": "V1Y"
+      },
+      [
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<query>\n\t<status><![CDATA[success]]></status>\n\t<country><![CDATA[Canada]]></country>\n\t<countryCode><![CDATA[CA]]></countryCode>\n\t<region><![CDATA[BC]]></region>\n\t<regionName><![CDATA[British Columbia]]></regionName>\n\t<city><![CDATA[Kelowna]]></city>\n\t<zip><![CDATA[V1Y]]></zip>\n\t<lat><![CDATA[49.8956]]></lat>\n\t<lon><![CDATA[-119.4897]]></lon>\n\t<timezone><![CDATA[America/Vancouver]]></timezone>\n\t<isp><![CDATA[TELUS Communications Inc.]]></isp>\n\t<org><![CDATA[TELUS-HSIA-KLWNBC02]]></org>\n\t<as><![CDATA[AS852 TELUS Communications Inc.]]></as>\n\t<query><![CDATA[50.92.81.105]]></query>\n</query>",
+        "success,Canada,CA,BC,\"British Columbia\",Kelowna,V1Y,49.8956,-119.4897,America/Vancouver,\"TELUS Communications Inc.\",TELUS-HSIA-KLWNBC02,\"AS852 TELUS Communications Inc.\",50.92.81.105"
+      ],
+      "a:14:{s:11:\"countryCode\";s:2:\"CA\";s:7:\"country\";s:6:\"Canada\";s:10:\"regionName\";s:16:\"British Columbia\";s:3:\"lat\";d:49.895599365234375;s:8:\"timezone\";s:17:\"America/Vancouver\";s:2:\"as\";s:31:\"AS852 TELUS Communications Inc.\";s:6:\"status\";s:7:\"success\";s:5:\"query\";s:12:\"50.92.81.105\";s:4:\"city\";s:7:\"Kelowna\";s:3:\"zip\";s:3:\"V1Y\";s:3:\"org\";s:19:\"TELUS-HSIA-KLWNBC02\";s:6:\"region\";s:2:\"BC\";s:3:\"lon\";d:-119.48970031738281;s:3:\"isp\";s:25:\"TELUS Communications Inc.\";}"
+    ]
   }
 }

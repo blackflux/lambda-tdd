@@ -1,0 +1,9 @@
+{
+  "handler": "getSeed",
+  "success": true,
+  "expect": {
+    "to.deep.equal()": {
+      "seed": "<seed>"
+    }
+  }
+}
