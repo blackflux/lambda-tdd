@@ -35,7 +35,8 @@
     ],
     "reqheaders": {
       "host": "ip-api.com",
-      "accept": "application/json"
+      "accept": "application/json",
+      "user-agent": "axios/0.27.2"
     }
   },
   {
@@ -59,7 +60,8 @@
     ],
     "reqheaders": {
       "host": "ip-api.com",
-      "accept": "application/json"
+      "accept": "application/json",
+      "user-agent": "axios/0.27.2"
     }
   },
   {
@@ -83,7 +85,8 @@
     ],
     "reqheaders": {
       "host": "ip-api.com",
-      "accept": "application/json"
+      "accept": "application/json",
+      "user-agent": "axios/0.27.2"
     }
   },
   {
@@ -107,7 +110,8 @@
     ],
     "reqheaders": {
       "host": "ip-api.com",
-      "accept": "application/json"
+      "accept": "application/json",
+      "user-agent": "axios/0.27.2"
     }
   }
 ]

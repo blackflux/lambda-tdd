@@ -1,11 +1,32 @@
 import chai from 'chai';
 import chaiString from 'chai-string';
+import cloneDeep from 'lodash.clonedeep';
+import objectScan from 'object-scan';
 import ensureString from '../util/ensure-string.js';
 
 chai.use(chaiString);
 const { expect } = chai;
 
-export default () => {
+export default ({ replace = [] } = {}) => {
+  const replacer = (value) => replace
+    .map(([k, v]) => [new RegExp(k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), v])
+    .reduce((p, [k, v]) => p.replace(k, v), value);
+  const prepare = (value) => {
+    if (typeof value === 'string') {
+      return replacer(value);
+    }
+    const cloned = cloneDeep(value);
+    objectScan(['**'], {
+      filterFn: ({ parent, property, value: v }) => {
+        if (typeof v === 'string') {
+          // eslint-disable-next-line no-param-reassign
+          parent[property] = replacer(v);
+        }
+      }
+    })(cloned);
+    return cloned;
+  };
+
   const handleDynamicExpect = (target, check) => {
     let result = 0;
     Object.keys(check).forEach((key) => {
@@ -25,6 +46,7 @@ export default () => {
   };
 
   return {
+    prepare,
     evaluate: (testsInput, value) => {
       if (testsInput !== undefined) {
         expect(
@@ -34,7 +56,7 @@ export default () => {
         const tests = Array.isArray(testsInput) ? testsInput : [testsInput];
         let count = 0;
         tests.forEach((check) => {
-          count += handleDynamicExpect(expect(value), check);
+          count += handleDynamicExpect(expect(prepare(value)), check);
         });
         expect(count).to.be.at.least(tests.length);
       }
