@@ -7,7 +7,7 @@ import ensureString from '../util/ensure-string.js';
 chai.use(chaiString);
 const { expect } = chai;
 
-export default ({ replace = [] } = []) => {
+export default ({ replace = [] } = {}) => {
   const replacer = (value) => replace
     .map(([k, v]) => [new RegExp(k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), v])
     .reduce((p, [k, v]) => p.replace(k, v), value);
