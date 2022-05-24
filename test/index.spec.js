@@ -1,10 +1,11 @@
 import path from 'path';
 import zlib from 'zlib';
 import minimist from 'minimist';
-import request from 'request';
 import fs from 'smart-fs';
 import tmp from 'tmp';
 import { expect } from 'chai';
+import axios from 'axios';
+import { describe } from 'node-tdd';
 import LambdaTester from '../src/index.js';
 
 const lambdaTesterParams = {
@@ -25,7 +26,7 @@ const lambdaTesterParams = {
 };
 const lambdaTester = LambdaTester(lambdaTesterParams);
 
-describe('Testing Tester', () => {
+describe('Testing Tester', { timeout: 10000 }, () => {
   it('Empty Folder', () => {
     const testFiles = lambdaTester.execute();
     expect(testFiles.length).to.be.greaterThan(1);
@@ -46,13 +47,11 @@ describe('Testing Tester', () => {
     expect(testFiles).to.deep.equal(['echo_event.spec.json']);
   });
 
-  it('Testing outgoing request', (done) => {
-    request.get('http://google.com', (err, res, body) => {
-      expect(err).to.equal(null);
-      // maximum of 60 seconds diff
-      expect(Math.abs(new Date(res.headers.date).valueOf() - Date.now())).to.be.at.most(60 * 1000);
-      done();
-    });
+  it('Testing outgoing request', async () => {
+    const r = await axios.get('http://google.com');
+    expect(r.status).to.equal(200);
+    expect(Math.abs(new Date(r.headers.date).valueOf() - Date.now()))
+      .to.be.at.most(60 * 1000);
   });
 
   it('Testing enabled=false', () => {

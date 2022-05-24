@@ -1,12 +1,11 @@
 /* eslint-disable mocha/no-setup-in-describe */
-import fs from 'fs';
+import fs from 'smart-fs';
 import path from 'path';
 import zlib from 'zlib';
 import crypto from 'crypto';
 import get from 'lodash.get';
 import yaml from 'js-yaml';
 import Joi from 'joi-strict';
-import sfs from 'smart-fs';
 import { expect } from 'chai';
 import glob from 'glob';
 import {
@@ -63,14 +62,14 @@ export default (options) => {
   const stripHeaders = get(options, 'stripHeaders', false);
 
   if (fs.existsSync(cassetteFolder)) {
-    const invalidCassettes = sfs.walkDir(cassetteFolder)
+    const invalidCassettes = fs.walkDir(cassetteFolder)
       .filter((e) => !fs.existsSync(path.join(testFolder, e.substring(0, e.length - 15))));
     if (invalidCassettes.length !== 0) {
       throw new Error(`Rogue Cassette(s): ${invalidCassettes.join(', ')}`);
     }
   }
 
-  sfs.walkDir(testFolder)
+  fs.walkDir(testFolder)
     .map((f) => path.join(testFolder, f))
     .filter((f) => {
       const relative = path.relative(cassetteFolder, f);
@@ -97,7 +96,6 @@ export default (options) => {
     envVars: yaml.load(fs.readFileSync(envVarYmlRecording, 'utf8')),
     allowOverwrite: true
   }) : null;
-  const expectService = ExpectService();
   return {
     execute: (modifier = '') => {
       if (enabled !== true) {
@@ -146,6 +144,12 @@ export default (options) => {
             logRecorder.inject();
 
             process.env.TEST_SEED = testSeed;
+            const expectService = ExpectService({
+              replace: [
+                [cwd, '<root>'],
+                [process.env.TEST_SEED, '<seed>']
+              ]
+            });
 
             try {
               const output = await HandlerExecutor({
@@ -217,7 +221,7 @@ export default (options) => {
                   }
                   if (testHeal !== false && 'to.deep.equal()' in test[k]) {
                     test[k]['to.deep.equal()'] = target;
-                    sfs.smartWrite(path.join(testFolder, testFile), test);
+                    fs.smartWrite(path.join(testFolder, testFile), test);
                   }
                   expectService.evaluate(test[k], target);
                 });

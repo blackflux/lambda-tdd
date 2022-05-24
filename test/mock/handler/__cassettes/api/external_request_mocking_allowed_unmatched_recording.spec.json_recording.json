@@ -34,8 +34,9 @@
       "close"
     ],
     "reqheaders": {
+      "accept": "application/json, text/plain, */*",
       "host": "ip-api.com",
-      "accept": "application/json"
+      "user-agent": "axios/0.27.2"
     }
   },
   {
