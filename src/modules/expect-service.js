@@ -25,11 +25,7 @@ const prepare = (value, replacer) => {
 
 export default ({ replace = [] } = []) => {
   const replacer = (value) => replace
-    .map(([k, v]) => [
-      new RegExp(k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'),
-      v
-    ])
-    .filter(([k, v]) => k instanceof RegExp && ['string', 'function'].includes(typeof v))
+    .map(([k, v]) => [new RegExp(k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), v])
     .reduce((p, [k, v]) => p.replace(k, v), value);
 
   const handleDynamicExpect = (target, check) => {
