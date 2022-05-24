@@ -75,7 +75,10 @@ describe('Testing Tester', { timeout: 10000 }, () => {
     });
     beforeEach(() => {
       tmpDir = tmp.dirSync({ unsafeCleanup: true });
-      fs.smartWrite(path.join(tmpDir.name, 'handler.js'), ['module.exports.type = async () => process.env.TYPE;']);
+      fs.smartWrite(path.join(tmpDir.name, 'handler.js'), [
+        'module.exports.echo = async (event) => event;',
+        'module.exports.type = async () => process.env.TYPE;'
+      ]);
       fs.smartWrite(path.join(tmpDir.name, 'env-vars.yml'), { TYPE: 'cassette' });
       testerArgs = {
         verbose: minimist(process.argv.slice(2)).verbose === true,
@@ -134,10 +137,15 @@ describe('Testing Tester', { timeout: 10000 }, () => {
     it('Testing testHeal', async () => {
       const testFile = path.join(tmpDir.name, 'handler', 'api', 'test.spec.json');
       fs.smartWrite(testFile, {
-        handler: 'type',
+        handler: 'echo',
         success: true,
         expect: {
-          'to.deep.equal()': 'different value'
+          'to.deep.equal()': {
+            cwd: '<root>'
+          }
+        },
+        event: {
+          cwd: testerArgs.cwd
         }
       });
       expect(await LambdaTester({

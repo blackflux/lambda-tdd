@@ -220,7 +220,7 @@ export default (options) => {
                     }
                   }
                   if (testHeal !== false && 'to.deep.equal()' in test[k]) {
-                    test[k]['to.deep.equal()'] = target;
+                    test[k]['to.deep.equal()'] = expectService.prepare(target);
                     fs.smartWrite(path.join(testFolder, testFile), test);
                   }
                   expectService.evaluate(test[k], target);
