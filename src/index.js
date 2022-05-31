@@ -1,5 +1,6 @@
 /* eslint-disable mocha/no-setup-in-describe */
 import fs from 'smart-fs';
+import assert from 'assert';
 import path from 'path';
 import zlib from 'zlib';
 import crypto from 'crypto';
@@ -202,8 +203,13 @@ export default (options) => {
               } else {
                 expect(output.err, `Response: ${ensureString(output.response)}`).to.not.equal(null);
               }
-              Object
-                .keys(test)
+              const keys = Object.keys(test);
+              assert(
+                keys.some((k) => k.startsWith('expect'))
+                || keys.includes('response'),
+                `Missing "expect" for test ${testFile}`
+              );
+              keys
                 .filter((k) => k.match(/^(?:expect|logs|errorLogs|defaultLogs)(?:\(.*?\)$)?/))
                 .forEach((k) => {
                   let target;
