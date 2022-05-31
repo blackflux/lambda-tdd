@@ -1,3 +1,4 @@
+import assert from 'assert';
 import chai from 'chai';
 import chaiString from 'chai-string';
 import cloneDeep from 'lodash.clonedeep';
@@ -39,7 +40,13 @@ export default ({ replace = [] } = {}) => {
       const targetBefore = keys.reduce((o, e) => o[e], target);
       if (!(value instanceof Object) || value instanceof Array || lastKey.endsWith('()')) {
         const isRegex = typeof value === 'string' && value.indexOf('^') === 0;
-        targetBefore[lastKey.replace('()', '')](isRegex ? new RegExp(value, 'i') : value, ensureString(target));
+        const k = lastKey.replace('()', '');
+        const chaiTarget = targetBefore[k];
+        if (typeof chaiTarget === 'function') {
+          targetBefore[k](isRegex ? new RegExp(value, 'i') : value, ensureString(target));
+        } else {
+          assert(value === null, 'Ignored value should be null');
+        }
         result += 1;
       } else {
         result += handleDynamicExpect(targetBefore[lastKey], value);

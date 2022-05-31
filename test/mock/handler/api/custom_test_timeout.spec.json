@@ -1,5 +1,8 @@
 {
   "handler": "returnEvent",
   "success": true,
+  "expect": {
+    "to.be.undefined": null
+  },
   "timeout": 10000
 }
