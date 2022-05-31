@@ -209,8 +209,7 @@ export default (options) => {
                 || keys.includes('response'),
                 `Missing "expect" for test ${testFile}`
               );
-              Object
-                .keys(test)
+              keys
                 .filter((k) => k.match(/^(?:expect|logs|errorLogs|defaultLogs)(?:\(.*?\)$)?/))
                 .forEach((k) => {
                   let target;
