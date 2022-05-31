@@ -1,6 +1,9 @@
 {
   "handler": "logger",
   "success": true,
+  "expect": {
+    "to.be.undefined": null
+  },
   "logs": {
     "to.deep.equal()": [
       "Some Log Message"
