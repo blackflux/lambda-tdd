@@ -51,8 +51,8 @@
     "lambda-wrapper": "0.3.0",
     "lodash.clonedeep": "4.5.0",
     "lodash.get": "4.4.2",
-    "node-tdd": "3.4.1",
-    "object-scan": "18.0.1",
+    "node-tdd": "3.4.2",
+    "object-scan": "18.2.1",
     "smart-fs": "3.0.1"
   },
   "licenses": [
@@ -62,24 +62,24 @@
     }
   ],
   "devDependencies": {
-    "@babel/core": "7.18.0",
-    "@babel/eslint-parser": "7.17.0",
+    "@babel/core": "7.18.5",
+    "@babel/eslint-parser": "7.18.2",
     "@babel/register": "7.17.7",
     "@blackflux/eslint-plugin-rules": "2.1.0",
-    "@blackflux/robo-config-plugin": "7.8.2",
+    "@blackflux/robo-config-plugin": "7.8.7",
     "axios": "0.27.2",
     "c8": "7.11.3",
     "chai": "4.3.6",
     "coveralls": "3.1.1",
-    "eslint": "8.16.0",
+    "eslint": "8.17.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-json": "3.1.0",
     "eslint-plugin-markdown": "2.2.1",
-    "eslint-plugin-mocha": "10.0.3",
+    "eslint-plugin-mocha": "10.0.5",
     "js-gardener": "3.0.5",
     "minimist": "1.2.6",
-    "nock": "13.2.4",
+    "nock": "13.2.7",
     "tmp": "0.2.1"
   },
   "engines": {
