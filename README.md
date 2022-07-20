@@ -190,6 +190,12 @@ Default: `{}`
 
 Used to define overwrite values for cassette `reqheaders`.
 
+### callback
+Type: `function`<br>
+Default: `({ test, cassette, output, expect }) => {}`
+
+Called for each successful test. Can be used for additional validation.
+
 ## Test File Format
 
 ### handler
