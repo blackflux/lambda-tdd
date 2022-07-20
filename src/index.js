@@ -250,12 +250,7 @@ export default (options) => {
                 output.outOfOrderErrors.every((r) => get(test, 'allowedOutOfOrderRecordings', []).includes(r)),
                 `Out of Order Recording(s): ${JSON.stringify(output.outOfOrderErrors)}`
               ).to.equal(true);
-              await callback({
-                test,
-                cassette: fs.smartRead(path.join(cassetteFolder, cassetteFile)),
-                output,
-                expect
-              });
+              await callback({ test, output, expect });
               return Promise.resolve();
             } finally {
               // "close" test run
