@@ -10,6 +10,7 @@ import Joi from 'joi-strict';
 import { expect } from 'chai';
 import glob from 'glob';
 import {
+  describe,
   EnvManager,
   TimeKeeper,
   LogRecorder,
