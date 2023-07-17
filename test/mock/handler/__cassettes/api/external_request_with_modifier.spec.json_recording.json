@@ -36,7 +36,8 @@
     "reqheaders": {
       "host": "ip-api.com",
       "accept": "application/json",
-      "user-agent": "axios/0.27.2"
+      "user-agent": "axios/1.4.0",
+      "accept-encoding": "gzip, compress, deflate, br"
     }
   },
   {
@@ -61,7 +62,8 @@
     "reqheaders": {
       "host": "ip-api.com",
       "accept": "application/json",
-      "user-agent": "axios/0.27.2"
+      "user-agent": "axios/1.4.0",
+      "accept-encoding": "gzip, compress, deflate, br"
     }
   },
   {
@@ -101,8 +103,10 @@
     "reqheaders": {
       "host": "ip-api.com",
       "accept": "application/json",
-      "user-agent": "axios/0.27.2"
-    }
+      "user-agent": "axios/1.4.0",
+      "accept-encoding": "gzip, compress, deflate, br"
+    },
+    "response": "success,Canada,CA,BC,\"British Columbia\",Kelowna,V1Y,49.8956,-119.4897,America/Vancouver,\"TELUS Communications Inc.\",TELUS-HSIA-KLWNBC02,\"AS852 TELUS Communications Inc.\",50.92.81.105"
   },
   {
     "scope": "http://ip-api.com:80",
@@ -126,7 +130,8 @@
     "reqheaders": {
       "host": "ip-api.com",
       "accept": "application/json",
-      "user-agent": "axios/0.27.2"
+      "user-agent": "axios/1.4.0",
+      "accept-encoding": "gzip, compress, deflate, br"
     }
   }
 ]

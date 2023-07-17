@@ -35,8 +35,9 @@
     ],
     "reqheaders": {
       "accept": "application/json, text/plain, */*",
+      "accept-encoding": "gzip, compress, deflate, br",
       "host": "ip-api.com",
-      "user-agent": "axios/0.27.2"
+      "user-agent": "axios/1.4.0"
     }
   },
   {
