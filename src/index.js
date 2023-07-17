@@ -8,7 +8,7 @@ import get from 'lodash.get';
 import yaml from 'js-yaml';
 import Joi from 'joi-strict';
 import { expect } from 'chai';
-import glob from 'glob';
+import { glob } from 'glob';
 import {
   describe,
   EnvManager,
@@ -21,7 +21,7 @@ import HandlerExecutor from './modules/handler-executor.js';
 import ensureString from './util/ensure-string.js';
 import dynamicApply from './util/dynamic-apply.cjs';
 
-const { sync: globSync } = glob;
+const { globSync } = glob;
 
 // eslint-disable-next-line mocha/no-exports
 export default (options) => {

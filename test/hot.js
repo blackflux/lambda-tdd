@@ -28,7 +28,7 @@ export const resolve = async (specifier, context, defaultResolve) => {
         reload: false
       };
       const content = fs.readFileSync(p, 'utf8');
-      if (content.includes('/* load-hot */') || content.includes('lru-cache-ext')) {
+      if (content.includes('/* load-hot */')) {
         lookup[p].reload = true;
       } else if (content.includes('process.env.')) {
         lookup[p].reload = [...content.matchAll(/\bprocess\.env\.([a-zA-Z0-9_]+)\b/g)].map((e) => e[1]);
