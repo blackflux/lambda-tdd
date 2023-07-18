@@ -148,6 +148,7 @@ export default (options) => {
             logRecorder.inject();
 
             process.env.TEST_SEED = testSeed;
+            import(`node:test?testSeed=${process.env.TEST_SEED}`);
             const expectService = ExpectService({
               replace: [
                 [cwd, '<root>'],
