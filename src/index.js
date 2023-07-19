@@ -213,6 +213,7 @@ export default (options) => {
                 || keys.includes('response'),
                 `Missing "expect" for test ${testFile}`
               );
+              let writeTest = false;
               keys
                 .filter((k) => k.match(/^(?:expect|logs|errorLogs|defaultLogs)(?:\(.*?\)$)?/))
                 .forEach((k) => {
@@ -231,11 +232,20 @@ export default (options) => {
                   }
                   if (testHeal !== false && 'to.deep.equal()' in test[k]) {
                     test[k]['to.deep.equal()'] = expectService.prepare(target);
-                    fs.smartWrite(path.join(testFolder, testFile), test);
+                    writeTest = true;
                   }
                   expectService.evaluate(test[k], target);
                 });
-
+              if (testHeal !== false && output.outOfOrderErrors.length !== 0) {
+                test.allowedOutOfOrderRecordings = [...new Set([
+                  ...get(test, 'allowedOutOfOrderRecordings', []),
+                  ...output.outOfOrderErrors
+                ])];
+                writeTest = true;
+              }
+              if (writeTest === true) {
+                fs.smartWrite(path.join(testFolder, testFile), test);
+              }
               if (test.error !== undefined || test.response !== undefined || test.body !== undefined) {
                 // eslint-disable-next-line no-console
                 console.warn('Warning: "error", "response" and "body" are deprecated. Use "expect" instead!');
