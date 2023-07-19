@@ -47,6 +47,12 @@ describe('Testing Tester', { timeout: 10000 }, () => {
     expect(testFiles).to.deep.equal(['echo_event.spec.json']);
   });
 
+  it('Testing File with test heal', () => {
+    const testFiles = LambdaTester({ ...lambdaTesterParams, testHeal: true })
+      .execute(['external_request_chained_invalid_order.spec.json']);
+    expect(testFiles).to.deep.equal(['external_request_chained_invalid_order.spec.json']);
+  });
+
   it('Testing outgoing request', async () => {
     const r = await axios.get('http://google.com');
     expect(r.status).to.equal(200);
@@ -67,7 +73,7 @@ describe('Testing Tester', { timeout: 10000 }, () => {
     expect(testFiles).to.deep.equal(['custom_modifiers.spec.json']);
   });
 
-  describe('Testing env-vars.recording.yml', () => {
+  describe('Testing call handling', () => {
     let tmpDir;
     let testerArgs;
     before(() => {
@@ -135,7 +141,7 @@ describe('Testing Tester', { timeout: 10000 }, () => {
     });
 
     it('Testing testHeal', async () => {
-      const testFile = path.join(tmpDir.name, 'handler', 'api', 'test.spec.json');
+      const testFile = path.join(testerArgs.testFolder, 'api', 'test.spec.json');
       fs.smartWrite(testFile, {
         handler: 'echo',
         success: true,
