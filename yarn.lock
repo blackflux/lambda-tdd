@@ -3112,10 +3112,10 @@ node-releases@^2.0.12:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.13.tgz#d5ed1627c23e3461e819b02e57b75e4899b1c81d"
   integrity sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==
 
-node-tdd@3.5.2:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-3.5.2.tgz#53709a3c0af92c7f82fb3dfd28e2ed081fff2b55"
-  integrity sha512-K6kPP9iAOqmPFsbn/U7/TLghAObOS883XCeD6D4tUqHP4gDgmBVUsIASN5DiI8hgpt1H8eezHt3qRf8yYR5Wdw==
+node-tdd@3.5.3:
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-3.5.3.tgz#e8e9331a4730f5275dfe3987fb9da392822120f0"
+  integrity sha512-R14jSOXLIVLCXy7RUMqFbiRdDE4lpOGRogb+nslXu35tcNiQo75HQJ+DIj6pnACrSvLIYqanJ1RJJw6nImnTDA==
   dependencies:
     callsites "4.0.0"
     compare-urls "2.0.0"
