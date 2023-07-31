@@ -1100,13 +1100,6 @@ commondir@^1.0.1:
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
   integrity sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==
 
-compare-urls@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/compare-urls/-/compare-urls-2.0.0.tgz#9b378c4abd43980a8700fffec9afb85de4df9075"
-  integrity sha512-eCJcWn2OYFEIqbm70ta7LQowJOOZZqq1a2YbbFCFI1uwSvj+TWMwXVn7vPR1ceFNcAIt5RSTDbwdlX82gYLTkA==
-  dependencies:
-    normalize-url "^2.0.1"
-
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -3112,19 +3105,19 @@ node-releases@^2.0.12:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.13.tgz#d5ed1627c23e3461e819b02e57b75e4899b1c81d"
   integrity sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==
 
-node-tdd@3.5.3:
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-3.5.3.tgz#e8e9331a4730f5275dfe3987fb9da392822120f0"
-  integrity sha512-R14jSOXLIVLCXy7RUMqFbiRdDE4lpOGRogb+nslXu35tcNiQo75HQJ+DIj6pnACrSvLIYqanJ1RJJw6nImnTDA==
+node-tdd@3.5.4:
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-3.5.4.tgz#8002485adf68e2399b8e1ad0445679ab17c64beb"
+  integrity sha512-3AiIcY40w74t4FdaPUS9y9nK8mRW/yJ+Wfg77yTxea9C76QNgLmygLWvOyULBIrfRBlWm4JgxMAog0o7+idnsg==
   dependencies:
     callsites "4.0.0"
-    compare-urls "2.0.0"
     joi-strict "2.0.1"
     lodash.clonedeep "4.5.0"
     lodash.get "4.4.2"
     lru-cache-ext "3.0.2"
     minimist "1.2.8"
     nock "13.3.2"
+    normalize-url "2.0.1"
     object-scan "18.5.1"
     smart-fs "3.0.1"
     timekeeper "2.2.0"
@@ -3156,7 +3149,7 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
 
-normalize-url@^2.0.1:
+normalize-url@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-2.0.1.tgz#835a9da1551fa26f70e92329069a23aa6574d7e6"
   integrity sha512-D6MUW4K/VzoJ4rJ01JFKxDrtY1v9wrgzCX5f2qj/lzH1m/lW6MhUZFKerVsnyjOhOsYzI9Kqqak+10l4LvLpMw==
