@@ -52,10 +52,7 @@
     "lodash.get": "4.4.2",
     "node-tdd": "3.5.4",
     "object-scan": "18.5.1",
-    "smart-fs": "3.0.2",
-    "string-width": "^6.1.0",
-    "strip-ansi": "^7.1.0",
-    "wrap-ansi": "^8.1.0"
+    "smart-fs": "3.0.2"
   },
   "licenses": [
     {
