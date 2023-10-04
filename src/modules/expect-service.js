@@ -1,14 +1,14 @@
 import assert from 'assert';
 import chai from 'chai';
 import chaiString from 'chai-string';
-import clonedeepwith from 'lodash.clonedeepwith';
+import cloneDeepWith from 'lodash.clonedeepwith';
 import objectScan from 'object-scan';
 import ensureString from '../util/ensure-string.js';
 
 chai.use(chaiString);
 const { expect } = chai;
 
-const cloneWithSymbols = (obj) => clonedeepwith(obj, (value, property, parent, stack) => {
+const cloneWithSymbols = (obj) => cloneDeepWith(obj, (value, property, parent, stack) => {
   if (typeof property === 'symbol') {
     const descriptor = Object.getOwnPropertyDescriptor(parent, property);
     const clonedParent = stack.get(parent);
