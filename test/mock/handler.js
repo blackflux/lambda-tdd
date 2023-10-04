@@ -31,3 +31,14 @@ export const logger = (event, context, cb) => {
 export const getSeed = (event, context, cb) => {
   cb(null, { seed: process.env.TEST_SEED });
 };
+export const getObjWithSymbol = (event, context, cb) => {
+  const result = {
+    '_Symbol(my-symbol)': 'some-other-value'
+  };
+  Object.defineProperty(
+    result,
+    Symbol('my-symbol'),
+    { value: 'symbol-value', enumerable: false, writable: false }
+  );
+  cb(null, result);
+};
