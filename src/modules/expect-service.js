@@ -1,12 +1,29 @@
 import assert from 'assert';
 import chai from 'chai';
 import chaiString from 'chai-string';
-import cloneDeep from 'lodash.clonedeep';
+import clonedeepwith from 'lodash.clonedeepwith';
 import objectScan from 'object-scan';
 import ensureString from '../util/ensure-string.js';
 
 chai.use(chaiString);
 const { expect } = chai;
+
+const cloneWithSymbols = (obj) => clonedeepwith(obj, (value, property, parent, stack) => {
+  if (typeof property === 'symbol') {
+    const descriptor = Object.getOwnPropertyDescriptor(parent, property);
+    const clonedParent = stack.get(parent);
+
+    // clone the symbol
+    Object.defineProperty(clonedParent, property, descriptor);
+
+    // add symbol as string
+    let name = `_${property.toString()}`;
+    while (name in parent) {
+      name = `_${name}`;
+    }
+    clonedParent[name] = descriptor;
+  }
+});
 
 export default ({ replace = [] } = {}) => {
   const replacer = (value) => replace
@@ -19,7 +36,7 @@ export default ({ replace = [] } = {}) => {
     if (![Object, Array].includes(value?.constructor)) {
       return value;
     }
-    const cloned = cloneDeep(value);
+    const cloned = cloneWithSymbols(value);
     objectScan(['**'], {
       filterFn: ({ parent, property, value: v }) => {
         if (typeof v === 'string') {

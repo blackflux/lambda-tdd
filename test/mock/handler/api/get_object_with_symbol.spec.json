@@ -1,0 +1,15 @@
+{
+  "handler": "getObjWithSymbol",
+  "success": true,
+  "expect": {
+    "to.deep.equal()": {
+      "_Symbol(my-symbol)": "some-other-value",
+      "__Symbol(my-symbol)": {
+        "configurable": false,
+        "enumerable": false,
+        "value": "symbol-value",
+        "writable": false
+      }
+    }
+  }
+}
