@@ -898,10 +898,10 @@ callsite@^1.0.0:
   resolved "https://registry.yarnpkg.com/callsite/-/callsite-1.0.0.tgz#280398e5d664bd74038b6f0905153e6e8af1bc20"
   integrity sha512-0vdNRFXn5q+dtOqjfFtmtlI9N2eVZ7LMyEV2iKC5mEEFvSg/69Ml6b/WU2qF8W1nLRa0wiSrDT3Y5jOHZCwKPQ==
 
-callsites@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/callsites/-/callsites-4.0.0.tgz#8014cea4fedfe681a30e2f7d2d557dd95808a92a"
-  integrity sha512-y3jRROutgpKdz5vzEhWM34TidDU8vkJppF8dszITeb1PQmSqV3DTxyV8G/lyO/DNvtE1YTedehmw9MPZsCBHxQ==
+callsites@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/callsites/-/callsites-4.1.0.tgz#de72b98612eed4e1e2564c952498677faa9d86c2"
+  integrity sha512-aBMbD1Xxay75ViYezwT40aQONfr+pSXTHwNKvIXhXD6+LY3F1dLIcceoC5OZKBVHbXcysz1hL9D2w0JJIMXpUw==
 
 callsites@^3.0.0:
   version "3.1.0"
@@ -3208,16 +3208,6 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
-nock@13.3.2:
-  version "13.3.2"
-  resolved "https://registry.yarnpkg.com/nock/-/nock-13.3.2.tgz#bfa6be92d37f744b1b758ea89b1105cdaf5c8b3f"
-  integrity sha512-CwbljitiWJhF1gL83NbanhoKs1l23TDlRioNraPTZrzZIEooPemrHRj5m0FZCPkB1ecdYCSWWGcHysJgX/ngnQ==
-  dependencies:
-    debug "^4.1.0"
-    json-stringify-safe "^5.0.1"
-    lodash "^4.17.21"
-    propagate "^2.0.0"
-
 nock@13.3.3:
   version "13.3.3"
   resolved "https://registry.yarnpkg.com/nock/-/nock-13.3.3.tgz#179759c07d3f88ad3e794ace885629c1adfd3fe7"
@@ -3226,6 +3216,15 @@ nock@13.3.3:
     debug "^4.1.0"
     json-stringify-safe "^5.0.1"
     lodash "^4.17.21"
+    propagate "^2.0.0"
+
+nock@13.3.8:
+  version "13.3.8"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-13.3.8.tgz#7adf3c66f678b02ef0a78d5697ae8bc2ebde0142"
+  integrity sha512-96yVFal0c/W1lG7mmfRe7eO+hovrhJYd2obzzOZ90f6fjpeU/XNvd9cYHZKZAQJumDfhXgoTpkpJ9pvMj+hqHw==
+  dependencies:
+    debug "^4.1.0"
+    json-stringify-safe "^5.0.1"
     propagate "^2.0.0"
 
 node-emoji@^1.10.0:
@@ -3240,21 +3239,21 @@ node-releases@^2.0.13:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.13.tgz#d5ed1627c23e3461e819b02e57b75e4899b1c81d"
   integrity sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==
 
-node-tdd@4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-4.0.1.tgz#ee9ed13adeaf88fd2b8f7029fb73c7cd64fe7477"
-  integrity sha512-1Rx42wlnz8OhNrOXQtzNwBChkEvfwBolL/tEZygcaSJGNhd6OpF57nlXWPu/PexrRSD2dZhkQjs8F543FFpLQQ==
+node-tdd@4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-4.0.3.tgz#76c1e07c45559de31ce61d41d20ecd777e7e7150"
+  integrity sha512-YYZ+P1n8am6mKxIAQaZ9bqjXO3PxRKyoxlph+qiDUOqsgK/E9ubtSIv8534oEHqiExll+q066yNmBpA5alB6Rg==
   dependencies:
-    callsites "4.0.0"
-    joi-strict "3.0.0"
+    callsites "4.1.0"
+    joi-strict "3.0.1"
     lodash.clonedeep "4.5.0"
     lodash.get "4.4.2"
     lru-cache-ext "4.0.0"
     minimist "1.2.8"
-    nock "13.3.2"
+    nock "13.3.8"
     normalize-url "2.0.1"
-    object-scan "19.0.1"
-    smart-fs "4.0.0"
+    object-scan "19.0.5"
+    smart-fs "4.0.1"
     timekeeper "2.3.1"
     tmp "0.2.1"
     xml2js "0.6.2"
@@ -3382,15 +3381,15 @@ object-scan@19.0.0:
   resolved "https://registry.yarnpkg.com/object-scan/-/object-scan-19.0.0.tgz#0ff5ecbe8252a9eb4dbfc0449c38492d28eea36d"
   integrity sha512-+xzZ7FYcxTZsi6TlXOGrv76kUlBeNjuDnt09BjlUv6HhVrGMOzaaDtiZ+1MqB8zWTb8jASVBbK61409bGdaDkw==
 
-object-scan@19.0.1:
-  version "19.0.1"
-  resolved "https://registry.yarnpkg.com/object-scan/-/object-scan-19.0.1.tgz#cc83705ebd54dc472f54a2846844b9ec1362c1e0"
-  integrity sha512-h3v58qXLGgYjSkzUzGzL7F68YdmcirhM6zTDdTRiPfbwgc00ndX+B9CUwkBGWtFJab0R1lxl9hbBx73KcQH9Pg==
-
 object-scan@19.0.3:
   version "19.0.3"
   resolved "https://registry.yarnpkg.com/object-scan/-/object-scan-19.0.3.tgz#c17979626e91e7202a0834334c2cf210c1d7e4f7"
   integrity sha512-cedQc7tUh1V2ifuYF8t2NVQ+Nek323k7TenFwHxP2fQ7JAuz/DeBTH/ojyELNxFhYEmQMYfSYAvH/oiPolunYw==
+
+object-scan@19.0.5:
+  version "19.0.5"
+  resolved "https://registry.yarnpkg.com/object-scan/-/object-scan-19.0.5.tgz#853bc3ba114507123e8df986e63e632e8144c571"
+  integrity sha512-5rr03NDQJ3oW4gWamHxON45ZLoFe6VCsRJ+trMlYWXlnYTGsuX/eD6MPp9yItzqFhd0pUpgzPm0jrYoeubIsIA==
 
 object-treeify@3.3.1:
   version "3.3.1"
