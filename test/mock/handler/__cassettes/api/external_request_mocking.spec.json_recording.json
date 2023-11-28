@@ -36,7 +36,7 @@
     "reqheaders": {
       "host": "ip-api.com",
       "accept": "application/json, text/plain, */*",
-      "user-agent": "axios/1.4.0",
+      "user-agent": "axios/1.6.2",
       "accept-encoding": "gzip, compress, deflate, br"
     }
   }
