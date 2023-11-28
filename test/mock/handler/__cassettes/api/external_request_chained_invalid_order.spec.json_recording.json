@@ -36,7 +36,7 @@
     "reqheaders": {
       "accept": "application/json",
       "host": "ip-api.com",
-      "user-agent": "axios/1.4.0",
+      "user-agent": "axios/1.6.2",
       "accept-encoding": "gzip, compress, deflate, br"
     }
   },
@@ -62,7 +62,7 @@
     "reqheaders": {
       "accept": "application/json",
       "host": "ip-api.com",
-      "user-agent": "axios/1.4.0",
+      "user-agent": "axios/1.6.2",
       "accept-encoding": "gzip, compress, deflate, br"
     }
   },
@@ -88,7 +88,7 @@
     "reqheaders": {
       "accept": "application/json",
       "host": "ip-api.com",
-      "user-agent": "axios/1.4.0",
+      "user-agent": "axios/1.6.2",
       "accept-encoding": "gzip, compress, deflate, br"
     }
   },
@@ -114,7 +114,7 @@
     "reqheaders": {
       "accept": "application/json",
       "host": "ip-api.com",
-      "user-agent": "axios/1.4.0",
+      "user-agent": "axios/1.6.2",
       "accept-encoding": "gzip, compress, deflate, br"
     }
   }
