@@ -86,6 +86,11 @@
   "files": [
     "lib"
   ],
+  "resolutions": {
+    "strip-ansi": "^6.0.0",
+    "string-width": "^4.0.0",
+    "wrap-ansi": "^v7.0.0"
+  },
   "peerDependencies": {
     "chai": ">= 4.3.6",
     "nock": ">= 13.2.4"
