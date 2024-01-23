@@ -1,12 +1,11 @@
 import assert from 'assert';
-import chai from 'chai';
+import * as chaiModule from 'chai';
 import chaiString from 'chai-string';
 import cloneDeepWith from 'lodash.clonedeepwith';
 import objectScan from 'object-scan';
 import ensureString from '../util/ensure-string.js';
 
-chai.use(chaiString);
-const { expect } = chai;
+const { expect } = chaiModule.use(chaiString);
 
 const cloneWithSymbols = (obj) => cloneDeepWith(obj, (value, property, parent, stack) => {
   if (typeof property === 'symbol') {
