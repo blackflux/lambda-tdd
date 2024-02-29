@@ -37,7 +37,7 @@
       "accept": "application/json, text/plain, */*",
       "accept-encoding": "gzip, compress, deflate, br",
       "host": "ip-api.com",
-      "user-agent": "axios/1.6.5"
+      "user-agent": "axios/1.6.7"
     }
   },
   {

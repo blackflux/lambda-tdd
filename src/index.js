@@ -115,6 +115,7 @@ export default (options) => {
 
       describe(`Testing Lambda Functions: ${name}`, () => {
         before(() => suiteEnvVarsWrapper.apply());
+
         after(() => suiteEnvVarsWrapper.unapply());
 
         testFiles.forEach((testFile) => {

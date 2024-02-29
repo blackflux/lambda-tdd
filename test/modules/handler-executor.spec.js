@@ -7,6 +7,7 @@ import HandlerExecutor from '../../src/modules/handler-executor.js';
 describe('Testing HandlerExecutor', { useTmpDir: true }, () => {
   let tmpDir;
   let handlerFile;
+
   beforeEach(({ dir }) => {
     tmpDir = dir;
     handlerFile = path.join(tmpDir, 'handler.js');
