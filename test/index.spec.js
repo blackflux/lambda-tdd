@@ -76,9 +76,11 @@ describe('Testing Tester', { timeout: 10000 }, () => {
   describe('Testing call handling', () => {
     let tmpDir;
     let testerArgs;
+
     before(() => {
       tmp.setGracefulCleanup();
     });
+
     beforeEach(() => {
       tmpDir = tmp.dirSync({ unsafeCleanup: true });
       fs.smartWrite(path.join(tmpDir.name, 'handler.js'), [
