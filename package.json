@@ -8,7 +8,7 @@
     "clean": "rm -rf lib",
     "build": "cp -rf ./src ./lib",
     "build-clean": "yarn run clean && yarn run build",
-    "test-simple": "c8 mocha --experimental-loader=./test/hot.js \"./test/**/*.spec.js\"",
+    "test-simple": "c8 mocha --import=./test/reg.js \"./test/**/*.spec.js\"",
     "test": "yarn run clean && yarn run gardener && yarn run test-simple",
     "semantic-release": "yarn run build-clean && npx semantic-release",
     "gardener": "node gardener.js",
@@ -50,7 +50,7 @@
     "lambda-wrapper": "0.3.0",
     "lodash.clonedeepwith": "4.5.0",
     "lodash.get": "4.4.2",
-    "node-tdd": "4.1.1",
+    "node-tdd": "5.0.0",
     "object-scan": "19.0.5",
     "smart-fs": "4.0.1"
   },
@@ -61,27 +61,27 @@
     }
   ],
   "devDependencies": {
-    "@babel/core": "7.23.7",
-    "@babel/eslint-parser": "7.23.3",
+    "@babel/core": "7.24.0",
+    "@babel/eslint-parser": "7.23.10",
     "@babel/register": "7.23.7",
     "@blackflux/eslint-plugin-rules": "3.0.1",
-    "@blackflux/robo-config-plugin": "9.2.5",
-    "axios": "1.6.5",
+    "@blackflux/robo-config-plugin": "9.3.2",
+    "axios": "1.6.7",
     "c8": "9.1.0",
-    "chai": "5.0.0",
-    "eslint": "8.56.0",
+    "chai": "5.1.0",
+    "eslint": "8.57.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.29.1",
     "eslint-plugin-json": "3.1.0",
     "eslint-plugin-markdown": "3.0.1",
-    "eslint-plugin-mocha": "10.2.0",
+    "eslint-plugin-mocha": "10.3.0",
     "js-gardener": "5.0.4",
     "minimist": "1.2.8",
-    "nock": "13.5.0",
-    "tmp": "0.2.1"
+    "nock": "13.5.4",
+    "tmp": "0.2.3"
   },
   "engines": {
-    "node": ">= 14"
+    "node": ">= 18"
   },
   "files": [
     "lib"

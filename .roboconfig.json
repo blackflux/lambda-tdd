@@ -8,7 +8,7 @@
       "packageName": "lambda-tdd",
       "projectName": "lambda-tdd",
       "owner": "simlu",
-      "nodeVersion": "14",
+      "nodeVersion": "18",
       "ownerName": "Lukas Siemon",
       "mergeBot": "MrsFlux",
       "nccEnabled": false
