@@ -3210,10 +3210,10 @@ node-releases@^2.0.14:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.14.tgz#2ffb053bceb8b2be8495ece1ab6ce600c4461b0b"
   integrity sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==
 
-node-tdd@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-5.0.0.tgz#b690a9ba15108e68c022cb83b6089ccb91d1858b"
-  integrity sha512-Q2MJ/65mYx923dSme7kmHPGXjKXWMeql4tfCFLYvdH/3vyPJD4iGlbRueJ+11MFhxSPOERxmmjDBGfqGUNKMFQ==
+node-tdd@5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-5.0.1.tgz#34d0b012d5eccbde2e3d4ac4fe855d094316e631"
+  integrity sha512-zA50ADt6CgFQ5ZkDOWDz83hGCZYF123aqpOi1qQNHu3iV2hnDbwnHGtIqxOmTx/2E1GtvK7sZ8UrCTG6T5z9NA==
   dependencies:
     callsites "4.1.0"
     joi-strict "3.0.1"
