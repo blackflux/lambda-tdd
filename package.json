@@ -50,7 +50,7 @@
     "lambda-wrapper": "0.3.0",
     "lodash.clonedeepwith": "4.5.0",
     "lodash.get": "4.4.2",
-    "node-tdd": "5.2.1",
+    "node-tdd": "5.2.2",
     "object-scan": "19.0.5",
     "smart-fs": "4.0.1"
   },
