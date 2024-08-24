@@ -2912,10 +2912,10 @@ lowercase-keys@^2.0.0:
   resolved "https://registry.yarnpkg.com/lowercase-keys/-/lowercase-keys-2.0.0.tgz#2603e78b7b4b0006cbca2fbcc8a3202558ac9479"
   integrity sha512-tqNXrS78oMOE73NMxK4EMLQsQowWf8jKooH9g7xPavRT706R6bkQJ6DY2Te7QukaZsulxa30wQ7bk0pm4XiHmA==
 
-lru-cache-ext@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/lru-cache-ext/-/lru-cache-ext-4.0.0.tgz#3a4f909ca854b02de7c1e106b8a0de2779e7d013"
-  integrity sha512-aPFOhTy2M6iE4A+5f4q1K7bnTzl2Zv56DSDSboJ0pKBwqgiKu5zvKuZtyMB1vkshMXY2sH5st0P/WaDQ28M7aQ==
+lru-cache-ext@4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lru-cache-ext/-/lru-cache-ext-4.1.1.tgz#201722bef956fc06b4053994562b417542a77af5"
+  integrity sha512-/NdLH3uYiWGeAFqms/SK/1GUoMWS5IRHQ0n50P/Ba2dzpevaPLHKm2gDEf2Jrhnsl2Yy+9f9wyufknWnDY9AlA==
   dependencies:
     lru-cache "10.0.0"
 
@@ -3210,16 +3210,16 @@ node-releases@^2.0.14:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.14.tgz#2ffb053bceb8b2be8495ece1ab6ce600c4461b0b"
   integrity sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==
 
-node-tdd@5.2.4:
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-5.2.4.tgz#1e814af371c3387cbc412a16832e2a7a78735013"
-  integrity sha512-n8+TGhOl/bRxN94SxawEWl9Z3lFKDF8BIQil79fgz2Iwz1yBY4pc7faUum47Ody6VLvDVeVM8CPSxm3GahCOOg==
+node-tdd@5.2.5:
+  version "5.2.5"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-5.2.5.tgz#99b22b08bb28ffad4aeb492e4a65868ae1103c38"
+  integrity sha512-BYtaphH5QCNh0sxC0fCp2wYDtF//tghtexAOK5Xb995WPw/nGuUhQTCn6S+arqmuvRGPy9jAGc5NCDetQLCvlg==
   dependencies:
     callsites "4.1.0"
     joi-strict "3.0.1"
     lodash.clonedeep "4.5.0"
     lodash.get "4.4.2"
-    lru-cache-ext "4.0.0"
+    lru-cache-ext "4.1.1"
     minimist "1.2.8"
     nock "13.5.4"
     normalize-url "2.0.1"
