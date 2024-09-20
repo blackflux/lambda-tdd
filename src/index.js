@@ -258,8 +258,10 @@ export default (options) => {
                 output.unmatchedRecordings.every((r) => get(test, 'allowedUnmatchedRecordings', []).includes(r)),
                 `Unmatched Recording(s): ${JSON.stringify(output.unmatchedRecordings)}`
               ).to.equal(true);
+              const allowedOutOfOrderRecordings = get(test, 'allowedOutOfOrderRecordings', []);
               expect(
-                output.outOfOrderErrors.every((r) => get(test, 'allowedOutOfOrderRecordings', []).includes(r)),
+                allowedOutOfOrderRecordings.includes('*')
+                || output.outOfOrderErrors.every((r) => allowedOutOfOrderRecordings.includes(r)),
                 `Out of Order Recording(s): ${JSON.stringify(output.outOfOrderErrors)}`
               ).to.equal(true);
               await callback({ test, output, expect });
