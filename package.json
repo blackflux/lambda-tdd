@@ -51,8 +51,8 @@
     "lodash.clonedeepwith": "4.5.0",
     "lodash.get": "4.4.2",
     "node-tdd": "6.0.0",
-    "object-scan": "19.0.5",
-    "smart-fs": "4.0.1"
+    "object-scan": "20.0.0",
+    "smart-fs": "5.0.1"
   },
   "licenses": [
     {
