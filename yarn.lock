@@ -3353,19 +3353,19 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
-nock@13.5.4:
-  version "13.5.4"
-  resolved "https://registry.yarnpkg.com/nock/-/nock-13.5.4.tgz#8918f0addc70a63736170fef7106a9721e0dc479"
-  integrity sha512-yAyTfdeNJGGBFxWdzSKCBYxs5FxLbCg5X5Q4ets974hcQzG1+qCxvIyOo4j2Ry6MUlhWVMX4OoYDefAIIwupjw==
-  dependencies:
-    debug "^4.1.0"
-    json-stringify-safe "^5.0.1"
-    propagate "^2.0.0"
-
 nock@14.0.0:
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/nock/-/nock-14.0.0.tgz#43418899aafa36fd515ddac902f37c601006d048"
   integrity sha512-3Z2ZoZoYTR/y2I+NI16+6IzfZFKBX7MrADtoBAm7v/QKqxQUhKw+Dh+847PPS1j/FDutjfIXfrh3CJF74yITWg==
+  dependencies:
+    "@mswjs/interceptors" "^0.37.3"
+    json-stringify-safe "^5.0.1"
+    propagate "^2.0.0"
+
+nock@14.0.1:
+  version "14.0.1"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-14.0.1.tgz#62006248bbbc7637322c9fc73f90b93a431b4f5e"
+  integrity sha512-IJN4O9pturuRdn60NjQ7YkFt6Rwei7ZKaOwb1tvUIIqTgeD0SDDAX3vrqZD4wcXczeEy/AsUXxpGpP/yHqV7xg==
   dependencies:
     "@mswjs/interceptors" "^0.37.3"
     json-stringify-safe "^5.0.1"
@@ -3383,10 +3383,10 @@ node-releases@^2.0.19:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.19.tgz#9e445a52950951ec4d177d843af370b411caf314"
   integrity sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==
 
-node-tdd@6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-6.0.2.tgz#8d666994b08c0b94608d2bb4ae79421d6a5e9ff5"
-  integrity sha512-h2AmnGmN8lyHfDnOMPboQExsKrKvEuOrLkUFuVYdwNPhvI3BnF+mMI6KCLqqCgQhafDfajUAHFMR6ZQZMenzvg==
+node-tdd@6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-6.0.3.tgz#1ca76d5a374e4d7b6b12c115e906cb50d1a8755c"
+  integrity sha512-yEcTQ7dV6Q8Qofkp4Lga7sz+g0Tv3RwGg40TywHwNxqyTvO4FXGQVlqwoo3S/ZhdJh6ICzUQOniI0/4jlteETA==
   dependencies:
     callsites "4.2.0"
     joi-strict "4.0.1"
@@ -3394,10 +3394,10 @@ node-tdd@6.0.2:
     lodash.get "4.4.2"
     lru-cache-ext "5.0.1"
     minimist "1.2.8"
-    nock "13.5.4"
+    nock "14.0.1"
     normalize-url "2.0.1"
     object-scan "20.0.1"
-    smart-fs "5.0.1"
+    smart-fs "5.0.2"
     timekeeper "2.3.1"
     tmp "0.2.3"
     xml2js "0.6.2"
