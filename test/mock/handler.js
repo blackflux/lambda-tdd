@@ -1,37 +1,36 @@
 import crypto from 'crypto';
 import axios from 'axios';
 
-export const returnEvent = (event, context, cb) => cb(null, event);
-export const returnContext = (event, context, cb) => cb(null, context);
-export const returnError = (event, context, cb) => cb('error');
-export const returnEnv = (event, context, cb) => cb(null, process.env);
-export const returnUnix = (event, context, cb) => cb(null, { unix: Math.floor(new Date() / 1000) });
-export const returnRandom = (event, context, cb) => cb(null, {
+export const returnEvent = (event, context) => event;
+export const returnContext = (event, context) => context;
+export const returnError = (event, context) => {
+  // eslint-disable-next-line no-throw-literal
+  throw 'error';
+};
+export const returnEnv = (event, context) => process.env;
+export const returnUnix = (event, context) => ({ unix: Math.floor(new Date() / 1000) });
+export const returnRandom = (event, context) => ({
   random1: crypto.randomUUID(),
   random2: crypto.randomUUID()
 });
-export const returnTimeout = (event, context, cb) => cb(null, { timeout: context.getRemainingTimeInMillis() });
-export const returnExternal = (event, context, cb) => axios
-  .get('http://ip-api.com/json')
-  .then((r) => cb(null, r));
-export const returnChainedExternal = async (event, context, cb) => {
+export const returnTimeout = (event, context) => ({ timeout: context.getRemainingTimeInMillis() });
+export const returnExternal = (event, context) => axios
+  .get('http://ip-api.com/json');
+export const returnChainedExternal = async (event, context) => {
   const json = (await axios.get('http://ip-api.com/json', { headers: { accept: 'application/json' } })).data;
   const xmlCsv = await Promise.all([
     axios.get('http://ip-api.com/xml', { headers: { accept: 'application/json' } }),
     axios.get('http://ip-api.com/csv', { headers: { accept: 'application/json' } })
   ]).then((r) => r.map(({ data }) => data));
   const php = (await axios.get('http://ip-api.com/php', { headers: { accept: 'application/json' } })).data;
-  cb(null, [json, xmlCsv, php]);
+  return [json, xmlCsv, php];
 };
-export const logger = (event, context, cb) => {
+export const logger = (event, context) => {
   // eslint-disable-next-line no-console
   console.log('Some Log Message');
-  cb(null);
 };
-export const getSeed = (event, context, cb) => {
-  cb(null, { seed: process.env.TEST_SEED });
-};
-export const getObjWithSymbol = (event, context, cb) => {
+export const getSeed = (event, context) => ({ seed: process.env.TEST_SEED });
+export const getObjWithSymbol = (event, context) => {
   const result = {
     '_Symbol(my-symbol)': 'some-other-value'
   };
@@ -40,5 +39,5 @@ export const getObjWithSymbol = (event, context, cb) => {
     Symbol('my-symbol'),
     { value: 'symbol-value', enumerable: false, writable: false }
   );
-  cb(null, result);
+  return result;
 };
