@@ -13,7 +13,8 @@ describe('Testing HandlerExecutor', { useTmpDir: true }, () => {
     handlerFile = path.join(tmpDir, 'handler.js');
     fs.smartWrite(handlerFile, [
       "const https = require('https');",
-      'module.exports.call = async (event, context) => fetch("https://google.com");'
+      'module.exports.call = (event, context) => new Promise((cb) => https',
+      "  .get('https://google.com', (r) => { r.on('data', () => {}); r.on('end', cb); }));"
     ]);
   });
 
