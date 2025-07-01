@@ -3326,6 +3326,15 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
+nock@13.5.6:
+  version "13.5.6"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-13.5.6.tgz#5e693ec2300bbf603b61dae6df0225673e6c4997"
+  integrity sha512-o2zOYiCpzRqSzPj0Zt/dQ/DqZeYoaQ7TUonc/xUPjCGl9WeHpNbxgVvOquXYAaJzI0M9BXV3HTzG0p8IUAbBTQ==
+  dependencies:
+    debug "^4.1.0"
+    json-stringify-safe "^5.0.1"
+    propagate "^2.0.0"
+
 nock@14.0.5:
   version "14.0.5"
   resolved "https://registry.yarnpkg.com/nock/-/nock-14.0.5.tgz#efed293a4b9ce208eae2151a3690cbe3d80148ba"
@@ -3347,10 +3356,10 @@ node-releases@^2.0.19:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.19.tgz#9e445a52950951ec4d177d843af370b411caf314"
   integrity sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==
 
-node-tdd@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-6.2.0.tgz#c30c36eda85f02979f31ec12443a2c8fd386f208"
-  integrity sha512-gclBhiLe4DUfaAQAvq3dhTAzdZDxFKOPoVnmaW779S1gIf669vRMRJ+daA7Vqu2C17Dw8ZovNIfBvObZXLJzEQ==
+node-tdd@6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/node-tdd/-/node-tdd-6.2.1.tgz#3cd87da50a99c963efeb0debf18ebba2ce329297"
+  integrity sha512-gpYTkr6gv1JtC7IGPBi2yY781i6QKIi/eJoy+rxstRtTOwQSr/flGxEZ/+mzc6DF7DzzBrVLEMzeOMisOiob2w==
   dependencies:
     callsites "4.2.0"
     joi-strict "4.0.1"
@@ -3358,7 +3367,7 @@ node-tdd@6.2.0:
     lodash.get "4.4.2"
     lru-cache-ext "5.0.1"
     minimist "1.2.8"
-    nock "14.0.5"
+    nock "13.5.6"
     normalize-url "2.0.1"
     object-scan "20.0.1"
     smart-fs "5.0.2"
